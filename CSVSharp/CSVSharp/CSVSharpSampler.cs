@@ -1,40 +1,65 @@
-﻿using log4net.Config;
+﻿using log4net;
+using log4net.Config;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace CSVSharp
 {
+    // Class demonstrating user of CSVReader and CSVWriter.
+    /// <summary>
+    /// Class demonstrating user of CSVReader and CSVWriter.
+    /// </summary>
     class CSVSharpSampler
     {
+        // Logger
+        private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public static void Main()
         {
+            // Logger configuration
             XmlConfigurator.Configure();
 
-            Console.Write("Enter path: ");
-            string path = Console.ReadLine();
+            // Output folder for CSVWrite wrt directoryIn
+            string folderOut = "out";
+            
+            // Get path from user to directory of CSV's
+            Console.Write("Enter folder of CSV files: ");
+            string directoryIn = Console.ReadLine();
+            string directoryOut = Path.Combine(new string[]{ directoryIn, folderOut });
 
-            string directoryOut = "out";
-
-            foreach (string pathIn in Directory.GetFiles(path, "*.csv"))
+            // Iterate through directory for CSV files, print out data, and write data to folderOut
+            _log.Info("Attempting to read from " + directoryIn);
+            try
             {
-                DataTable csv = CSVReader.Read(pathIn, true);
-                csv.Print();
-                string[] paths = { Path.GetDirectoryName(pathIn), directoryOut };
-                string pathOut = Path.Combine(paths);
-                Console.WriteLine(pathOut);
-                if (!Directory.Exists(pathOut))
+                foreach (string path in Directory.GetFiles(directoryIn, "*.csv"))
                 {
-                    Directory.CreateDirectory(pathOut);
+                    // Read CSV file
+                    DataTable csv = CSVReader.Read(path, true);
+                    // Print CSV file
+                    csv.Print();
+                    // Make output folder if not present
+                    string fileOut = Path.Combine(new string[]{ Path.GetDirectoryName(path), folderOut, Path.GetFileName(path) });
+                    if (!Directory.Exists(directoryOut))
+                    {
+                        _log.Info("Created directory " + directoryOut);
+                        Directory.CreateDirectory(directoryOut);
+                    }
+                    // Write CSV file
+                    CSVWriter.Write(csv, fileOut);
+                    _log.Info("Successfully wrote to " + fileOut);
+
+                    Console.ReadLine();
                 }
-                string filename = Path.GetFileName(pathIn);
-                CSVWriter.Write(csv, pathOut + "//" + filename);
-                Console.ReadLine();
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not process file(s) due to: " + e);
+            }
+
+            Console.WriteLine("Done!");
+            Console.ReadLine();
         }
     }
 }

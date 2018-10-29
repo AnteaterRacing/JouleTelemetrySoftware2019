@@ -1,12 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSVSharp
 {
-    public class CSVException : Exception
+    public class CSVSharpException : Exception
     {
+        public CSVSharpException()
+        {
+        }
+
+        public CSVSharpException(string message) : base(message)
+        {
+        }
+
+        public CSVSharpException(string message, Exception inner) : base(message, inner)
+        {
+        }
     }
 }
