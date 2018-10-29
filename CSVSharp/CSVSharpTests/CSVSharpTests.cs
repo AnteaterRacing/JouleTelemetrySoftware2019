@@ -84,7 +84,7 @@ namespace CSVSharpTests
                 return false;
             }
 
-            Console.WriteLine("DataTable dimesnsions match.");
+            Console.WriteLine("DataTable dimensions match.");
 
             for (int i = 0; i < expected.Rows.Count; i++)
             {
