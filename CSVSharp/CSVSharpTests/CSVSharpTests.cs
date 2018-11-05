@@ -22,7 +22,7 @@ namespace CSVSharpTests
             dt1.Columns.Add("Col3", typeof(int));
             dt1.Columns.Add("Col4", typeof(int));
             dt1.Columns.Add("Col5", typeof(int));
-            
+
             dt2.Columns.Add("Col1", typeof(int));
             dt2.Columns.Add("Col2", typeof(int));
             dt2.Columns.Add("Col3", typeof(int));
@@ -47,6 +47,7 @@ namespace CSVSharpTests
             string folderOut = "out";
             string directoryOut = Path.Combine(new string[] { directoryIn, folderOut });
 
+            // Create output directory if not already present
             if (!Directory.Exists(directoryOut))
             {
                 Directory.CreateDirectory(directoryOut);
@@ -54,15 +55,13 @@ namespace CSVSharpTests
 
             foreach (string path in Directory.GetFiles(directoryIn, "*.csv"))
             {
-                Console.WriteLine(path);
                 // Read data in
                 DataTable csv = CSVReader.Read(path, true);
                 string fileOut = Path.Combine(new string[] { Path.GetDirectoryName(path), folderOut, Path.GetFileName(path) });
                 CSVWriter.Write(csv, fileOut);
-                // Check data in is same
+                // Check data in is same as data out
                 DataTable csvFromOutput = CSVReader.Read(fileOut, true);
                 Assert.IsTrue(AreDataTablesEqual(csv, csvFromOutput));
-                Console.WriteLine("AreDataTablesEqual pass.");
             }
         }
         #endregion
@@ -77,15 +76,13 @@ namespace CSVSharpTests
         /// <returns>True if objects stored in DataTable are equal, else false.</returns>
         private bool AreDataTablesEqual(DataTable expected, DataTable actual)
         {
-            Console.WriteLine("AreDataTablesEqual start.");
+            // Check DataTable sizes
             if ((expected.Rows.Count != actual.Rows.Count) || (expected.Columns.Count != actual.Columns.Count))
             {
-                Console.WriteLine("DataTable dimensions do not match.");
                 return false;
             }
 
-            Console.WriteLine("DataTable dimensions match.");
-
+            // Check field equality by string
             for (int i = 0; i < expected.Rows.Count; i++)
             {
                 DataRow expectedRow = expected.Rows[i];
@@ -93,11 +90,9 @@ namespace CSVSharpTests
 
                 for (int j = 0; j < expected.Columns.Count; j++)
                 {
-                    if (expected.Rows[i][j] != actual.Rows[i][j])
+                    bool stringDataMatches = expected.Rows[i][j].ToString() == actual.Rows[i][j].ToString();
+                    if (!stringDataMatches)
                     {
-                        //Console.WriteLine(expectedData.GetType() + " " + actualData.GetType());
-                        //Console.WriteLine(actualData.ToString() + " " + expectedData.ToString());
-                        //Console.WriteLine(actualData.ToString().Length.ToString() + " " + expectedData.ToString().Length.ToString());
                         return false;
                     }
                 }

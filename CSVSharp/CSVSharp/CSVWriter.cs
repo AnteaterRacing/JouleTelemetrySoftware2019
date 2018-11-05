@@ -6,6 +6,24 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
+// TODO: Fix issue with quotes surrounding strings.
+// Expected
+// Actual
+// "N"
+// N
+// "W"
+// W
+// "Youngstown"
+// Youngstown
+// "N"
+// N
+// "W"
+// W
+
+// TODO: Non-matching DataTable dimensions issue.
+// JouleTelemetrySoftware2019\CSVSharp\CSVSharpTests\bin\Debug\..\..\..\CSVSharp\samples\random\lead_shot.csv
+// DataTable dimensions do not match.
+
 namespace CSVSharp
 {
     // Class for writing CSV files.
@@ -17,6 +35,7 @@ namespace CSVSharp
         // Logger
         private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        #region Methods
         // Write the data as a CSV file.
         /// <summary>
         /// Write the data as a CSV file.
@@ -26,9 +45,9 @@ namespace CSVSharp
         /// <exception cref=""></exception>
         public static void Write(DataTable dt, string path)
         {
-            _log.Debug(string.Format("CSVWriter.Write(datatable {0}x{1}, {2})", dt.Rows.Count, dt.Columns.Count, path));
+            _log.Debug(string.Format("CSVWriter.Write(DataTable size={0}x{1}, {2})", dt.Rows.Count, dt.Columns.Count, path));
 
-            _log.Debug("Attempting to build string from DataTable...");
+            _log.Info("Attempting to build string from DataTable...");
             StringBuilder sb = new StringBuilder();
             // Add columns to string
             for (int i = 0; i < dt.Columns.Count; i++)
@@ -51,16 +70,17 @@ namespace CSVSharp
                 }
                 sb.AppendLine();
             }
-            _log.Debug("Sucessfully built string.");
+            _log.Info("Sucessfully built string.");
 
             // Write StringBuilder to path
-            _log.Debug("Attempting to write string to path...");
+            _log.Info("Attempting to write string to path...");
             using (StreamWriter writer = new StreamWriter(path))
             {
                 writer.Write(sb);
             }
-            _log.Debug("Successfully wrote to " + path);
+            _log.Info("Successfully wrote to " + path);
         }
+        #endregion
 
         #region Helper Methods
         // Convert string to CSV format.
@@ -75,10 +95,15 @@ namespace CSVSharp
         /// <exception cref="CSVSharpException">Thrown when data could not fit in maximum StringBuilder capacity.</exception>
         private static string StringToCSVFormat(string s)
         {
-            string formattedString = s;
+            _log.Debug(string.Format("CSVWriter.StringToCSVFormat({0})", s));
+
+            Console.WriteLine(s);
+            if (IsDoubleQuoteEnclosed(s))
+            {
+                return "\"" + s + "\"";
+            }
             // Enclose string in double quotes if string contains special character
-            bool hasSpecial = s.Contains("\n") || s.Contains("\"") || s.Contains(",");
-            if (!IsDoubleQuoteEnclosed(s) && hasSpecial)
+            else if (HasSpecial(s)) // not double quote enclosed
             {
                 List<char> chars = new List<char>();
                 // Escape double quotes with double quotes
@@ -103,13 +128,18 @@ namespace CSVSharp
                         sb.Append(c);
                     }
                 }
-                catch (ArgumentOutOfRangeException)
+                catch (ArgumentOutOfRangeException e)
                 {
+                    _log.Info("Failed to convert " + s);
+                    _log.Error(e);
                     throw new CSVSharpException("Could not convert string because exceeded maximum string capacity.");
                 }
-                formattedString = sb.ToString();
+                return sb.ToString();
             }
-            return formattedString;
+            else
+            {
+                return s;
+            }
         }
 
         // Determines if string starts and ends with double quote.
@@ -122,11 +152,18 @@ namespace CSVSharp
         /// </returns>
         private static bool IsDoubleQuoteEnclosed(string s)
         {
+            _log.Debug(string.Format("CSVWriter.IsDoubleQuoteEnclosed({0})", s));
+
             int length = s.Length;
-            // Must be at least two characters
-            if (length <= 1) return false;
+            // Must be at least three characters (ex. "a")
+            if (length <= 2) return false;
             // Check if string begins and ends with double quote
             return s[0] == '"' && s[length-1] == '"';
+        }
+
+        private static bool HasSpecial(string s)
+        {
+            return s.Contains("\n") || s.Contains("\"") || s.Contains(",") || s.Contains("#");
         }
         #endregion
     }
