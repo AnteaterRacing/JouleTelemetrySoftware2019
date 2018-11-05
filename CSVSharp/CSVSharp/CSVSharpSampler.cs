@@ -16,6 +16,7 @@ namespace CSVSharp
         // Logger
         private static readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        #region Main
         public static void Main()
         {
             // Logger configuration
@@ -25,41 +26,66 @@ namespace CSVSharp
             string folderOut = "out";
             
             // Get path from user to directory of CSV's
-            Console.Write("Enter folder of CSV files: ");
-            string directoryIn = Console.ReadLine();
-            string directoryOut = Path.Combine(new string[]{ directoryIn, folderOut });
+            Console.Write("Enter folder/path to CSV file(s): ");
+            string pathIn = Console.ReadLine();
 
-            // Iterate through directory for CSV files, print out data, and write data to folderOut
-            _log.Info("Attempting to read from " + directoryIn);
-            try
+            _log.Info("Attempting to read from " + pathIn);
+
+            // Open CSV file, print out data, and write data to folderOut/*.csv
+            if (File.Exists(pathIn) && Path.GetExtension(pathIn) == ".csv")
             {
-                foreach (string path in Directory.GetFiles(directoryIn, "*.csv"))
+                string directoryOut = Path.Combine(new string[] { Path.GetDirectoryName(pathIn), folderOut });
+                ProcessFile(pathIn, directoryOut);
+            }
+            // Iterate through directory for CSV files, print out data, and write data to folderOut
+            else if (Directory.Exists(pathIn))
+            {
+                string directoryOut = Path.Combine(new string[] { pathIn, folderOut });
+                foreach (string file in Directory.GetFiles(pathIn, "*.csv"))
                 {
-                    // Read CSV file
-                    DataTable csv = CSVReader.Read(path, true);
-                    // Print CSV file
-                    csv.Print();
-                    // Make output folder if not present
-                    string fileOut = Path.Combine(new string[]{ Path.GetDirectoryName(path), folderOut, Path.GetFileName(path) });
-                    if (!Directory.Exists(directoryOut))
-                    {
-                        _log.Info("Created directory " + directoryOut);
-                        Directory.CreateDirectory(directoryOut);
-                    }
-                    // Write CSV file
-                    CSVWriter.Write(csv, fileOut);
-                    _log.Info("Successfully wrote to " + fileOut);
-
+                    ProcessFile(file, directoryOut);
                     Console.ReadLine();
                 }
             }
-            catch (Exception e)
+            // Not a CSV file or valid directory
+            else
             {
-                Console.WriteLine("Could not process file(s) due to: " + e);
+                Console.WriteLine("Not a valid file or directory.");
             }
 
             Console.WriteLine("Done!");
             Console.ReadLine();
         }
+        #endregion
+
+        #region Helper Methods
+        private static void ProcessFile(string file, string directoryOut)
+        {
+            _log.Debug(string.Format("ProcessFile({0}, {1})", file, directoryOut));
+
+            try
+            {
+                // Read CSV file
+                DataTable csv = CSVReader.Read(file, true);
+                // Print CSV file
+                csv.Print();
+                // Make output folder if not present
+                string fileOut = Path.Combine(new string[] { directoryOut, Path.GetFileName(file) });
+                if (!Directory.Exists(directoryOut))
+                {
+                    _log.Info("Created directory " + directoryOut);
+                    Directory.CreateDirectory(directoryOut);
+                }
+                // Write CSV file
+                CSVWriter.Write(csv, fileOut);
+                _log.Info("Successfully wrote to " + fileOut);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not process file(s) due to: " + e);
+            }
+        }
+        #endregion
     }
+
 }
