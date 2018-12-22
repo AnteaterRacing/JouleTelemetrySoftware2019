@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="JouleTelemetryApp.GeneralPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JouleTelemetryApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="Black" BorderThickness="0" BorderBrush="Black">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.6*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4"/>
+        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
+            <TextBlock Foreground="White" FontSize="20" Text="Main Guages" FontStyle="Italic" Opacity="0.5"/>
+
+            <ProgressBar IsIndeterminate="False" Name="Tachometer" Maximum="100" Value="10" Height="60" Width="350" Margin="20" Background="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" >
+                <ProgressBar.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="90"/>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop x:Name="Aqua" Color="#FF00F3FF" Offset="1"/>
+                        <GradientStop x:Name="Green" Color="#FF47F805" Offset="-1"/>
+                        <GradientStop x:Name="Yellow" Color="#FFFFE800" Offset="-4"/>
+                        <GradientStop x:Name="Red" Color="Red" Offset="-4"/>
+                    </LinearGradientBrush>
+                </ProgressBar.Foreground>
+            </ProgressBar>
+
+            <ProgressBar IsIndeterminate="False" Maximum="100" Value="100" Height="60" Width="350" Margin="20" Background="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717" >
+                <ProgressBar.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="90"/>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop x:Name="AquaSpeed" Color="#FF00F3FF" Offset="1"/>
+                        <GradientStop x:Name="GreenSpeed" Color="#FF47F805" Offset="0.75"/>
+                        <GradientStop x:Name="YellowSpeed" Color="#FFFFE800" Offset=".5"/>
+                        <GradientStop x:Name="RedSpeed" Color="Red" Offset="0"/>
+                    </LinearGradientBrush>
+                </ProgressBar.Foreground>
+            </ProgressBar>
+        </StackPanel>
+
+        <Border Grid.Row="0"  Margin="8" Grid.Column="1" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4"/>
+        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
+            <TextBlock Foreground="White" FontSize="20" Text="Battery" FontStyle="Italic" Opacity="0.5"/>
+        </StackPanel>
+
+
+        <Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
+        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Foreground="White" FontSize="45" Text="Video Feed"/>
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Page>
