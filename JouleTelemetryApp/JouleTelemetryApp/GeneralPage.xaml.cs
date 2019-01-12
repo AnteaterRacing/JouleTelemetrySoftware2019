@@ -30,14 +30,20 @@ namespace JouleTelemetryApp
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            for (int a = 0; a <= 100; a = a + 1)
+            
+            for (int a = 0; 1<2; a = a + 1) 
             {
-                Tachometer.Value=a; 
-                Green.Offset = (Tachometer.Value-25)*(25/(Tachometer.Value+1)) / 100;
-                Yellow.Offset = (Tachometer.Value - 25) * (25 / (Tachometer.Value + 1))) / 100;
-                Red.Offset = (Tachometer.Value-100) / 100;
-                await System.Threading.Tasks.Task.Delay(500);
+                int val = (a % 100);
+                Speed.Value = val;
+                SpeedText.Text = (100-val).ToString() + " MPH";
+
+                Tachometer.Value = 100-val;
+                TachometerText.Text = (val).ToString()+" RPM";
+                
+                await System.Threading.Tasks.Task.Delay(100);
             }
         }
     }
 }
+
+
