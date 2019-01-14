@@ -97,7 +97,7 @@
 
 
         <Border Grid.Row="0"  Margin="8" Grid.Column="1" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4"/>
-        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,8,0,0" >
+        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,8,10,0" >
 
             <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
@@ -199,9 +199,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" >
+                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,10.3,0" >
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="steering-wheel-icon.png"/>
+                    </StackPanel.Background>
 
                     <TextBlock Foreground="White" FontSize="25" Name ="SteeringText" Text="0" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <Image Source="Assets\steering-wheel-icon" Width="200" Height="400">
+                        
+                    </Image>
 
 
                 </StackPanel>

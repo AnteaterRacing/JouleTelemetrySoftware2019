@@ -33,16 +33,15 @@ namespace JouleTelemetryApp
 
             for (int a = 0; 1<2; a = a + 1)
             {
-=======
+
                 int val = (a % 100);
-                Speed.Value = val;
+                Speed.Value = (val);
                 SpeedText.Text = (100-val).ToString() + " MPH";
 
                 Tachometer.Value = 100-val;
                 TachometerText.Text = (val).ToString()+" RPM";
 
                 await System.Threading.Tasks.Task.Delay(100);
->>>>>>> ea8a1f59f835f51a5b9334dcac657291e6931d32
             }
         }
     }
