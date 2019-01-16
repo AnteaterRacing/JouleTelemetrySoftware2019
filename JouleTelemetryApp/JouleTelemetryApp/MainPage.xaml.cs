@@ -25,12 +25,33 @@ namespace JouleTelemetryApp
         public MainPage()
         {
             this.InitializeComponent();
+            genFrame.Navigate(typeof(GeneralPage));
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
 
+        }
+        private void General_Click(object sender, RoutedEventArgs e)
+        {
+            genFrame.Navigate(typeof(GeneralPage));
+        }
+        private void Suspension_Click(object sender, RoutedEventArgs e)
+        {
+            genFrame.Navigate(typeof(SuspensionPage));
+        }
+        private void Powertrain_Click(object sender, RoutedEventArgs e)
+        {
+            genFrame.Navigate(typeof(Powertrain));
+        }
+        private void Battery_Click(object sender, RoutedEventArgs e)
+        {
+            genFrame.Navigate(typeof(Battery));
+        }
+        private void HumanInterface_Click(object sender, RoutedEventArgs e)
+        {
+            genFrame.Navigate(typeof(HumanInterfacePage));
         }
     }
 }

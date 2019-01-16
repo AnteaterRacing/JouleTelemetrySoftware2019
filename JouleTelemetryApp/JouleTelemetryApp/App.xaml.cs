@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+
 using Windows.UI.Xaml.Navigation;
 
 namespace JouleTelemetryApp
@@ -71,6 +66,24 @@ namespace JouleTelemetryApp
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+            Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            titleBar.ForegroundColor = Windows.UI.Colors.White;
+            titleBar.BackgroundColor = Windows.UI.Colors.Black;
+            titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonBackgroundColor = Windows.UI.Colors.Black;
+            titleBar.ButtonHoverForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonHoverBackgroundColor = Windows.UI.Colors.DarkGray;
+            titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.Goldenrod;
+            titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.Navy;
+
+            // Set inactive window colors
+            titleBar.InactiveForegroundColor = Windows.UI.Colors.LightGray;
+            titleBar.InactiveBackgroundColor = Windows.UI.Colors.DimGray;
+            titleBar.ButtonInactiveForegroundColor = Windows.UI.Colors.LightGray;
+            titleBar.ButtonInactiveBackgroundColor = Windows.UI.Colors.DimGray;
         }
 
         /// <summary>
