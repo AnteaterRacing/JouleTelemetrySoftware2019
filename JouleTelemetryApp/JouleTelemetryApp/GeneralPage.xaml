@@ -5,8 +5,13 @@
     xmlns:local="using:JouleTelemetryApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="using:OxyPlot.Windows"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <local:GeneralPageModel/>
+    </Page.DataContext>
 
     <Grid Background="Black" BorderThickness="0" BorderBrush="Black">
 
@@ -21,6 +26,7 @@
             <RowDefinition Height="1.6*"/>
         </Grid.RowDefinitions>
 
+        <!-- Main Gauges, Temperature -->
         <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
             <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
         </Border>
@@ -44,7 +50,7 @@
 
             <TextBlock Foreground="White" FontSize="25" Name ="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0" FontWeight="Bold" HorizontalAlignment="Left"/>
             <ProgressBar IsIndeterminate="False" Name ="Speed" Maximum="100" Value="50" Height="60" Width="350" Margin="20,0,0,20" Foreground="#FF00464D"  BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft" >
-                
+
                 <ProgressBar.Background>
                     <LinearGradientBrush>
                         <LinearGradientBrush.RelativeTransform>
@@ -95,7 +101,7 @@
         </StackPanel>
 
 
-
+        <!-- Battery -->
         <Border Grid.Row="0"  Margin="8" Grid.Column="1" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4"/>
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,8,10,0" >
 
@@ -167,10 +173,11 @@
 
             </ProgressBar>
         </StackPanel>
-       
+
+        <!-- Steering, Tires, GPS -->
         <Grid Grid.Row="0" Grid.Column="3" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".6*"/>
                 <ColumnDefinition Width="*"/>
@@ -180,7 +187,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
                 <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             </Border>
@@ -188,9 +195,9 @@
             <Border Grid.Row="0"  Margin="8" Grid.Column="2" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
                 <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             </Border>
-            
+
             <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -206,26 +213,27 @@
 
                     <TextBlock Foreground="White" FontSize="25" Name ="SteeringText" Text="0" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <Image Source="Assets\steering-wheel-icon" Width="200" Height="400">
-                        
+
                     </Image>
 
 
                 </StackPanel>
             </Grid>
-            
+
 
 
         </Grid>
-        
 
+        <!-- Graph -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <oxy:PlotView Model="{Binding SpeedModel}"/>
+        </Grid>
 
+        <!-- Video Stream -->
         <Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
         <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Foreground="White" FontSize="45" Text="Video Feed"/>
         </StackPanel>
-
-
-
 
     </Grid>
 </Page>
