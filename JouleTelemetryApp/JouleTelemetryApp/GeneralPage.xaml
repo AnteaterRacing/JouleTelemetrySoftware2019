@@ -27,213 +27,204 @@
         </Grid.RowDefinitions>
 
         <!-- Main Gauges, Temperature -->
-        <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
-            <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        <Border Grid.Row="0" Grid.Column="0" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
+            <!--<Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>-->
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <TextBlock Foreground="White" FontSize="20" Text="Main Guages" Name="titleText" FontStyle="Italic" Opacity="0.5"/>
+
+                <TextBlock Foreground="White" FontSize="25" Name ="TachometerText" Text="0" Opacity=".8" Margin="20,15,0,0" FontWeight="Bold"/>
+                <ProgressBar IsIndeterminate="False" Name="Tachometer" Maximum="100" Value="20" Height="60" Width="350" Margin="20,0,0,15" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft"  >
+                    <ProgressBar.Background>
+                        <LinearGradientBrush>
+                            <LinearGradientBrush.RelativeTransform>
+                                <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0"/>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop x:Name="AquaTach" Color="#FF00F3FF" Offset="0.877"/>
+                            <GradientStop x:Name="GreenTach" Color="#FF47F805" Offset="0.573"/>
+                            <GradientStop x:Name="YellowTach" Color="#FFFFE800" Offset="0.297"/>
+                            <GradientStop x:Name="RedTach" Color="Red" Offset="0"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Background>
+                </ProgressBar>
+
+                <TextBlock Foreground="White" FontSize="25" Name ="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <ProgressBar IsIndeterminate="False" Name ="Speed" Maximum="100" Value="50" Height="60" Width="350" Margin="20,0,0,20" Foreground="#FF00464D"  BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft" >
+
+                    <ProgressBar.Background>
+                        <LinearGradientBrush>
+                            <LinearGradientBrush.RelativeTransform>
+                                <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0"/>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop x:Name="AquaSpeed" Color="#FF00F3FF" Offset="0.877"/>
+                            <GradientStop x:Name="GreenSpeed" Color="#FF47F805" Offset="0.573"/>
+                            <GradientStop x:Name="YellowSpeed" Color="#FFFFE800" Offset="0.297"/>
+                            <GradientStop x:Name="RedSpeed" Color="Red" Offset="0"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Background>
+                </ProgressBar>
+                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,0,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"  />
+                <TextBlock Foreground="White" FontSize="20" Text="Motor Temp" Name="motortempText" FontStyle="Italic" Opacity="0.5" Margin="8,8,0,0"/>
+
+
+                <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
+                        <TextBlock Foreground="White" FontSize="26" Text="Left" FontStyle="Normal" Opacity="0.8" Margin="0,0,0,8"/>
+
+                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
+                        <TextBlock Foreground="White" FontSize="28" Text="Right" FontStyle="Normal" Opacity="0.8" Margin="0,0,0,8"/>
+
+                        <TextBlock Foreground="White" FontSize="28" Text="91 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+                        <TextBlock Foreground="White" FontSize="28" Text="97 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
         </Border>
-        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,8,10,0" >
-            <TextBlock Foreground="White" FontSize="20" Text="Main Guages" Name="titleText" FontStyle="Italic" Opacity="0.5" Margin="8,0,0,0"/>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="TachometerText" Text="0" Opacity=".8" Margin="20,15,0,0" FontWeight="Bold"/>
-            <ProgressBar IsIndeterminate="False" Name="Tachometer" Maximum="100" Value="20" Height="60" Width="350" Margin="20,0,0,15" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft"  >
-                <ProgressBar.Background>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0"/>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop x:Name="AquaTach" Color="#FF00F3FF" Offset="0.877"/>
-                        <GradientStop x:Name="GreenTach" Color="#FF47F805" Offset="0.573"/>
-                        <GradientStop x:Name="YellowTach" Color="#FFFFE800" Offset="0.297"/>
-                        <GradientStop x:Name="RedTach" Color="Red" Offset="0"/>
-                    </LinearGradientBrush>
-                </ProgressBar.Background>
-            </ProgressBar>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Name ="Speed" Maximum="100" Value="50" Height="60" Width="350" Margin="20,0,0,20" Foreground="#FF00464D"  BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft" >
-
-                <ProgressBar.Background>
-                    <LinearGradientBrush>
-                        <LinearGradientBrush.RelativeTransform>
-                            <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0"/>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop x:Name="AquaSpeed" Color="#FF00F3FF" Offset="0.877"/>
-                        <GradientStop x:Name="GreenSpeed" Color="#FF47F805" Offset="0.573"/>
-                        <GradientStop x:Name="YellowSpeed" Color="#FFFFE800" Offset="0.297"/>
-                        <GradientStop x:Name="RedSpeed" Color="Red" Offset="0"/>
-                    </LinearGradientBrush>
-                </ProgressBar.Background>
-            </ProgressBar>
-            <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,0,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"  />
-            <TextBlock Foreground="White" FontSize="20" Text="Motor Temp" Name="motortempText" FontStyle="Italic" Opacity="0.5" Margin="8,8,0,0"/>
-
-
-            <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
-                    <TextBlock Foreground="White" FontSize="26" Text="Left" FontStyle="Normal" Opacity="0.8" Margin="0,0,0,8"/>
-
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,8,0,0" >
-                    <TextBlock Foreground="White" FontSize="28" Text="Right" FontStyle="Normal" Opacity="0.8" Margin="0,0,0,8"/>
-
-                    <TextBlock Foreground="White" FontSize="28" Text="91 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="97 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                </StackPanel>
-
-            </Grid>
-
-        </StackPanel>
 
 
         <!-- Battery -->
-        <Border Grid.Row="0"  Margin="8" Grid.Column="1" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4"/>
-        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,8,10,0" >
+        <Border Grid.Row="0" Grid.Column="1" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
+            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
-            <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
-                    <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
-                </Border>
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                    <TextBlock Foreground="White" FontSize="20" Text="Battery" FontStyle="Italic" Opacity="0.5"/>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">20°F</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Volts <Bold x:Name="voltText">20V</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Draw <Bold x:Name="drawText">320W</Bold></TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </Border>
+                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="20" Text="Battery" FontStyle="Italic" Opacity="0.5"/>
+                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">20°F</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Volts <Bold x:Name="voltText">20V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Draw <Bold x:Name="drawText">320W</Bold></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="20" Text="Watt Stats" FontStyle="Italic" Opacity="0.5"/>
+                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">90 W</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Low <Bold x:Name="lowWatt" Foreground="#FFFF2828">20 W</Bold></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"  />
+
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,10,10,0" >
+                    <Button Background="Transparent">
+                        <StackPanel>
+                            <Border CornerRadius="18" Background="Transparent" BorderBrush="White" BorderThickness="3" Margin="0,0,0,0">
+                                <TextBlock Text="8" Margin="25,5,25,5" Foreground="White"/>
+                            </Border>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="Transparent">
+                        <StackPanel>
+                            <Border CornerRadius="18"  Background="Transparent" BorderBrush="White" BorderThickness="3">
+                                <TextBlock Text="6" Margin="25,5,25,5" Foreground="White"/>
+                            </Border>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="Transparent">
+                        <StackPanel>
+                            <Border CornerRadius="18" Background="Transparent" BorderBrush="White" BorderThickness="3">
+                                <TextBlock Text="3" Margin="25,5,25,5" Foreground="White"/>
+                            </Border>
+                        </StackPanel>
+                    </Button>
+
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                    <TextBlock Foreground="White" FontSize="20" Text="Watt Stats" FontStyle="Italic" Opacity="0.5"/>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">90 W</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Low <Bold x:Name="lowWatt" Foreground="#FFFF2828">20 W</Bold></TextBlock>
-                </StackPanel>
-            </Grid>
-            <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"  />
+                <TextBlock Foreground="White" FontSize="25" Name ="wattText1" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <ProgressBar IsIndeterminate="False" Maximum="100" Value="20" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
 
-            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,10,10,0" >
-                <Button Background="Transparent">
-                    <StackPanel>
-                        <Border CornerRadius="18" Background="Transparent" BorderBrush="White" BorderThickness="3" Margin="0,0,0,0">
-                            <TextBlock Text="8" Margin="25,5,25,5" Foreground="White"/>
-                        </Border>
-                    </StackPanel>
-                </Button>
-                <Button Background="Transparent">
-                    <StackPanel>
-                        <Border CornerRadius="18"  Background="Transparent" BorderBrush="White" BorderThickness="3">
-                            <TextBlock Text="6" Margin="25,5,25,5" Foreground="White"/>
-                        </Border>
-                    </StackPanel>
-                </Button>
-                <Button Background="Transparent">
-                    <StackPanel>
-                        <Border CornerRadius="18" Background="Transparent" BorderBrush="White" BorderThickness="3">
-                            <TextBlock Text="3" Margin="25,5,25,5" Foreground="White"/>
-                        </Border>
-                    </StackPanel>
-                </Button>
+                </ProgressBar>
 
+                <TextBlock Foreground="White" FontSize="25" Name ="wattText2" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
+
+                </ProgressBar>
+
+                <TextBlock Foreground="White" FontSize="25" Name ="wattText3" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
+                <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,15" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
+
+                </ProgressBar>
             </StackPanel>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText1" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="20" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText2" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText3" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,15" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
-        </StackPanel>
+        </Border>
 
         <!-- Steering, Tires, GPS -->
-        <Grid Grid.Row="0" Grid.Column="3" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".6*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width=".5*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
-                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
-            </Border>
-
-            <Border Grid.Row="0"  Margin="8" Grid.Column="2" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
-                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
-            </Border>
-
-            <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
+        <Border Grid.Row="0" Grid.Column="2">
+            <Grid Margin="-2,0,2,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".6*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".5*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,10.3,0" >
-                    <StackPanel.Background>
-                        <ImageBrush ImageSource="steering-wheel-icon.png"/>
-                    </StackPanel.Background>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="8" Padding="4" Background="Red" BorderThickness="2" BorderBrush="#C4C4C4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <TextBlock Foreground="White" FontSize="25" Name ="SteeringText" Text="0" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <Image Source="Assets\steering-wheel-icon" Width="200" Height="400">
+                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,10.3,0" >
+                        <StackPanel.Background>
+                            <ImageBrush ImageSource="steering-wheel-icon.png"/>
+                        </StackPanel.Background>
+                        <TextBlock Foreground="White" FontSize="25" Name ="SteeringText" Text="0" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <Image Source="Assets\steering-wheel-icon" Width="200" Height="400"></Image>
+                    </StackPanel>
+                </Grid>
 
-                    </Image>
+                <Grid Grid.Row="0" Grid.Column="1" Margin="8" Padding="4" Background="Green" BorderThickness="2" BorderBrush="#C4C4C4">
+                </Grid>
 
+                <Grid Grid.Row="0" Grid.Column="2" Margin="8" Padding="4" Background="Blue" BorderThickness="2" BorderBrush="#C4C4C4">
+                </Grid>
 
-                </StackPanel>
             </Grid>
-
-
-
-        </Grid>
+        </Border>
 
         <!-- Graph -->
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8">
             <oxy:PlotView Model="{Binding SpeedModel}"/>
-        </Grid>
+        </Border>
 
         <!-- Video Stream -->
-        <Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
-        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Foreground="White" FontSize="45" Text="Video Feed"/>
-        </StackPanel>
+        <Border Grid.Row="1" Grid.Column="2" Margin="8" Background="#152951">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="45" Text="Video Feed"/>
+            </Grid>
+        </Border>
 
     </Grid>
 </Page>
