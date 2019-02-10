@@ -6,12 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:oxy="using:OxyPlot.Windows"
+    xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext>
-        <local:GeneralPageModel/>
-    </Page.DataContext>
+    <Page.Resources>
+        <local:SpeedViewModel x:Key="ViewModel"></local:SpeedViewModel>
+    </Page.Resources>
 
     <Grid Background="Black" BorderThickness="0" BorderBrush="Black">
 
@@ -99,7 +100,6 @@
 
             </StackPanel>
         </Border>
-
 
         <!-- Battery -->
         <Border Grid.Row="0" Grid.Column="1" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
@@ -215,12 +215,31 @@
         </Border>
 
         <!-- Graph -->
-        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8">
-            <oxy:PlotView Model="{Binding SpeedModel}"/>
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4" DataContext="{StaticResource ViewModel}">
+            <!--<oxy:PlotView Model="{Binding SpeedModel}"/>-->
+            <telerikChart:RadCartesianChart>
+                <telerikChart:RadCartesianChart.Grid>
+                    <telerikChart:CartesianChartGrid MajorLinesVisibility="Y"/>
+                </telerikChart:RadCartesianChart.Grid>
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis MajorStep="20" Minimum="0" Maximum="100"/>
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:DateTimeContinuousAxis x:Name="horizontalAxis" LabelFormat="{} {0,0:hh:MM:ss}" MajorStepUnit="Second" MajorStep="10" />
+                </telerikChart:RadCartesianChart.HorizontalAxis>
+                <telerikChart:AreaSeries ItemsSource="{Binding SpeedHistory}">
+                    <telerikChart:AreaSeries.ValueBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="Speed"/>
+                    </telerikChart:AreaSeries.ValueBinding>
+                    <telerikChart:AreaSeries.CategoryBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="Date"/>
+                    </telerikChart:AreaSeries.CategoryBinding>
+                </telerikChart:AreaSeries>
+            </telerikChart:RadCartesianChart>
         </Border>
 
         <!-- Video Stream -->
-        <Border Grid.Row="1" Grid.Column="2" Margin="8" Background="#152951">
+        <Border Grid.Row="1" Grid.Column="2" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4" Background="#152951">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontSize="45" Text="Video Feed"/>
             </Grid>
