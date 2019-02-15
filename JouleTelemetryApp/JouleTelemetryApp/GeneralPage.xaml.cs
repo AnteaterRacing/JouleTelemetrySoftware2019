@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 
@@ -34,9 +32,18 @@ namespace JouleTelemetryApp
 
         private int Fibonacci(int i)
         {
-            if (i <= 0) return 0;
-            else if (i == 1 || i == 2) return 1;
-            else return Fibonacci(i - 1) + Fibonacci(i - 2);
+            if (i <= 0)
+            {
+                return 0;
+            }
+            else if (i == 1 || i == 2)
+            {
+                return 1;
+            }
+            else
+            {
+                return Fibonacci(i - 1) + Fibonacci(i - 2);
+            }
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
@@ -61,8 +68,10 @@ namespace JouleTelemetryApp
         }
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            //foreach (GraphViewModel graph in vm.Graphs)
-            //    graph.Stop();
+            foreach (GraphViewModel graph in vm.Graphs)
+            {
+                graph.Stop();
+            }
         }
 
         private void GraphComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

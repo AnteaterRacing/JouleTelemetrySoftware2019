@@ -39,7 +39,6 @@ namespace JouleTelemetryApp
 
         public string CurrentString => string.Format("{0:F2}", Current.Value);
 
-
         public ObservableCollection<GraphData> History
         {
             get => history;
@@ -52,6 +51,8 @@ namespace JouleTelemetryApp
 
         public string AverageString => string.Format("{0:F2}", History.Average(data => data.Value));
 
+        public string AreaString => string.Format("{0:F2}", History.Sum(data => data.Value));
+
         public GraphViewModel(string name = "GraphViewModel", GraphDelegate dataGenerator = null,
             int minimum = 0, int maximum = 100,
             int updatePeriod = 1000, int resolution = 60)
@@ -59,10 +60,14 @@ namespace JouleTelemetryApp
             Name = name;
             UpdatePeriod = updatePeriod;
             Resolution = resolution;
-            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
+            if (minimum > maximum)
+            {
+                throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
+            }
+
             Minimum = minimum;
             Maximum = maximum;
-            DataGenerator = dataGenerator ?? new GraphDelegate(() => Minimum + RANDOM.NextDouble()*Maximum);
+            DataGenerator = dataGenerator ?? new GraphDelegate(() => Minimum + RANDOM.NextDouble() * Maximum);
 
             timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += Tick;
@@ -122,6 +127,7 @@ namespace JouleTelemetryApp
 
             OnPropertyChanged("CurrentString");
             OnPropertyChanged("AverageString");
+            OnPropertyChanged("AreaString");
         }
 
         protected double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
