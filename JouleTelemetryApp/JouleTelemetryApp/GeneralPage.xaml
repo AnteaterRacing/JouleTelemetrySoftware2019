@@ -5,16 +5,14 @@
     xmlns:local="using:JouleTelemetryApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:oxy="using:OxyPlot.Windows"
     xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <local:SpeedViewModel x:Key="ViewModel"></local:SpeedViewModel>
     </Page.Resources>
 
-    <Grid Background="Black" BorderThickness="0" BorderBrush="Black">
+    <Grid Background="Black">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -215,27 +213,79 @@
         </Border>
 
         <!-- Graph -->
-        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4" DataContext="{StaticResource ViewModel}">
-            <!--<oxy:PlotView Model="{Binding SpeedModel}"/>-->
-            <telerikChart:RadCartesianChart>
-                <telerikChart:RadCartesianChart.Grid>
-                    <telerikChart:CartesianChartGrid MajorLinesVisibility="Y"/>
-                </telerikChart:RadCartesianChart.Grid>
-                <telerikChart:RadCartesianChart.VerticalAxis>
-                    <telerikChart:LinearAxis MajorStep="20" Minimum="0" Maximum="100"/>
-                </telerikChart:RadCartesianChart.VerticalAxis>
-                <telerikChart:RadCartesianChart.HorizontalAxis>
-                    <telerikChart:DateTimeContinuousAxis x:Name="horizontalAxis" LabelFormat="{} {0,0:hh:MM:ss}" MajorStepUnit="Second" MajorStep="10" />
-                </telerikChart:RadCartesianChart.HorizontalAxis>
-                <telerikChart:AreaSeries ItemsSource="{Binding SpeedHistory}">
-                    <telerikChart:AreaSeries.ValueBinding>
-                        <telerikChart:PropertyNameDataPointBinding PropertyName="Speed"/>
-                    </telerikChart:AreaSeries.ValueBinding>
-                    <telerikChart:AreaSeries.CategoryBinding>
-                        <telerikChart:PropertyNameDataPointBinding PropertyName="Date"/>
-                    </telerikChart:AreaSeries.CategoryBinding>
-                </telerikChart:AreaSeries>
-            </telerikChart:RadCartesianChart>
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Padding="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock Grid.Column="0" Text="{x:Bind ValueViewModel.Name, Mode=OneWay}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>-->
+                    <ComboBox x:Name="Graph_ComboBox" ItemsSource="{x:Bind vm.Graphs, Mode=OneWay}"
+                              SelectedItem="{x:Bind vm.CurrentGraph}"
+                              SelectedValue="{x:Bind vm.CurrentGraph.Name}"
+                              SelectionChanged="GraphComboBox_SelectionChanged"></ComboBox>
+                    <RelativePanel Grid.Column="1">
+                        <StackPanel RelativePanel.AlignRightWithPanel="True" Orientation="Horizontal">
+                            <TextBlock Text="Resolution:" VerticalAlignment="Center" Padding="0,0,10,0"></TextBlock>
+                            <RadioButton Content="30 seconds" Tag="30" GroupName="Resolution" Checked="Resolution_Checked"/>
+                            <RadioButton Content="1 minute" Tag="60" GroupName="Resolution" Checked="Resolution_Checked" IsChecked="True"/>
+                            <RadioButton Content="5 minutes" Tag="3000" GroupName="Resolution" Checked="Resolution_Checked"/>
+                        </StackPanel>
+                    </RelativePanel>
+                </Grid>
+                <Grid Grid.Row="1" Padding="8">
+                    <telerikChart:RadCartesianChart Name="Graph_TelerikChart">
+                        <telerikChart:RadCartesianChart.Grid>
+                            <telerikChart:CartesianChartGrid MajorLinesVisibility="XY">
+                                <telerikChart:CartesianChartGrid.MajorXLineStyle>
+                                    <Style TargetType="Line">
+                                        <Setter Property="Stroke" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                        <Setter Property="StrokeDashArray" Value="4, 2"/>
+                                    </Style>
+                                </telerikChart:CartesianChartGrid.MajorXLineStyle>
+                                <telerikChart:CartesianChartGrid.MajorYLineStyle>
+                                    <Style TargetType="Line">
+                                        <Setter Property="Stroke" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                        <Setter Property="StrokeDashArray" Value="4, 2"/>
+                                    </Style>
+                                </telerikChart:CartesianChartGrid.MajorYLineStyle>
+                            </telerikChart:CartesianChartGrid>
+                        </telerikChart:RadCartesianChart.Grid>
+                        <telerikChart:RadCartesianChart.VerticalAxis>
+                            <telerikChart:LinearAxis MajorStep="25" Minimum="0" Maximum="100" ShowLabels="True" />
+                        </telerikChart:RadCartesianChart.VerticalAxis>
+                        <telerikChart:RadCartesianChart.HorizontalAxis>
+                            <telerikChart:DateTimeContinuousAxis MajorStepUnit="Second" MajorStep="15"
+                                                                 LabelFormat="{}{0,0:HH:MM:ss}" LabelFitMode="MultiLine" />
+                        </telerikChart:RadCartesianChart.HorizontalAxis>
+                        <telerikChart:SplineAreaSeries Name="GraphSplineAreaSeries" ItemsSource="{x:Bind vm.CurrentGraph.History, Mode=OneWay}">
+                            <telerikChart:AreaSeries.ValueBinding>
+                                <telerikChart:PropertyNameDataPointBinding PropertyName="Value"/>
+                            </telerikChart:AreaSeries.ValueBinding>
+                            <telerikChart:SplineAreaSeries.CategoryBinding>
+                                <telerikChart:PropertyNameDataPointBinding PropertyName="Date"/>
+                            </telerikChart:SplineAreaSeries.CategoryBinding>
+                        </telerikChart:SplineAreaSeries>
+                    </telerikChart:RadCartesianChart>
+                    <RelativePanel Width="200" HorizontalAlignment="Right">
+                        <StackPanel Padding="8" RelativePanel.AlignLeftWithPanel="True">
+                            <TextBlock Padding="4" Style="{ThemeResource BodyTextBlockStyle}">
+                                <Run Text="Average: "></Run>
+                                <Run Text="{x:Bind vm.CurrentGraph.AverageString, Mode=OneWay}"></Run>
+                            </TextBlock>
+                            <TextBlock Padding="4" Style="{ThemeResource BodyTextBlockStyle}">
+                                <Run Text="Current: "></Run>
+                                <Run Text="{x:Bind vm.CurrentGraph.CurrentString, Mode=OneWay}"></Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </RelativePanel>
+                </Grid>
+            </Grid>
         </Border>
 
         <!-- Video Stream -->
