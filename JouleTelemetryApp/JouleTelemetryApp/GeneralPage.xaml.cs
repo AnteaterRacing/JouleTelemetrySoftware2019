@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.Collections.Generic;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 
@@ -19,14 +21,22 @@ namespace JouleTelemetryApp
 
             vm = new ViewModel
             {
-                CurrentGraph = new GraphViewModel("Value1")
+                CurrentGraph = new GraphViewModel("Random")
             };
             vm.Graphs.Add(vm.CurrentGraph);
-            vm.Graphs.Add(new GraphViewModel("Value2"));
-            vm.Graphs.Add(new GraphViewModel("Value3"));
+            int i = 0;
+            vm.Graphs.Add(new GraphViewModel("Fibonacci", dataGenerator: () => Fibonacci(i++ % 20), maximum: 5000));
+            vm.Graphs.Add(new GraphViewModel("Constant", dataGenerator: () => 50));
 
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
+        }
+
+        private int Fibonacci(int i)
+        {
+            if (i <= 0) return 0;
+            else if (i == 1 || i == 2) return 1;
+            else return Fibonacci(i - 1) + Fibonacci(i - 2);
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)

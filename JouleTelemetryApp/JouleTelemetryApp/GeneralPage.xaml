@@ -239,7 +239,7 @@
                     </RelativePanel>
                 </Grid>
                 <Grid Grid.Row="1" Padding="8">
-                    <telerikChart:RadCartesianChart Name="Graph_TelerikChart">
+                    <telerikChart:RadCartesianChart>
                         <telerikChart:RadCartesianChart.Grid>
                             <telerikChart:CartesianChartGrid MajorLinesVisibility="XY">
                                 <telerikChart:CartesianChartGrid.MajorXLineStyle>
@@ -257,13 +257,13 @@
                             </telerikChart:CartesianChartGrid>
                         </telerikChart:RadCartesianChart.Grid>
                         <telerikChart:RadCartesianChart.VerticalAxis>
-                            <telerikChart:LinearAxis MajorStep="25" Minimum="0" Maximum="100" ShowLabels="True" />
+                            <telerikChart:LinearAxis MajorStep="{x:Bind vm.CurrentGraph.Step, Mode=OneWay}" Minimum="{x:Bind vm.CurrentGraph.Minimum, Mode=OneWay}" Maximum="{x:Bind vm.CurrentGraph.Maximum, Mode=OneWay}" ShowLabels="True" />
                         </telerikChart:RadCartesianChart.VerticalAxis>
                         <telerikChart:RadCartesianChart.HorizontalAxis>
                             <telerikChart:DateTimeContinuousAxis MajorStepUnit="Second" MajorStep="15"
                                                                  LabelFormat="{}{0,0:HH:MM:ss}" LabelFitMode="MultiLine" />
                         </telerikChart:RadCartesianChart.HorizontalAxis>
-                        <telerikChart:SplineAreaSeries Name="GraphSplineAreaSeries" ItemsSource="{x:Bind vm.CurrentGraph.History, Mode=OneWay}">
+                        <telerikChart:SplineAreaSeries ItemsSource="{x:Bind vm.CurrentGraph.History, Mode=OneWay}">
                             <telerikChart:AreaSeries.ValueBinding>
                                 <telerikChart:PropertyNameDataPointBinding PropertyName="Value"/>
                             </telerikChart:AreaSeries.ValueBinding>

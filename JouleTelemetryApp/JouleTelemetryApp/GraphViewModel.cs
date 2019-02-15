@@ -10,26 +10,27 @@ namespace JouleTelemetryApp
 
     public class GraphViewModel : ViewModelBase
     {
-        protected double LOW = 0; // lowest speed value
-        protected double HIGH = 100; // highest speed value
-        protected double CLAMP = 15; // clamp for limiting random changes
-        protected static readonly Random random = new Random();
+        public static readonly Random RANDOM = new Random();
         protected DispatcherTimer timer;
-
-        public string Name { get; set; } // name of graph
-
-        public GraphDelegate DataGenerator { get; set; } // function "pointer" to generate data
-
-        public int UpdatePeriod { get; set; } // milliseconds per update
-
-        public int Resolution { get; set; } // seconds of resolution to view history
-
         protected GraphData current;
+        protected ObservableCollection<GraphData> history;
+
+        public string Name { get; private set; } // name of graph
+
+        public GraphDelegate DataGenerator { get; private set; } // function "pointer" to generate data
+
+        public int UpdatePeriod { get; private set; } // milliseconds per update
+
+        public int Resolution { get; private set; } // seconds of resolution to view history
+
+        public int Minimum { get; private set; }
+        public int Maximum { get; private set; }
+        public int Step => (Maximum - Minimum) / 5;
 
         public GraphData Current
         {
             get => current;
-            set
+            private set
             {
                 current = value;
                 OnPropertyChanged("Current");
@@ -38,7 +39,6 @@ namespace JouleTelemetryApp
 
         public string CurrentString => string.Format("{0:F2}", Current.Value);
 
-        protected ObservableCollection<GraphData> history;
 
         public ObservableCollection<GraphData> History
         {
@@ -52,12 +52,17 @@ namespace JouleTelemetryApp
 
         public string AverageString => string.Format("{0:F2}", History.Average(data => data.Value));
 
-        public GraphViewModel(string name = "GraphViewModel", GraphDelegate dataGenerator = null, int updatePeriod = 1000, int resolution = 60)
+        public GraphViewModel(string name = "GraphViewModel", GraphDelegate dataGenerator = null,
+            int minimum = 0, int maximum = 100,
+            int updatePeriod = 1000, int resolution = 60)
         {
             Name = name;
-            DataGenerator = dataGenerator ?? new GraphDelegate(random.NextDouble);
             UpdatePeriod = updatePeriod;
             Resolution = resolution;
+            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
+            Minimum = minimum;
+            Maximum = maximum;
+            DataGenerator = dataGenerator ?? new GraphDelegate(() => Minimum + RANDOM.NextDouble()*Maximum);
 
             timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += Tick;
@@ -106,16 +111,10 @@ namespace JouleTelemetryApp
             // Update the historical list with new speed data
             GraphData last = history.Last();
 
-            double currentLow = last.Value - CLAMP;
-            double currentHigh = last.Value + CLAMP;
-
             current = new GraphData
             {
                 Date = last.Date.AddMilliseconds(UpdatePeriod),
-                Value = Map(LOW + DataGenerator() * HIGH,
-                                 LOW, HIGH,
-                                 currentLow < LOW ? LOW : currentLow,
-                                 currentHigh > HIGH ? HIGH : currentHigh)
+                Value = DataGenerator()
             };
 
             history.Add(current);
