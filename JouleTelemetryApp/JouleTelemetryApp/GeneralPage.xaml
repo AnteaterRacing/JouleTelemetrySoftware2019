@@ -44,7 +44,7 @@
 
             <TextBlock Foreground="White" FontSize="25" Name ="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0" FontWeight="Bold" HorizontalAlignment="Left"/>
             <ProgressBar IsIndeterminate="False" Name ="Speed" Maximum="100" Value="50" Height="60" Width="350" Margin="20,0,0,20" Foreground="#FF00464D"  BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft" >
-                
+
                 <ProgressBar.Background>
                     <LinearGradientBrush>
                         <LinearGradientBrush.RelativeTransform>
@@ -78,6 +78,7 @@
                     <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
                     <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
                     <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
+ref 'refs/remotes/origin/Issue_21': is at 10e6bd6e69582a3ca09dd6bbdb27e2a4759e1cda but expected 5783b761091eb5a0fdeffef511ebcec97c7dee49
 
 
                 </StackPanel>
@@ -113,16 +114,45 @@
                     <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
                 </Border>
                 <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                    <TextBlock Foreground="White" FontSize="20" Text="Battery" FontStyle="Italic" Opacity="0.5"/>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">20°F</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Volts <Bold x:Name="voltText">20V</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Draw <Bold x:Name="drawText">320W</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5"/>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">120 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText">3.5 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp">30 °</Bold></TextBlock>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                    <TextBlock Foreground="White" FontSize="20" Text="Watt Stats" FontStyle="Italic" Opacity="0.5"/>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">90 W</Bold></TextBlock>
-                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Low <Bold x:Name="lowWatt" Foreground="#FFFF2828">20 W</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5"/>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">120 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp1">35 °C</Bold></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"/>
+            <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
+                    <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                </Border>
+                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
+                    <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5"/>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">120 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent">20 A</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">30 ° C</Bold></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
+                    <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5"/>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">120 V</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent1">20 A</Bold></TextBlock>
+                    <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp1">30 °C</Bold></TextBlock>
                 </StackPanel>
             </Grid>
             <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"  />
@@ -152,25 +182,11 @@
 
             </StackPanel>
 
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText1" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="20" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText2" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,10" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
-
-            <TextBlock Foreground="White" FontSize="25" Name ="wattText3" Text="0" Opacity=".8" Margin="20,0,0,0" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ProgressBar IsIndeterminate="False" Maximum="100" Value="10" Height="60" Width="350" Margin="20,0,0,15" Foreground="#FF00F3FF" BorderThickness="0,13" BorderBrush="#FF171717" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"    >
-
-            </ProgressBar>
         </StackPanel>
-       
-        <Grid Grid.Row="0" Grid.Column="3" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                
+        <Grid Grid.Row="0" Grid.Column="3" BorderThickness="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width=".6*"/>
                 <ColumnDefinition Width="*"/>
@@ -180,17 +196,17 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <Border Grid.Row="0"  Margin="8" Grid.Column="0" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
+
+            <Border Grid.Row="0"  Margin="8" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
                 <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             </Border>
 
-            <Border Grid.Row="0"  Margin="8" Grid.Column="2" Background="Black" BorderThickness="2" BorderBrush="#C4C4C4">
+            <Border Grid.Row="0"  Margin="8" Grid.Column="2"  BorderThickness="2" BorderBrush="#C4C4C4">
                 <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             </Border>
-            
-            <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                
+
+            <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -199,24 +215,143 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,10.3,0" >
-                    <StackPanel.Background>
-                        <ImageBrush ImageSource="steering-wheel-icon.png"/>
-                    </StackPanel.Background>
+                <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0"  Grid.RowSpan="2" >
+
+                    <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
 
                     <TextBlock Foreground="White" FontSize="25" Name ="SteeringText" Text="0" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <Image Source="Assets\steering-wheel-icon" Width="200" Height="400">
-                        
+                    <Image Source="Assets/steering-wheel-icon.png"  RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
+                        <Image.RenderTransform>
+                            <CompositeTransform  x:Name="steeringRotate"  Rotation="0"/>
+                        </Image.RenderTransform>
                     </Image>
 
+                    <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
+                    <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+                    <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Center">+ .8</TextBlock>
+
+                        <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
+                        <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center">+.8</TextBlock>
+
+                        <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <Ellipse Height="75" Width="75" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <Ellipse Height="130" Width="130" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                            <Rectangle Width="180" Height="3" Stroke="#FF00F3FF" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF"/>
+                            <Rectangle Width="180" Height="3" Stroke="#FF00F3FF" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <CompositeTransform Rotation="90"/>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Ellipse Height="15" Width="15" StrokeThickness="3" Stroke="#FF6E6E6E" Fill="White" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" RenderTransformOrigin="0.5,0.5">
+                                <Ellipse.RenderTransform>
+                                    <CompositeTransform x:Name="gForceTransform" TranslateX="10" TranslateY="10"/>
+                                </Ellipse.RenderTransform>
+
+                            </Ellipse>
+
+
+                        </RelativePanel>
+                    
 
                 </StackPanel>
+                
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".5*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width=".3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3.1*"/>
+                        <RowDefinition Height="2.1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2.1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="1"  Margin="0" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </Border>
+                   
+                    <Border Grid.Row="3"  Margin="0" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </Border>
+                    <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0">30 °C</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0">30 °C</TextBlock>
+                    </StackPanel>
+
+                    <Rectangle Height="2" Grid.Column="1"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
+                    <Rectangle Height="2" Grid.Column="1"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
+
+
+
+                </Grid>
+
+
+                <Image Source="Assets/racecar.png"  Name="car"  Grid.Column="1" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
+
+                </Image>
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3.1*"/>
+                        <RowDefinition Height="2.1*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2.1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="1"  Margin="0" Grid.Column="1"  BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </Border>
+
+                    <Border Grid.Row="3"  Margin="0" Grid.Column="1"  BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0">30 °C</TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0">30 °C</TextBlock>
+                    </StackPanel>
+                    
+                    <Rectangle Height="2" Grid.Column="0"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
+                    <Rectangle Height="2" Grid.Column="0"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
+
+                </Grid>
+                
+                
+                
             </Grid>
             
+            <StackPanel Grid.Column="2">
+                <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
 
-
+            </StackPanel>
         </Grid>
-        
+
 
 
         <Border Grid.Row="1" Grid.Column="2" Background="#152951"/>

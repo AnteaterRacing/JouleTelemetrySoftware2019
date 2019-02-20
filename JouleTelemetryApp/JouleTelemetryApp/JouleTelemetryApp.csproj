@@ -122,6 +122,8 @@
     <None Include="JouleTelemetryApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\racecar.png" />
+    <Content Include="Assets\steering-wheel-icon.png" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>

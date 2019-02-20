@@ -35,8 +35,24 @@ namespace JouleTelemetryApp
             {
 
                 int val = (a % 100);
+
                 Speed.Value = (val);
                 SpeedText.Text = (100-val).ToString() + " MPH";
+                int steeringDegrees = a;
+
+                steeringRotate.Rotation = (a);
+
+                gForceTransform.TranslateX = a%100;
+                gForceTransform.TranslateY = a % 100;
+
+                if (a > 0)
+                {
+                    SteeringText.Text = '+'+(a).ToString() + '°';
+                }
+                else
+                {
+                    SteeringText.Text = (a).ToString() + '°';
+                }
 
                 Tachometer.Value = 100-val;
                 TachometerText.Text = (val).ToString()+" RPM";
