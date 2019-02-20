@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,18 +11,51 @@ namespace JouleTelemetryApp
     /// </summary>
     public sealed partial class GeneralPage : Page
     {
+        private ViewModel vm;
+
         public GeneralPage()
         {
-            this.InitializeComponent();
-            this.Loaded += MainPage_Loaded;
+            InitializeComponent();
+
+            vm = new ViewModel
+            {
+                CurrentGraph = new GraphViewModel("Random")
+            };
+            vm.Graphs.Add(vm.CurrentGraph);
+            int i = 0;
+            vm.Graphs.Add(new GraphViewModel("Fibonacci", dataGenerator: () => Fibonacci(i++ % 20), maximum: 5000));
+            vm.Graphs.Add(new GraphViewModel("Constant", dataGenerator: () => 50));
+
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
-        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private int Fibonacci(int i)
         {
-
-            for (int a = 0; 1<2; a = a + 1)
+            if (i <= 0)
             {
+                return 0;
+            }
+            else if (i == 1 || i == 2)
+            {
+                return 1;
+            }
+            else
+            {
+                return Fibonacci(i - 1) + Fibonacci(i - 2);
+            }
+        }
 
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            foreach (GraphViewModel graph in vm.Graphs)
+            {
+                graph.Start();
+            }
+
+            // Speedometer, Tachometer animation
+            for (int a = 0; 1 < 2; a = a + 1)
+            {
                 int val = (a % 100);
 
                 Speed.Value = (val);
@@ -54,11 +76,31 @@ namespace JouleTelemetryApp
                     SteeringText.Text = (a).ToString() + '°';
                 }
 
-                Tachometer.Value = 100-val;
-                TachometerText.Text = (val).ToString()+" RPM";
+                Tachometer.Value = 100 - val;
+                TachometerText.Text = (val).ToString() + " RPM";
 
                 await System.Threading.Tasks.Task.Delay(100);
             }
         }
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            foreach (GraphViewModel graph in vm.Graphs)
+            {
+                graph.Stop();
+            }
+        }
+
+        private void GraphComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            vm.CurrentGraph = (GraphViewModel)e.AddedItems[0];
+        }
+
+        private void Resolution_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            // TODO: impelement changing graph
+            //ValueViewModel.Resolution = Convert.ToInt32(rb.Tag);
+        }
+
     }
 }

@@ -6,24 +6,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-// TODO: Fix issue with quotes surrounding strings.
-// Expected
-// Actual
-// "N"
-// N
-// "W"
-// W
-// "Youngstown"
-// Youngstown
-// "N"
-// N
-// "W"
-// W
-
-// TODO: Non-matching DataTable dimensions issue.
-// JouleTelemetrySoftware2019\CSVSharp\CSVSharpTests\bin\Debug\..\..\..\CSVSharp\samples\random\lead_shot.csv
-// DataTable dimensions do not match.
-
 namespace CSVSharp
 {
     // Class for writing CSV files.
