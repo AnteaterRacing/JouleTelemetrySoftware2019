@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Collections.Generic;
+using System.IO;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 
@@ -17,6 +19,7 @@ namespace JouleTelemetryApp
         {
             InitializeComponent();
 
+            // Graphs
             vm = new ViewModel
             {
                 CurrentGraph = new GraphViewModel("Random")
@@ -25,6 +28,8 @@ namespace JouleTelemetryApp
             int i = 0;
             vm.Graphs.Add(new GraphViewModel("Fibonacci", dataGenerator: () => Fibonacci(i++ % 20), maximum: 5000));
             vm.Graphs.Add(new GraphViewModel("Constant", dataGenerator: () => 50));
+            var csv = CsvEnumerator();
+            vm.Graphs.Add(new GraphViewModel("CSV Data Loop", dataGenerator: () => CsvDataGenerator(csv, loop: true), minimum:-100, maximum: 100));
 
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
@@ -43,6 +48,23 @@ namespace JouleTelemetryApp
             else
             {
                 return Fibonacci(i - 1) + Fibonacci(i - 2);
+            }
+        }
+
+        // TODO: what happens when CSV ends
+        private double CsvDataGenerator(IEnumerator<double> csv, bool loop = false)
+        {
+            double value = csv.Current;
+            csv.MoveNext();
+            return value;
+        }
+
+        private IEnumerator<double> CsvEnumerator()
+        {
+            var csv = File.ReadAllText("assets/data/sample1.csv");
+            foreach (var line in Csv.CsvReader.ReadFromText(csv))
+            {
+                yield return double.Parse(line["Steering Position [Deg]"]);
             }
         }
 
@@ -66,6 +88,7 @@ namespace JouleTelemetryApp
                 await System.Threading.Tasks.Task.Delay(100);
             }
         }
+
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             foreach (GraphViewModel graph in vm.Graphs)
