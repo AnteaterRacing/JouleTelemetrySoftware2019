@@ -2,6 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:JouleTelemetryApp"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+        xmlns:telerik="using:Telerik.UI.Xaml.Controls.DataVisualization"
         xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart" mc:Ignorable="d"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -114,48 +116,7 @@
         <!-- Battery -->
         <Border Grid.Row="0" Grid.Column="1" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
             <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-
-                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4"
-                            BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
-                    </Border>
-                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="8,0,0,0">
-                        <TextBlock Foreground="White" FontSize="20" Text="Battery" FontStyle="Italic" Opacity="0.5" />
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
-                                FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">20°F</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight">Volts <Bold x:Name="voltText">90V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight" SelectionChanged="TextBlock_SelectionChanged">Draw <Bold x:Name="drawText">20kW</Bold></TextBlock>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="8,0,0,0">
-                        <TextBlock Foreground="White" FontSize="20" Text="Wattage Low/High" FontStyle="Italic" Opacity="0.5" SelectionChanged="TextBlock_SelectionChanged" />
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">40 W</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
-                                FontWeight="ExtraLight">Low <Bold x:Name="lowWatt" Foreground="#FFFF2828">20 W</Bold></TextBlock>
-                    </StackPanel>
-                </Grid>
-                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0"
-                        Opacity="0.5" FocusVisualPrimaryBrush="White" />
-
-
-
-
+                
                 <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                     <Grid.ColumnDefinitions>
@@ -169,20 +130,57 @@
                     <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
                         <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
                     </Border>
+                    <!--BMS 1-->
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp">30 °</Bold></TextBlock>
-                    </StackPanel>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp">30 °</Bold></TextBlock>
+                        
+                        <ProgressBar IsIndeterminate="False" Name="BMStemp" Maximum="100" Value="50" Height="60" 
+                        Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
+                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
 
+                            <ProgressBar.Background>
+                                <LinearGradientBrush>
+                                    <LinearGradientBrush.RelativeTransform>
+                                        <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0" />
+                                    </LinearGradientBrush.RelativeTransform>
+                                    <GradientStop x:Name="AquaTemp" Color="#FF00F3FF" Offset="0.877" />
+                                    <GradientStop x:Name="GreenTemp" Color="#FF47F805" Offset="0.573" />
+                                    <GradientStop x:Name="YellowTemp" Color="#FFFFE800" Offset="0.297" />
+                                    <GradientStop x:Name="RedTemp" Color="Red" Offset="0" />
+                                </LinearGradientBrush>
+                            </ProgressBar.Background>
+                        </ProgressBar>
+                    </StackPanel>
+                    
+                    <!--BMS 2-->
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp1">35 °C</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp1">35 °C</Bold></TextBlock>
+                        <ProgressBar IsIndeterminate="False" Name="BMStemp1" Maximum="100" Value="50" Height="60" 
+                        Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
+                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
+
+                            <ProgressBar.Background>
+                                <LinearGradientBrush>
+                                    <LinearGradientBrush.RelativeTransform>
+                                        <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="0" />
+                                    </LinearGradientBrush.RelativeTransform>
+                                    <GradientStop x:Name="AquaTemp1" Color="#FF00F3FF" Offset="0.877" />
+                                    <GradientStop x:Name="GreenTemp1" Color="#FF47F805" Offset="0.573" />
+                                    <GradientStop x:Name="YellowTemp1" Color="#FFFFE800" Offset="0.297" />
+                                    <GradientStop x:Name="RedTemp1" Color="Red" Offset="0" />
+                                </LinearGradientBrush>
+                            </ProgressBar.Background>
+                        </ProgressBar>
                     </StackPanel>
                 </Grid>
+
+
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"/>
                 <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
@@ -197,16 +195,28 @@
                     <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
                         <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
                     </Border>
+                    
+                    <!--Motor 1-->
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5"/>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">34 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent">20 A</Bold></TextBlock>
+                        
+                        <controls:RadialGauge x:Name="Motor1CurrentGauge" Margin="10" Value="70" Minimum="0" 
+	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
+	                    ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
+                        NeedleWidth="5" TickLength="18" NeedleBrush="orange">
+                        </controls:RadialGauge>
                     </StackPanel>
-
+                    
+                    <!--Motor 2-->
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5"/>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">30 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent1">20 A</Bold></TextBlock>
+                        <controls:RadialGauge x:Name="Motor2CurrentGauge" Margin="10" Value="66" Minimum="0" 
+	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
+	                    ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
+                        NeedleWidth="5" TickLength="18" NeedleBrush="orange">
+                        </controls:RadialGauge>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -248,8 +258,9 @@
 
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
                 <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Center">+ .8</TextBlock>
+
                 <!-- G-Force -->
+                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Center">+ .8</TextBlock>
                 <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
                     <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center">+.8</TextBlock>
                     <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
@@ -450,8 +461,14 @@
                 </Grid>
             </Grid>
 
-            <StackPanel Grid.Column="2">
-                <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
+            <StackPanel Grid.Column="2" Margin="10,10,10,0">
+                <TextBlock Foreground="White" FontSize="20" Text="GPS" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+                <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Lat <Bold x:Name="Latitude">33.6444343</Bold></TextBlock>
+                <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Long <Bold x:Name="Longitude">-117.8413760</Bold></TextBlock>
+
+                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
+                <TextBlock Foreground="White" FontSize="20" Text="Gyro" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+
             </StackPanel>
         </Grid>
 

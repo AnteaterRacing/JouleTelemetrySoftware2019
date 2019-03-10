@@ -2,6 +2,7 @@
 using System.IO;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -100,12 +101,16 @@ namespace JouleTelemetryApp
                     SteeringText.Text = (steeringDegrees).ToString() + '°';
                 }
 
+                Motor2CurrentGauge.Value = Math.Abs(a);
+                Motor1CurrentGauge.Value = Math.Abs(a);
+
+
                 Tachometer.Value = 100 - val;
                 TachometerText.Text = (val*100).ToString() + " RPM";
 
                 await System.Threading.Tasks.Task.Delay(100);
                 
-                if (a > 200 || a<0){
+                if (a > 120 || a<-120){
                     delta = delta * -1;
                 }
                 
