@@ -52,34 +52,43 @@ namespace JouleTelemetryApp
             {
                 graph.Start();
             }
-
+            int a = 0;
+            int delta = 1;
             // Speedometer, Tachometer animation
-            for (int a = 0; 1 < 2; a = a + 1)
+            while (true)
             {
+
                 int val = (a % 100);
 
                 Speed.Value = (val);
                 SpeedText.Text = (100-val).ToString() + " MPH";
                 int steeringDegrees = a;
 
-                steeringRotate.Rotation = (a);
+                steeringRotate.Rotation = (steeringDegrees);
 
                 gForceTransform.TranslateX = a%100;
                 gForceTransform.TranslateY = a % 100;
 
-                if (a > 0)
+                if (steeringDegrees > 0)
                 {
-                    SteeringText.Text = '+'+(a).ToString() + '°';
+                    SteeringText.Text = '+'+(steeringDegrees).ToString() + '°';
                 }
                 else
                 {
-                    SteeringText.Text = (a).ToString() + '°';
+                    SteeringText.Text = (steeringDegrees).ToString() + '°';
                 }
 
                 Tachometer.Value = 100 - val;
-                TachometerText.Text = (val).ToString() + " RPM";
+                TachometerText.Text = (val*100).ToString() + " RPM";
 
                 await System.Threading.Tasks.Task.Delay(100);
+                
+                if (a > 200 || a<0){
+                    delta = delta * -1;
+                }
+                
+                a = a + delta;
+
             }
         }
         private void OnUnloaded(object sender, RoutedEventArgs e)
@@ -102,5 +111,9 @@ namespace JouleTelemetryApp
             //ValueViewModel.Resolution = Convert.ToInt32(rb.Tag);
         }
 
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

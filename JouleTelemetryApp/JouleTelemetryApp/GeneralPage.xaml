@@ -86,11 +86,11 @@
                         <TextBlock Foreground="White" FontSize="26" Text="Left" FontStyle="Normal" Opacity="0.8"
                                 Margin="0,0,0,8" />
 
-                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="99° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="90° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="102° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
 
                     </StackPanel>
@@ -100,17 +100,13 @@
                         <TextBlock Foreground="White" FontSize="28" Text="Right" FontStyle="Normal" Opacity="0.8"
                                 Margin="0,0,0,8" />
 
-                        <TextBlock Foreground="White" FontSize="28" Text="91 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="91° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="101° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="97 F" FontStyle="Normal" Opacity="0.8"
+                        <TextBlock Foreground="White" FontSize="28" Text="97° F" FontStyle="Normal" Opacity="0.8"
                                 FontWeight="Bold" />
                     </StackPanel>
-
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
-                    <TextBlock Foreground="White" FontSize="28" Text="101 F" FontStyle="Normal" Opacity="0.8" FontWeight="Bold"/>
                 </Grid>
             </StackPanel>
         </Border>
@@ -140,16 +136,16 @@
                         <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
                                 FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp">20°F</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight">Volts <Bold x:Name="voltText">20V</Bold></TextBlock>
+                                FontWeight="ExtraLight">Volts <Bold x:Name="voltText">90V</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight">Draw <Bold x:Name="drawText">320W</Bold></TextBlock>
+                                FontWeight="ExtraLight" SelectionChanged="TextBlock_SelectionChanged">Draw <Bold x:Name="drawText">20kW</Bold></TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
                             Margin="8,0,0,0">
-                        <TextBlock Foreground="White" FontSize="20" Text="Watt Stats" FontStyle="Italic" Opacity="0.5" />
+                        <TextBlock Foreground="White" FontSize="20" Text="Wattage Low/High" FontStyle="Italic" Opacity="0.5" SelectionChanged="TextBlock_SelectionChanged" />
                         <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
-                                FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">90 W</Bold></TextBlock>
+                                FontWeight="ExtraLight">High <Bold x:Name="highWatt" Foreground="#FF2FFF01">40 W</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
                                 FontWeight="ExtraLight">Low <Bold x:Name="lowWatt" Foreground="#FFFF2828">20 W</Bold></TextBlock>
                     </StackPanel>
@@ -175,14 +171,14 @@
                     </Border>
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">120 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp">30 °</Bold></TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">120 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
                         <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="temp1">35 °C</Bold></TextBlock>
                     </StackPanel>
@@ -203,16 +199,14 @@
                     </Border>
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">120 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent">20 A</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp1">30 ° C</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">34 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent">20 A</Bold></TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
                         <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">120 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent1">20 A</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="32" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Temp <Bold x:Name="motorTemp2">30 °C</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">30 V</Bold></TextBlock>
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Current <Bold x:Name="motorCurrent1">20 A</Bold></TextBlock>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -282,7 +276,7 @@
 
             <!-- Car Picture + tire info -->
             <Grid Grid.Column="1">
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width=".5*"/>
                     <ColumnDefinition Width="*"/>
@@ -321,23 +315,16 @@
 
                     <Rectangle Height="2" Grid.Column="1"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
                     <Rectangle Height="2" Grid.Column="1"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
-
-
-
                 </Grid>
 
-
-                <Image Source="Assets/racecar.png"  Name="car"  Grid.Column="1" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
-                </Image>
-                
                 <!-- Right Tire Info -->
                 <Grid Grid.Column="2">
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3.1*"/>
                         <RowDefinition Height="2.1*"/>
@@ -368,13 +355,103 @@
                     <Rectangle Height="2" Grid.Column="0"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
                 </Grid>
 
+                <!--Grid to properly size the image, align it with the tire temp overlay grid-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55*"/>
+                        <RowDefinition Height="179*"/>
+                        <RowDefinition Height="66*"/>
+                    </Grid.RowDefinitions>
 
+                    <!--Grid for all the tire temp indicators-->
+                    <Image Source="Assets/racecar.png"  Name="car"  Height ="auto" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
 
+                    <Grid Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" Width="{Binding ElementName=car}"  VerticalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".67*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width=".67*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="53*"/>
+                            <RowDefinition Height="78*"/>
+                            <RowDefinition Height="105*"/>
+                            <RowDefinition Height="88*"/>
+                            <RowDefinition Height="34*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <!--Left Front Tire-->
+                        <Grid Grid.Row="1" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width=".7*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="13*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="13 0 0 13" Background="GreenYellow" />
+                            </Grid>
+
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0" Background="GreenYellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0" Background="GreenYellow" />
+
+                        </Grid>
+
+                        <!--Right Front Tire-->
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".7*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="13*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="0 13 13 0" Background="Yellow" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="16" />
+                            </Grid>
+                            
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="13 0 0 13" Background="GreenYellow" />
+                        </Grid>
+
+                        <!--Left Rear Tire-->
+                        <Grid Grid.Row="3" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Orange" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0" Background="Yellow" />
+                        </Grid>
+
+                        <!--Right Rear Tire-->
+                        <Grid Grid.Row="3" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Orange" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0" Background="Yellow" />
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Grid>
 
             <StackPanel Grid.Column="2">
                 <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5">30 PSI</TextBlock>
-
             </StackPanel>
         </Grid>
 
