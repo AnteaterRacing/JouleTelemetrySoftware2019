@@ -1,6 +1,7 @@
 import numpy as np
 import os
 
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 import six.moves.urllib as urllib
 import sys
 import tarfile
@@ -13,25 +14,26 @@ from io import StringIO
 from matplotlib import pyplot as plt
 from PIL import Image
 
-from object_detection.utils import ops as utils_ops
-from utils import label_map_util
-from utils import visualization_utils as vis_util
 
-# This is needed since the notebook is stored in the object_detection folder.
+# Needed since notebook is stored in object_detection folder.
+# Path now set to ".../research"
 sys.path.append("..")
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+from object_detection.utils import ops as utils_ops
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_util
 
+# raise error for incorrect version
 if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
     raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
 
 
-# What model to download.
-MODEL_NAME = '../FULL_CONE_BUCKET_SSD_MODEL/models/export'
+# What model to download (from research/...)
+MODEL_NAME = '../object_detection/ssd_mobilenet_v1_coco_2017_11_17'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
 PATH_TO_FROZEN_GRAPH = MODEL_NAME + '/frozen_inference_graph.pb'
 
-# List of the strings that is used to add correct label for each box.
+# List of the strings used to add correct label for each box.
 PATH_TO_LABELS = os.path.join('data', 'cone_label_map.pbtxt')
 
 detection_graph = tf.Graph()
@@ -59,7 +61,7 @@ PATH_TO_TEST_IMAGES_DIR = 'test_images'
 TEST_IMAGE_PATHS = [os.path.join(PATH_TO_TEST_IMAGES_DIR, 'image{}.jpg'.format(i)) for i in range(1, 9)]
 
 # Size, in inches, of the output images.
-IMAGE_SIZE = (12, 8)
+IMAGE_SIZE = (10, 4)    # fitted for dateset_adjusted
 
 
 def run_inference_for_single_image(image, graph):
