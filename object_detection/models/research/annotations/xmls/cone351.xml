@@ -1,0 +1,38 @@
+<annotation>
+	<folder>race_dataset_adjusted</folder>
+	<filename>cone351.jpg</filename>
+	<path>/Volumes/Jacob/FSAE ML/images/race_dataset_adjusted/cone351.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>700</width>
+		<height>250</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>cone</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>179</xmin>
+			<ymin>65</ymin>
+			<xmax>209</xmax>
+			<ymax>103</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>cone</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>523</xmin>
+			<ymin>70</ymin>
+			<xmax>551</xmax>
+			<ymax>104</ymax>
+		</bndbox>
+	</object>
+</annotation>
