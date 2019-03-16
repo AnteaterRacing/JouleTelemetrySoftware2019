@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using CSVSharp;
@@ -41,11 +42,10 @@ namespace CSVSharpTests
         }
 
         [TestMethod]
-        public void OriginalDataMatchesOutputData_WhenPassedThrough()
+        public void OriginalCSVMatchesOutputCSV()
         {
-            string directoryIn = Directory.GetCurrentDirectory() + "\\..\\..\\..\\CSVSharp\\samples\\random";
-            string folderOut = "out";
-            string directoryOut = Path.Combine(new string[] { directoryIn, folderOut });
+            string directoryIn = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\test\\random");
+            string directoryOut = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\test\\random.out");
 
             // Create output directory if not already present
             if (!Directory.Exists(directoryOut))
@@ -53,16 +53,58 @@ namespace CSVSharpTests
                 Directory.CreateDirectory(directoryOut);
             }
 
-            foreach (string path in Directory.GetFiles(directoryIn, "*.csv"))
+            // Process each CSV file
+            foreach (string path in Directory.EnumerateFiles(directoryIn, "*.csv"))
             {
                 // Read data in
-                DataTable csv = CSVReader.Read(path, true);
-                string fileOut = Path.Combine(new string[] { Path.GetDirectoryName(path), folderOut, Path.GetFileName(path) });
-                CSVWriter.Write(csv, fileOut);
+                DataTable dt = CSVReader.Read(path, true);
+                string fileOut = Path.Combine(directoryOut, Path.GetFileName(path));
+                CSVWriter.Write(dt, fileOut);
                 // Check data in is same as data out
-                DataTable csvFromOutput = CSVReader.Read(fileOut, true);
-                Assert.IsTrue(AreDataTablesEqual(csv, csvFromOutput));
+                DataTable dtFromOutput = CSVReader.Read(fileOut, true);
+                Assert.IsTrue(AreDataTablesEqual(dt, dtFromOutput));
             }
+        }
+
+        [TestMethod]
+        public void DataTableMatchesOutputCSV()
+        {
+            string directoryOut = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\test\\test.out");
+            Console.WriteLine(directoryOut);
+
+            // Create output directory if not already present
+            if (!Directory.Exists(directoryOut))
+            {
+                Directory.CreateDirectory(directoryOut);
+            }
+
+            // Create DataTable
+            string name = "test";
+            DataColumn[] columns =
+            {
+                new DataColumn("Throttle", typeof(int)),
+                new DataColumn("Brake", typeof(int)),
+                new DataColumn("Steering", typeof(int)),
+                new DataColumn("Current", typeof(int)),
+                new DataColumn("Voltage", typeof(int)),
+                new DataColumn("Temperature", typeof(int))
+            };
+            DataColumn columnPK = new DataColumn("id", typeof(int));
+            DataTable dt = MakeEmptyDataTable(name, columns, columnPK);
+            dt.Rows.Add(new object[] { null, 50, 50, -100, 5, 12, 60 });
+            dt.Rows.Add(new object[] { null, 50, 0, -100, 5, 12, 50 });
+            dt.Rows.Add(new object[] { null, 50, 25, null, 5, 12, 51 });
+            dt.Rows.Add(new object[] { null, 50, 50, -100, 5, 12, 34 });
+            dt.Rows.Add(new object[] { null, 50, 50, -100, 5, 12, 57 });
+            dt.Rows.Add(new object[] { null, 50, 2, -100, 5, 12, 12 });
+
+            // Read data in
+            string fileOut = Path.Combine(directoryOut, name + ".csv");
+            CSVWriter.Write(dt, fileOut);
+            
+            // Check data in is same as data out
+            DataTable dtFromOutput = CSVReader.Read(fileOut, true);
+            Assert.IsTrue(AreDataTablesEqual(dt, dtFromOutput));
         }
         #endregion
 
@@ -99,6 +141,35 @@ namespace CSVSharpTests
             }
 
             return true;
+        }
+
+        // Generate an empty DataTable.
+        /// <summary>
+        /// Generate an empty DataTable.
+        /// </summary>
+        /// <param name="name">Name of the DataTable.</param>
+        /// <param name="columns">Array of DataColumns to define DataTable.</param>
+        /// <param name="columnPK">DataColumn for table's primary key. Defaults to null.</param>
+        /// <returns>An empty DataTable.</returns>
+        private DataTable MakeEmptyDataTable(string name, DataColumn[] columns, DataColumn columnPK = null)
+        {
+            DataTable table = new DataTable(name);
+
+            // Add primary key column
+            if (columnPK != null)
+            {
+                columnPK.AutoIncrement = true;
+                columnPK.AutoIncrementSeed = 1;
+                columnPK.AutoIncrementStep = 1;
+                columnPK.ReadOnly = true;
+                table.Columns.Add(columnPK);
+                table.PrimaryKey = new DataColumn[] { columnPK };
+            }
+
+            // Add remaining columns
+            table.Columns.AddRange(columns);
+
+            return table;
         }
         #endregion
     }
