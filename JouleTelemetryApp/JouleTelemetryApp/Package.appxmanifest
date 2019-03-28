@@ -1,48 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="28dd6b76-a9f9-46b3-b26e-f5538492b0b6"
-    Publisher="CN=khb"
-    Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="28dd6b76-a9f9-46b3-b26e-f5538492b0b6" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="28dd6b76-a9f9-46b3-b26e-f5538492b0b6" Publisher="CN=khb" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="28dd6b76-a9f9-46b3-b26e-f5538492b0b6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>JouleTelemetryApp</DisplayName>
     <PublisherDisplayName>khb</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Icons\StoreLogo.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="JouleTelemetryApp.App">
-      <uap:VisualElements
-        DisplayName="JouleTelemetryApp"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="JouleTelemetryApp"
-        BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="JouleTelemetryApp.App">
+      <uap:VisualElements DisplayName="JouleTelemetryApp" Square150x150Logo="Assets\Icons\Square150x150Logo.png" Square44x44Logo="Assets\Icons\Square44x44Logo.png" Description="JouleTelemetryApp" BackgroundColor="transparent">
+        <uap:LockScreen Notification="badge" BadgeLogo="Assets\Icons\BadgeLogo.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Icons\Wide310x150Logo.png" Square310x310Logo="Assets\Icons\LargeTile.png" Square71x71Logo="Assets\Icons\SmallTile.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Icons\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
