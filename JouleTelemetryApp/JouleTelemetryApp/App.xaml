@@ -1,8 +1,7 @@
 ﻿<Application
-    x:Class="JouleTelemetryApp.App"
+    x:Class="TelemetryApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:JouleTelemetryApp"
     RequestedTheme="Dark">
 
     

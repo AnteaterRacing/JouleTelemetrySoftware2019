@@ -1,10 +1,24 @@
 ﻿using System.Collections.ObjectModel;
 using Telerik.Core;
 
-namespace JouleTelemetryApp
+namespace TelemetryApp
 {
     public class ViewModel : ViewModelBase
     {
+        // Steering
+        private DataPoint<double> steering;
+
+        public DataPoint<double> Steering
+        {
+            get => steering;
+            set
+            {
+                steering = value;
+                OnPropertyChanged("Steering");
+            }
+        }
+
+        // Graphing
         private ObservableCollection<GraphViewModel> graphs;
 
         public ObservableCollection<GraphViewModel> Graphs

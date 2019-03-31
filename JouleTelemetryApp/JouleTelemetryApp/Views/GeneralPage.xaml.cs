@@ -7,7 +7,7 @@ using System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace JouleTelemetryApp
+namespace TelemetryApp
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -27,46 +27,22 @@ namespace JouleTelemetryApp
             };
             vm.Graphs.Add(vm.CurrentGraph);
             int i = 0;
-            vm.Graphs.Add(new GraphViewModel("Fibonacci", dataGenerator: () => Fibonacci(i++ % 20), maximum: 5000));
-            vm.Graphs.Add(new GraphViewModel("Constant", dataGenerator: () => 50));
-            var csv = CsvEnumerator();
-            vm.Graphs.Add(new GraphViewModel("CSV Data Loop", dataGenerator: () => CsvDataGenerator(csv, loop: true), minimum:-100, maximum: 100));
+            vm.Graphs.Add(new GraphViewModel("Fibonacci",
+                dataGenerator: () => new DataPoint<double>(Data.Fibonacci(i++ % 20)),
+                maximum: 5000
+            ));
+            vm.Graphs.Add(new GraphViewModel("Constant",
+                dataGenerator: () => new DataPoint<double>(50),
+                maximum: 100
+            ));
+            var csvColumnData = Data.CsvColumnData("Assets/Data/sample1.csv", "Steering Position [Deg]");
+            vm.Graphs.Add(new GraphViewModel("CSV Data Loop",
+                dataGenerator: () => new DataPoint<double>(Data.Enumerate(csvColumnData, loop: true)),
+                minimum: -100, maximum: 100
+            ));
 
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
-        }
-
-        private int Fibonacci(int i)
-        {
-            if (i <= 0)
-            {
-                return 0;
-            }
-            else if (i == 1 || i == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return Fibonacci(i - 1) + Fibonacci(i - 2);
-            }
-        }
-
-        // TODO: what happens when CSV ends
-        private double CsvDataGenerator(IEnumerator<double> csv, bool loop = false)
-        {
-            double value = csv.Current;
-            csv.MoveNext();
-            return value;
-        }
-
-        private IEnumerator<double> CsvEnumerator()
-        {
-            var csv = File.ReadAllText("assets/data/sample1.csv");
-            foreach (var line in Csv.CsvReader.ReadFromText(csv))
-            {
-                yield return double.Parse(line["Steering Position [Deg]"]);
-            }
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
