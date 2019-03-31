@@ -10,7 +10,7 @@ namespace TelemetryApp.Models
     {
         public override string ToString()
         {
-            return $"{Value} °";
+            return Value > 0 ? $"+{Value} °" : $"{Value} °";
         }
     }
 }
