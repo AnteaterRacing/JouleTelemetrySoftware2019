@@ -1,18 +1,33 @@
 ﻿using System;
-using Telerik.Core;
 
-namespace TelemetryApp
+namespace TelemetryApp.Models
 {
-    public class DataPoint<T> : ViewModelBase
+    public class DataPoint<T> : NotifyPropertyChanged
     {
-        //static double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
-        //{
-        //    return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
-        //}
+        private DateTime _date;
+        public DateTime Date {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public static DataPoint<double> GetRandomData(double low = 0, double high = 1)
-        {
-            return new DataPoint<double> { Date = DateTime.Now, Value = Data.RandomDouble(low, high) };
+        private T _value;
+        public T Value {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = value;
+                OnPropertyChanged();
+            }
         }
 
         public DataPoint()
@@ -33,8 +48,7 @@ namespace TelemetryApp
         // Update DataPoint with current time and value
         public void Update(T value)
         {
-            Date = DateTime.Now;
-            Value = value;
+            Update(DateTime.Now, value);
         }
 
         // Update DataPoint with time and value
@@ -44,33 +58,9 @@ namespace TelemetryApp
             Value = value;
         }
 
-        private DateTime date;
-
-        public DateTime Date
-        {
-            get => date;
-            set
-            {
-                date = value;
-                OnPropertyChanged("Date");
-            }
-        } // timestamp
-
-        private T value;
-
-        public T Value
-        {
-            get => value;
-            set
-            {
-                this.value = value;
-                OnPropertyChanged("Value");
-            }
-        } // value of data point
-
         public override string ToString()
         {
-            return $"{date} {value}";
+            return $"{Date} {Value}";
         }
     }
 }

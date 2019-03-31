@@ -3,8 +3,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Telerik.Core;
 using Windows.UI.Xaml;
+using TelemetryApp.Models;
 
-namespace TelemetryApp
+namespace TelemetryApp.ViewModels
 {
     public delegate DataPoint<double> GraphDelegate();
 
@@ -28,7 +29,7 @@ namespace TelemetryApp
 
             Minimum = minimum;
             Maximum = maximum;
-            DataGenerator = dataGenerator ?? new GraphDelegate(() => DataPoint<double>.GetRandomData(Minimum, Maximum));
+            DataGenerator = dataGenerator ?? new GraphDelegate(() => new DataPoint<double>(Data.RandomDouble(Minimum, Maximum)));
 
             timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += Tick;

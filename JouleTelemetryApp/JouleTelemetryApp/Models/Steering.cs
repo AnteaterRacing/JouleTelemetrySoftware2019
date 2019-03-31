@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TelemetryApp.Model
+namespace TelemetryApp.Models
 {
-    public class Steering : DataPoint<double>
+    public class Steering : DataPoint<int>
     {
+        public override string ToString()
+        {
+            return $"{Value} °";
+        }
     }
 }

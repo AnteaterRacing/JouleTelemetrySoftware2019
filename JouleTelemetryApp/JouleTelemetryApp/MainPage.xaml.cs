@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using TelemetryApp.Views;
 
 // Adapted from https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview
 
@@ -28,7 +29,7 @@ namespace TelemetryApp
         }
 
         // List of ValueTuple holding the Navigation Tag and the relative Navigation Page
-        private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
+        private readonly List<(string Tag, Type Page)> pages = new List<(string Tag, Type Page)>
         {
             ("general", typeof(GeneralPage)),
             ("suspension", typeof(SuspensionPage)),
@@ -114,7 +115,7 @@ namespace TelemetryApp
             }
             else
             {
-                var item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
+                var item = pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
                 _page = item.Page;
             }
             // Get the page type before navigation so you can prevent duplicate
@@ -168,7 +169,7 @@ namespace TelemetryApp
             }
             else if (ContentFrame.SourcePageType != null)
             {
-                var item = _pages.FirstOrDefault(p => p.Page == e.SourcePageType);
+                var item = pages.FirstOrDefault(p => p.Page == e.SourcePageType);
 
                 NavView.SelectedItem = NavView.MenuItems
                     .OfType<NavigationViewItem>()

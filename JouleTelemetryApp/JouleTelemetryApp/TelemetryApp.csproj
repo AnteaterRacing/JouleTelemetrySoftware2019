@@ -101,7 +101,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DataPointViewModel.cs" />
+    <Compile Include="Models\NotifyPropertyChanged.cs" />
+    <Compile Include="Models\Steering.cs" />
     <Compile Include="Views\BatteryPage.xaml.cs">
       <DependentUpon>BatteryPage.xaml</DependentUpon>
     </Compile>
@@ -117,7 +118,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Steering.cs" />
     <Compile Include="Views\PowertrainPage.xaml.cs">
       <DependentUpon>PowertrainPage.xaml</DependentUpon>
     </Compile>
@@ -192,7 +192,7 @@
     <Content Include="Assets\Icons\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Icons\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\Images\racecar.png" />
-    <Content Include="Assets\Images\steering-wheel-icon.png" />
+    <Content Include="Assets\Images\steering-wheel.png" />
     <Content Include="Properties\Default.rd.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TelemetryApp
+namespace TelemetryApp.Models
 {
     public static class Data
     {
         public static readonly Random RANDOM = new Random();
+
+        static double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
+        {
+            return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+        }
 
         public static int Fibonacci(int i)
         {
