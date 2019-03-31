@@ -29,9 +29,15 @@ namespace TelemetryApp.Models
             }
         }
 
-        public static double RandomDouble(double low = 0, double high = 1)
+        public static double RandomDouble(double low, double high)
         {
-            return low + RANDOM.NextDouble() * high;
+            if (high < low) throw new ArgumentException($"high({high}) must be greater than or equal to low({low})");
+            return low + RANDOM.NextDouble() * (high-low);
+        }
+
+        public static int RandomInteger(int low, int high)
+        {
+            return (int) RandomDouble(low, high);
         }
 
         public static double Enumerate(IEnumerator<double> e, bool loop = false)

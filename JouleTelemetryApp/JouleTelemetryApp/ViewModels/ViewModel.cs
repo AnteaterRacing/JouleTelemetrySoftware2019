@@ -105,7 +105,7 @@ namespace TelemetryApp.ViewModels
 
         public void Update()
         {
-            Steering.Update((int) Data.RandomDouble(low: -180, high: 180));
+            Steering.Update(Data.RandomInteger(-180, 180));
             OnPropertyChanged(nameof(Steering));
         }
     }
