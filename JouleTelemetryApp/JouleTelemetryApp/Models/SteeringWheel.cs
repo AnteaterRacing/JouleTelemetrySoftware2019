@@ -1,31 +1,24 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using Microsoft.Toolkit.Uwp.UI.Animations.Behaviors;
-using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 
 namespace TelemetryApp.Models
 {
-    public class SteeringWheel : DelegateDataPoint<double>
+    public class SteeringWheel : DataPointDelegate<double>
     {
         public float RotateValue { get; private set; }
 
-        public double Duration { get; private set; }
-
-        public EasingType EasingType { get; private set; }
+        public SteeringWheel() : base(() => Data.RandomDouble(-180, 180))
+        {
+        }
 
         public SteeringWheel(DataDelegate dataGenerator) : base(dataGenerator)
         {
-            EasingType = EasingType.Default;
         }
 
-        new public void Update(DateTime date, double value)
+        new public void Update()
         {
             double previous = Value;
-            base.Update(date, value);
-            RotateValue = (float) (value - previous);
-            Duration = 900; // TODO: Fix hardcoded duration
+            base.Update();
+            RotateValue = (float) (Value - previous);
             OnPropertyChanged(null);
         }
 
@@ -42,7 +35,7 @@ namespace TelemetryApp.Models
 
         public override string ToString()
         {
-            return Value > 0 ? $"+{Value} °" : $"{Value} °";
+            return Value > 0 ? $"+{Value:N2} °" : $"{Value:N2} °";
         }
     }
 }

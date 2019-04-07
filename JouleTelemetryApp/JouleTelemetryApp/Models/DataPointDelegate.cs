@@ -2,19 +2,19 @@
 
 namespace TelemetryApp.Models
 {
-    public class DelegateDataPoint<T> : DataPoint<T>
+    public class DataPointDelegate<T> : DataPoint<T>
     {
         public delegate T DataDelegate();
 
         public DataDelegate DataGenerator { get; set; }
 
-        public DelegateDataPoint(DataDelegate dataGenerator)
+        public DataPointDelegate(DataDelegate dataGenerator)
         {
             DataGenerator = dataGenerator;
             Update();
         }
 
-        public DelegateDataPoint(DateTime date, DataDelegate dataGenerator)
+        public DataPointDelegate(DateTime date, DataDelegate dataGenerator)
         {
             DataGenerator = dataGenerator;
             Update(date, DataGenerator());

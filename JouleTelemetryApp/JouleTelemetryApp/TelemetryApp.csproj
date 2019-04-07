@@ -102,7 +102,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\DelegateDataPoint.cs" />
+    <Compile Include="Models\DataPointDelegate.cs" />
+    <Compile Include="Models\GForce.cs" />
     <Compile Include="Models\NotifyPropertyChanged.cs" />
     <Compile Include="Models\SteeringWheel.cs" />
     <Compile Include="Views\BatteryPage.xaml.cs">

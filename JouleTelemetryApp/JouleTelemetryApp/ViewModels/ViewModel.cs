@@ -16,12 +16,16 @@ namespace TelemetryApp.ViewModels
             set
             {
                 UpdatePeriod = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(UpdatePeriod));
             }
         }
 
         // Steering
-        public SteeringWheel SteeringWheel { get; }
+        public SteeringWheel SteeringWheelModel { get; }
+
+        // G-Force
+        public GForce GForceXModel { get; }
+        public GForce GForceYModel { get; }
 
         // Graphs
         private ObservableCollection<GraphViewModel> graphs;
@@ -31,7 +35,7 @@ namespace TelemetryApp.ViewModels
             set
             {
                 graphs = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Graphs));
             }
         }
 
@@ -42,7 +46,7 @@ namespace TelemetryApp.ViewModels
             set
             {
                 currentGraph = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(CurrentGraph));
             }
         }
         
@@ -52,7 +56,9 @@ namespace TelemetryApp.ViewModels
         {
             // Initialize
             updatePeriod = 1000;
-            SteeringWheel = new SteeringWheel(() => Data.RandomInteger(-180, 180));
+            SteeringWheelModel = new SteeringWheel();
+            GForceXModel = new GForce();
+            GForceYModel = new GForce();
             graphs = new ObservableCollection<GraphViewModel>();
             currentGraph = new GraphViewModel(
                 () => new DataPoint<double>(Data.RandomDouble(0, 100)),
@@ -110,7 +116,9 @@ namespace TelemetryApp.ViewModels
 
         public void Update()
         {
-            SteeringWheel.Update();
+            SteeringWheelModel.Update();
+            GForceXModel.Update();
+            GForceYModel.Update();
             // Notify all properties have changed as mentioned here:
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
             OnPropertyChanged(null);
