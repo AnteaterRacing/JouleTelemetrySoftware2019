@@ -30,48 +30,6 @@ namespace TelemetryApp.Views
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             vm.Start();
-            //int a = 0;
-            //int delta = 1;
-            // Speedometer, Tachometer animation
-            //while (true)
-            //{
-
-            //    int val = (a % 100);
-
-            //    Speed.Value = (val);
-            //    SpeedText.Text = (100-val).ToString() + " MPH";
-            //    int steeringDegrees = a;
-
-            //    steeringRotate.Rotation = (steeringDegrees);
-
-            //    gForceTransform.TranslateX = a%100;
-            //    gForceTransform.TranslateY = a % 100;
-
-            //    if (steeringDegrees > 0)
-            //    {
-            //        SteeringText.Text = '+'+(steeringDegrees).ToString() + '°';
-            //    }
-            //    else
-            //    {
-            //        SteeringText.Text = (steeringDegrees).ToString() + '°';
-            //    }
-
-            //    Motor2CurrentGauge.Value = Math.Abs(a);
-            //    Motor1CurrentGauge.Value = Math.Abs(a);
-
-
-            //    Tachometer.Value = 100 - val;
-            //    TachometerText.Text = (val*100).ToString() + " RPM";
-
-            //    await System.Threading.Tasks.Task.Delay(100);
-                
-            //    if (a > 120 || a<-120){
-            //        delta = delta * -1;
-            //    }
-                
-            //    a = a + delta;
-
-            //}
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)

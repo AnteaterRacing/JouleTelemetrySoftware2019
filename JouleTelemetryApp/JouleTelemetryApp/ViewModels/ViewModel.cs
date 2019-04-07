@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Telerik.Core;
-using Windows.UI.Xaml;
 using TelemetryApp.Models;
+using Windows.UI.Xaml;
 
 namespace TelemetryApp.ViewModels
 {
-
     public class ViewModel : NotifyPropertyChanged
     {
         // Update Period
@@ -23,7 +21,7 @@ namespace TelemetryApp.ViewModels
         }
 
         // Steering
-        public Steering Steering { get; }
+        public SteeringWheel SteeringWheel { get; }
 
         // Graphs
         private ObservableCollection<GraphViewModel> graphs;
@@ -54,27 +52,34 @@ namespace TelemetryApp.ViewModels
         {
             // Initialize
             updatePeriod = 1000;
-            Steering = new Steering();
+            SteeringWheel = new SteeringWheel(() => Data.RandomInteger(-180, 180));
             graphs = new ObservableCollection<GraphViewModel>();
-            currentGraph = new GraphViewModel("Random");
+            currentGraph = new GraphViewModel(
+                () => new DataPoint<double>(Data.RandomDouble(0, 100)),
+                "Random",
+                maximum: 100
+                );
 
             // Graphs
             Graphs.Add(currentGraph);
-            int i = 0;
-            Graphs.Add(new GraphViewModel("Fibonacci",
-                dataGenerator: () => new DataPoint<double>(Data.Fibonacci(i++ % 20)),
-                maximum: 5000
-            ));
-            Graphs.Add(new GraphViewModel("Constant",
-                dataGenerator: () => new DataPoint<double>(50),
+            //var fibonacci = Data.FibonacciRange(0, 10);
+            //Graphs.Add(new GraphViewModel(
+            //    () => new DataPoint<double>(Data.EnumerateInteger(fibonacci, loop: true)),
+            //    "Fibonacci",
+            //    maximum: 5000
+            //));
+            Graphs.Add(new GraphViewModel(
+                () => new DataPoint<double>(50),
+                "Constant",
                 maximum: 100
             ));
-            var csvColumnData = Data.CsvColumnData("Assets/Data/sample1.csv", "Steering Position [Deg]");
-            Graphs.Add(new GraphViewModel("CSV Data Loop",
-                dataGenerator: () => new DataPoint<double>(Data.Enumerate(csvColumnData, loop: true)),
-                minimum: -100, maximum: 100
-            ));
-            
+            //var csvEnum = new DataPoints<string>(Csv.CsvReader.ReadFromText("Assets/Data/short.csv"));
+            //Graphs.Add(new GraphViewModel(
+            //    () => new DataPoint<double>(Data.EnumerateDouble(csvEnum["Steering Position [Deg]"], loop: true)),
+            //    "CSV Data Loop",
+            //    minimum: -100, maximum: 100
+            //));
+
             // Timer for updating once a second
             timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(UpdatePeriod) };
             timer.Tick += Tick;
@@ -105,9 +110,10 @@ namespace TelemetryApp.ViewModels
 
         public void Update()
         {
-            Steering.Update(Data.RandomInteger(-180, 180));
-            OnPropertyChanged(nameof(Steering));
+            SteeringWheel.Update();
+            // Notify all properties have changed as mentioned here:
+            // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
+            OnPropertyChanged(null);
         }
     }
-
 }

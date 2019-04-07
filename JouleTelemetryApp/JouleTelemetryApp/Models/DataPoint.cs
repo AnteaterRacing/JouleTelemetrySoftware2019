@@ -32,7 +32,7 @@ namespace TelemetryApp.Models
 
         public DataPoint()
         {
-            Update(default(T));
+            Update();
         }
 
         public DataPoint(T value)
@@ -43,6 +43,18 @@ namespace TelemetryApp.Models
         public DataPoint(DateTime date, T value)
         {
             Update(date, value);
+        }
+
+        // Update DataPoint with current date and default value
+        public void Update()
+        {
+            Update(default(T));
+        }
+
+        // Update DataPoint with date and default value
+        public void Update(DateTime date)
+        {
+            Update(date, default(T));
         }
 
         // Update DataPoint with current time and value

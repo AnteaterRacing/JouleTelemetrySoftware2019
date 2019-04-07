@@ -15,7 +15,7 @@ namespace TelemetryApp.ViewModels
         protected DataPoint<double> current;
         protected ObservableCollection<DataPoint<double>> history;
 
-        public GraphViewModel(string name = "GraphViewModel", GraphDelegate dataGenerator = null,
+        public GraphViewModel(GraphDelegate dataGenerator, string name = "GraphViewModel",
             int minimum = 0, int maximum = 1,
             int updatePeriod = 1000, int resolution = 60)
         {
@@ -29,7 +29,7 @@ namespace TelemetryApp.ViewModels
 
             Minimum = minimum;
             Maximum = maximum;
-            DataGenerator = dataGenerator ?? new GraphDelegate(() => new DataPoint<double>(Data.RandomDouble(Minimum, Maximum)));
+            DataGenerator = dataGenerator;
 
             timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += Tick;
@@ -38,7 +38,7 @@ namespace TelemetryApp.ViewModels
 
         public string Name { get; private set; } // name of graph
 
-        public GraphDelegate DataGenerator { get; private set; } // function "pointer" to generate data
+        public GraphDelegate DataGenerator { get; set; } // function "pointer" to generate data
 
         public int UpdatePeriod { get; private set; } // milliseconds per update
 
@@ -73,7 +73,6 @@ namespace TelemetryApp.ViewModels
         public string AverageString => string.Format("{0:F2}", History.Average(data => data.Value));
 
         public string AreaString => string.Format("{0:F2}", History.Sum(data => data.Value));
-
 
         public void Start()
         {

@@ -1,15 +1,15 @@
-﻿<Page x:Class="TelemetryApp.Views.GeneralPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-      xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
-      mc:Ignorable="d"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.Resources>
-    </Page.Resources>
+﻿<Page
+    x:Class="TelemetryApp.Views.GeneralPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="Black">
 
@@ -250,11 +250,15 @@
 
                 <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
 
-                <TextBlock Foreground="White" FontSize="25" Text="{x:Bind vm.Steering.ToString(), Mode=OneWay}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Foreground="White" FontSize="25" Text="{x:Bind vm.SteeringWheel.ToString(), Mode=OneWay}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Image Source="/Assets/Images/steering-wheel.png" RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
-                    <Image.RenderTransform>
-                        <RotateTransform Angle="{x:Bind vm.Steering.Value, Mode=OneWay}" />
-                    </Image.RenderTransform>
+                    <interactivity:Interaction.Behaviors>
+                        <behaviors:Rotate
+                            Value="{x:Bind vm.SteeringWheel.RotateValue}"
+                            Duration="{x:Bind vm.SteeringWheel.Duration}"
+                            EasingType="{x:Bind vm.SteeringWheel.EasingType}"
+                            AutomaticallyStart="True" />
+                    </interactivity:Interaction.Behaviors>
                 </Image>
 
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
