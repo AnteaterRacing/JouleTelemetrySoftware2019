@@ -102,8 +102,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataPointsEnum.cs" />
-    <Compile Include="Models\DataPoints.cs" />
     <Compile Include="Models\DelegateDataPoint.cs" />
     <Compile Include="Models\NotifyPropertyChanged.cs" />
     <Compile Include="Models\SteeringWheel.cs" />
@@ -139,7 +137,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="Assets\Data\sample1.csv" />
-    <Content Include="Assets\Data\short.csv" />
     <None Include="Assets\Icons\logo-01.afphoto" />
     <None Include="TelemetryApp_TemporaryKey.pfx" />
   </ItemGroup>
