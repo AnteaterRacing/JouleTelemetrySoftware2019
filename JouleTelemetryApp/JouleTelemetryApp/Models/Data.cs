@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace TelemetryApp.Models
 {
@@ -8,25 +9,27 @@ namespace TelemetryApp.Models
     {
         public static readonly Random RANDOM = new Random();
 
-        static double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
+        public static double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
         {
+            if (fromLow == fromHigh) return fromLow;
             return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
         }
 
-        public static int Fibonacci(int i)
+        public static int Fibonacci(int n)
         {
-            if (i <= 0)
+            if (n < 0) return 0;
+            if (n < 2) return n;
+
+            int Fib_i2 = 0;
+            int Fib_i1 = 1;
+            for (int i = 2; i <= n; i++)
             {
-                return 0;
+                int Fib = Fib_i1 + Fib_i2;
+                Fib_i2 = Fib_i1;
+                Fib_i1 = Fib;
             }
-            else if (i == 1 || i == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return Fibonacci(i - 1) + Fibonacci(i - 2);
-            }
+
+            return Fib_i1;
         }
 
         public static double RandomDouble(double low, double high)
@@ -40,15 +43,12 @@ namespace TelemetryApp.Models
             return (int) RandomDouble(low, high);
         }
 
-        public static double Enumerate(IEnumerator<double> e, bool loop = false)
+        public static IEnumerator<int> FibonacciRange(int start, int count)
         {
-            double curr = e.Current;
-            if (!e.MoveNext())
+            for (int n = 0; n < count; n++)
             {
-                if (loop) e.Reset();
-                else return default(double);
+                yield return Fibonacci(start + n);
             }
-            return curr;
         }
 
         public static IEnumerator<double> CsvColumnData(string filename, string columnName)
@@ -61,26 +61,26 @@ namespace TelemetryApp.Models
             }
         }
 
-        public static (double, double) Enumerate(IEnumerator<(double, double)> e, bool loop = false)
+        public static double EnumerateDouble(IEnumerator<double> e, bool loop = false)
         {
-            (double, double) curr = e.Current;
+            double curr = e.Current;
             if (!e.MoveNext())
             {
                 if (loop) e.Reset();
-                else return default((double, double));
+                else return default(double);
             }
             return curr;
         }
 
-        public static IEnumerator<(double, double)> CsvColumnData(string filename, string columnName1, string columnName2)
+        public static int EnumerateInteger(IEnumerator<int> e, bool loop = false)
         {
-            var csv = File.ReadAllText(filename);
-            foreach (var line in Csv.CsvReader.ReadFromText(csv))
+            int curr = e.Current;
+            if (!e.MoveNext())
             {
-                double value1 = double.Parse(line[columnName1]);
-                double value2 = double.Parse(line[columnName2]);
-                yield return (value1, value2);
+                if (loop) e.Reset();
+                else return default(int);
             }
+            return curr;
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿<Page x:Class="TelemetryApp.Views.GeneralPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-      xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
-      mc:Ignorable="d"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.Resources>
-    </Page.Resources>
+﻿<Page
+    x:Class="TelemetryApp.Views.GeneralPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="Black">
 
@@ -247,23 +247,27 @@
 
             <!-- Steering/G-Force -->
             <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0"  Grid.RowSpan="2" >
-
+                <!--Steering-->
                 <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
 
-                <TextBlock Foreground="White" FontSize="25" Text="{x:Bind vm.Steering.ToString(), Mode=OneWay}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Foreground="White" FontSize="25" Text="{x:Bind vm.SteeringWheelModel.ToString(), Mode=OneWay}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Image Source="/Assets/Images/steering-wheel.png" RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
-                    <Image.RenderTransform>
-                        <RotateTransform Angle="{x:Bind vm.Steering.Value, Mode=OneWay}" />
-                    </Image.RenderTransform>
+                    <interactivity:Interaction.Behaviors>
+                        <behaviors:Rotate
+                            Value="{x:Bind vm.SteeringWheelModel.RotateValue, Mode=OneWay}"
+                            Duration="950"
+                            EasingType="Linear"
+                            AutomaticallyStart="True" />
+                    </interactivity:Interaction.Behaviors>
                 </Image>
 
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
-                <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-
+                
                 <!-- G-Force -->
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Center">+ .8</TextBlock>
+                <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="81,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Left" Text="{x:Bind vm.GForceXModel.ToString(), Mode=OneWay}"></TextBlock>
+                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind vm.GForceYModel.ToString(), Mode=OneWay}"></TextBlock>
                 <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center">+.8</TextBlock>
                     <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
                     <Ellipse Height="75" Width="75" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
                     <Ellipse Height="130" Width="130" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
@@ -274,16 +278,19 @@
                         </Rectangle.RenderTransform>
                     </Rectangle>
                     <Ellipse Height="15" Width="15" StrokeThickness="3" Stroke="#FF6E6E6E" Fill="White" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" RenderTransformOrigin="0.5,0.5">
-                        <Ellipse.RenderTransform>
-                            <CompositeTransform x:Name="gForceTransform" TranslateX="10" TranslateY="10"/>
-                        </Ellipse.RenderTransform>
-
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:Offset 
+                                OffsetX="{x:Bind vm.GForceXModel.OffsetValue, Mode=OneWay}"
+                                OffsetY="{x:Bind vm.GForceYModel.OffsetValue, Mode=OneWay}"
+                                Duration="950"
+                                EasingType="Linear"
+                                AutomaticallyStart="True" />
+                        </interactivity:Interaction.Behaviors>
+                        <!--<Ellipse.RenderTransform>
+                            <CompositeTransform x:Name="gForceTransform" TranslateX="{x:Bind vm.GForceXModel.Value, Mode=OneWay}" TranslateY="{x:Bind vm.GForceYModel.Value, Mode=OneWay}"/>
+                        </Ellipse.RenderTransform>-->
                     </Ellipse>
-
-
                 </RelativePanel>
-
-
             </StackPanel>
 
             <!-- Car Picture + tire info -->
