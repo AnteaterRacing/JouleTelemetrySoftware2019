@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TelemetryApp.Models
+namespace TelemetryApp.Models.DataPoint
 {
     public class DataPointDelegate<T> : DataPoint<T>
     {

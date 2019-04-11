@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TelemetryApp.Models.DataPoint;
 
 namespace TelemetryApp.Models
 {
@@ -12,12 +8,10 @@ namespace TelemetryApp.Models
 
         public GForce() : base(() => Data.RandomDouble(-1, 1))
         {
-
         }
 
         public GForce(DataDelegate dataGenerator) : base(dataGenerator)
         {
-
         }
 
         new public void Update()

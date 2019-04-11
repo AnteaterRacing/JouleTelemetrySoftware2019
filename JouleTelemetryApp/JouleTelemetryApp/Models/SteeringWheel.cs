@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
+﻿using TelemetryApp.Models.DataPoint;
 
 namespace TelemetryApp.Models
 {
@@ -14,24 +14,13 @@ namespace TelemetryApp.Models
         {
         }
 
-        new public void Update()
+        public new void Update()
         {
             double previous = Value;
             base.Update();
             RotateValue = (float) (Value - previous);
             OnPropertyChanged(null);
         }
-
-        //private async void MoveTo(double angle)
-        //{
-        //    await _image.Rotate(value: (float) angle, duration: 0, easingType: EasingType.Default).StartAsync();
-        //}
-
-        //// milliseconds
-        //private async void RotateBy(double angle, double duration)
-        //{
-        //    await _image.Rotate(value: (float) angle, duration: duration, easingType: EasingType.Default).StartAsync();
-        //}
 
         public override string ToString()
         {

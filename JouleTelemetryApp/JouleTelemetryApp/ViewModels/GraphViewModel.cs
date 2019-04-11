@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using TelemetryApp.Models.DataPoint;
 using Telerik.Core;
 using Windows.UI.Xaml;
-using TelemetryApp.Models;
 
 namespace TelemetryApp.ViewModels
 {

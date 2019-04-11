@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TelemetryApp.Models;
+using TelemetryApp.Models.DataPoint;
+using TelemetryApp.Models.GPS;
 using Windows.UI.Xaml;
 
 namespace TelemetryApp.ViewModels
@@ -26,6 +28,22 @@ namespace TelemetryApp.ViewModels
         // G-Force
         public GForce GForceXModel { get; }
         public GForce GForceYModel { get; }
+
+        // Tire PSI
+        public Pressure PressureFrontLeftTireModel { get; }
+        public Pressure PressureFrontRightTireModel { get; }
+        public Pressure PressureBackLeftTireModel { get; }
+        public Pressure PressureBackRightTireModel { get; }
+
+        // Tire Temperature
+        public Temperature TemperatureFrontLeftTireModel { get; }
+        public Temperature TemperatureFrontRightTireModel { get; }
+        public Temperature TemperatureBackLeftTireModel { get; }
+        public Temperature TemperatureBackRightTireModel { get; }
+
+        // GPS
+        public Latitude LatitudeModel { get; }
+        public Longitude LongitudeModel { get; }
 
         // Graphs
         private ObservableCollection<GraphViewModel> graphs;
@@ -56,9 +74,25 @@ namespace TelemetryApp.ViewModels
         {
             // Initialize
             updatePeriod = 1000;
+            // SteeringWheel
             SteeringWheelModel = new SteeringWheel();
+            // GForce
             GForceXModel = new GForce();
             GForceYModel = new GForce();
+            // Pressure
+            PressureFrontLeftTireModel = new Pressure();
+            PressureFrontRightTireModel = new Pressure();
+            PressureBackLeftTireModel = new Pressure();
+            PressureBackRightTireModel = new Pressure();
+            // Temperature
+            TemperatureFrontLeftTireModel = new Temperature();
+            TemperatureFrontRightTireModel = new Temperature();
+            TemperatureBackLeftTireModel = new Temperature();
+            TemperatureBackRightTireModel = new Temperature();
+            // GPS
+            LatitudeModel = new Latitude();
+            LongitudeModel = new Longitude();
+
             graphs = new ObservableCollection<GraphViewModel>();
             currentGraph = new GraphViewModel(
                 () => new DataPoint<double>(Data.RandomDouble(0, 100)),
@@ -116,9 +150,24 @@ namespace TelemetryApp.ViewModels
 
         public void Update()
         {
+            // Steering
             SteeringWheelModel.Update();
+            // GForce
             GForceXModel.Update();
             GForceYModel.Update();
+            // Pressure
+            PressureFrontLeftTireModel.Update();
+            PressureFrontRightTireModel.Update();
+            PressureBackLeftTireModel.Update();
+            PressureBackRightTireModel.Update();
+            // Temperature
+            TemperatureFrontLeftTireModel.Update();
+            TemperatureFrontRightTireModel.Update();
+            TemperatureBackLeftTireModel.Update();
+            TemperatureBackRightTireModel.Update();
+            // GPS
+            LatitudeModel.Update();
+            LongitudeModel.Update();
             // Notify all properties have changed as mentioned here:
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
             OnPropertyChanged(null);
