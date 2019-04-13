@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TelemetryApp.Views;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using TelemetryApp.Views;
 
 // Adapted from https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview
 
@@ -78,7 +78,7 @@ namespace TelemetryApp
         private void NavView_ItemInvoked(NavigationView sender,
                                          NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsInvoked == true)
+            if (args.IsSettingsInvoked)
             {
                 NavView_Navigate("settings", args.RecommendedNavigationTransitionInfo);
             }
@@ -95,7 +95,7 @@ namespace TelemetryApp
         private void NavView_SelectionChanged(NavigationView sender,
                                       NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected == true)
+            if (args.IsSettingsSelected)
             {
                 NavView_Navigate("settings", args.RecommendedNavigationTransitionInfo);
             }
@@ -123,7 +123,7 @@ namespace TelemetryApp
             var preNavPageType = ContentFrame.CurrentSourcePageType;
 
             // Only navigate if the selected page isn't currently loaded.
-            if (!(_page is null) && !Type.Equals(preNavPageType, _page))
+            if (!(_page is null) && !Equals(preNavPageType, _page))
             {
                 ContentFrame.Navigate(_page, null, transitionInfo);
             }
