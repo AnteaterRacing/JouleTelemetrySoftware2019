@@ -75,47 +75,4 @@
         </VisualStateManager.VisualStateGroups>
     </Grid>
 
-    <!--<SplitView x:Name="MySplitView" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="49" OpenPaneLength="200">
-
-        <SplitView.Pane>
-
-            <StackPanel Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" BorderBrush="Black">
-
-                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;" Width="50" Height="50" Background="Transparent" Click="General_Click"/>
-                    <TextBlock Text="Main Page" FontSize="18" VerticalAlignment="Center"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE8CB;" Width="50" Height="50" Background="Transparent" Click="Suspension_Click"/>
-                    <TextBlock Text="Suspension" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE945;" Width="50" Height="50" Background="Transparent" Click="Powertrain_Click"/>
-                    <TextBlock Text="Powertrain" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton4" FontFamily="Segoe MDL2 Assets" Content="&#xF5F2;" Width="50" Height="50" Background="Transparent" Click="Battery_Click"/>
-                    <TextBlock Text="Batteries" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton5" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;" Width="50" Height="50" Background="Transparent" Click="HumanInterface_Click"/>
-                    <TextBlock Text="Human Interface" FontSize="18" VerticalAlignment="Center" />
-                </StackPanel>
-            </StackPanel>
-        </SplitView.Pane>
-
-        <SplitView.Content>
-          
-          <Frame Name="genFrame"></Frame>
-
-        </SplitView.Content>
-
-    </SplitView>-->
-
 </Page>

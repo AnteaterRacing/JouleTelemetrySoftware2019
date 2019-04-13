@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using TelemetryApp.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -10,14 +12,17 @@ namespace TelemetryApp
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        ViewModel VM { get; set; }
+
         public SettingsPage()
         {
             InitializeComponent();
         }
 
-        private void Home_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            base.OnNavigatedTo(e);
+            VM = (ViewModel)e.Parameter;
         }
     }
 }

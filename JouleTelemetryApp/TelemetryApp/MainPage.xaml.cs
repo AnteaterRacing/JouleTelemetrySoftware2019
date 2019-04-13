@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TelemetryApp.ViewModels;
 using TelemetryApp.Views;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -18,9 +19,24 @@ namespace TelemetryApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ViewModel vm = new ViewModel();
+
         public MainPage()
         {
             InitializeComponent();
+
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            vm.Start();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            vm.Stop();
         }
 
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
@@ -125,7 +141,7 @@ namespace TelemetryApp
             // Only navigate if the selected page isn't currently loaded.
             if (!(_page is null) && !Equals(preNavPageType, _page))
             {
-                ContentFrame.Navigate(_page, null, transitionInfo);
+                ContentFrame.Navigate(_page, vm, transitionInfo);
             }
         }
 
