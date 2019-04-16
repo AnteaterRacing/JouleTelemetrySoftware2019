@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+﻿using TelemetryApp.ViewModels;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace TelemetryApp
 {
@@ -9,9 +9,17 @@ namespace TelemetryApp
     /// </summary>
     public sealed partial class PowertrainPage : Page
     {
+        public ViewModel VM { get; set; }
+
         public PowertrainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            VM = (ViewModel)e.Parameter;
         }
     }
 }

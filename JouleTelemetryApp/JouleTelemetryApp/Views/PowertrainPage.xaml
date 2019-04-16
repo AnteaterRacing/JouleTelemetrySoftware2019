@@ -1,14 +1,15 @@
 ﻿<Page
     x:Class="TelemetryApp.PowertrainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TelemetryApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:templates="using:TelemetryApp.Views.Templates"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:DefaultBindMode="OneWay">
 
-    <Grid Background="Black" BorderThickness="0" BorderBrush="Black">
+    <!--<Grid Background="Black" BorderThickness="0" BorderBrush="Black">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -24,5 +25,7 @@
         <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Foreground="White" FontSize="50" Text="Powertrain Page"/>
         </StackPanel>
-    </Grid>
+    </Grid>-->
+
+    <templates:SteeringWheel VM="{x:Bind VM}" MaxHeight="500"/>
 </Page>

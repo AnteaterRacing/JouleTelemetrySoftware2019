@@ -67,7 +67,7 @@ namespace TelemetryApp.ViewModels
                 OnPropertyChanged(nameof(CurrentGraph));
             }
         }
-        
+
         protected DispatcherTimer timer;
 
         public ViewModel()
