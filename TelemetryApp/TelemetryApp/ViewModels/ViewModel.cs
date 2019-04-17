@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TelemetryApp.Models;
-using TelemetryApp.Models.DataPoint;
 using TelemetryApp.Models.GPS;
 using Windows.UI.Xaml;
 
@@ -9,71 +8,67 @@ namespace TelemetryApp.ViewModels
 {
     public class ViewModel : NotifyPropertyChanged
     {
-        // Update Period
-        // milliseconds
-        private int updatePeriod;
-        public int UpdatePeriod
-        {
-            get => updatePeriod;
-            set
-            {
-                UpdatePeriod = value;
-                OnPropertyChanged(nameof(UpdatePeriod));
-            }
-        }
+        // Timer for calling Update
+        private readonly DispatcherTimer _timer;
+
+        public Settings SettingsModel { get; private set; }
+
+        // Update Period in milliseconds
+        public int UpdatePeriod { get; private set; }
 
         // Steering
-        public SteeringWheel SteeringWheelModel { get; }
+        public SteeringWheel SteeringWheelModel { get; private set; }
 
         // G-Force
-        public GForce GForceXModel { get; }
-        public GForce GForceYModel { get; }
+        public GForce GForceXModel { get; private set; }
+        public GForce GForceYModel { get; private set; }
 
         // Tire PSI
-        public Pressure PressureFrontLeftTireModel { get; }
-        public Pressure PressureFrontRightTireModel { get; }
-        public Pressure PressureBackLeftTireModel { get; }
-        public Pressure PressureBackRightTireModel { get; }
+        public Pressure PressureFrontLeftTireModel { get; private set; }
+        public Pressure PressureFrontRightTireModel { get; private set; }
+        public Pressure PressureBackLeftTireModel { get; private set; }
+        public Pressure PressureBackRightTireModel { get; private set; }
 
         // Tire Temperature
-        public Temperature TemperatureFrontLeftTireModel { get; }
-        public Temperature TemperatureFrontRightTireModel { get; }
-        public Temperature TemperatureBackLeftTireModel { get; }
-        public Temperature TemperatureBackRightTireModel { get; }
+        public Temperature TemperatureFrontLeftTireModel { get; private set; }
+        public Temperature TemperatureFrontRightTireModel { get; private set; }
+        public Temperature TemperatureBackLeftTireModel { get; private set; }
+        public Temperature TemperatureBackRightTireModel { get; private set; }
 
         // GPS
-        public Latitude LatitudeModel { get; }
-        public Longitude LongitudeModel { get; }
+        public Latitude LatitudeModel { get; private set; }
+        public Longitude LongitudeModel { get; private set; }
 
         // Graphs
-        private ObservableCollection<GraphViewModel> graphs;
-        public ObservableCollection<GraphViewModel> Graphs
-        {
-            get => graphs;
-            set
-            {
-                graphs = value;
-                OnPropertyChanged(nameof(Graphs));
-            }
-        }
+        public ObservableCollection<Graph> Graphs { get; private set; }
 
-        private GraphViewModel currentGraph;
-        public GraphViewModel CurrentGraph
+        private Graph _currentGraph;
+        public Graph CurrentGraph
         {
-            get => currentGraph;
+            get => _currentGraph;
             set
             {
-                currentGraph = value;
+                _currentGraph = value;
                 OnPropertyChanged(nameof(CurrentGraph));
             }
         }
 
-        protected DispatcherTimer timer;
-
         public ViewModel()
         {
-            // Initialize
-            updatePeriod = 1000;
+            Init();
+            // Timer for updating once a second
+            _timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(UpdatePeriod) };
+            _timer.Tick += Tick;
+        }
+
+        private void Init()
+        {
+            // Settings
+            SettingsModel = new Settings();
+
+            // Update Period
+            UpdatePeriod = 1000;
+
             // SteeringWheel
             SteeringWheelModel = new SteeringWheel();
             // GForce
@@ -93,23 +88,22 @@ namespace TelemetryApp.ViewModels
             LatitudeModel = new Latitude();
             LongitudeModel = new Longitude();
 
-            graphs = new ObservableCollection<GraphViewModel>();
-            currentGraph = new GraphViewModel(
-                () => new DataPoint<double>(Data.RandomDouble(0, 100)),
+            // Graphs
+            Graphs = new ObservableCollection<Graph>();
+            CurrentGraph = new Graph(
+                () => Data.RandomDouble(0, 100),
                 "Random",
                 maximum: 100
-                );
-
-            // Graphs
-            Graphs.Add(currentGraph);
+            );
+            Graphs.Add(_currentGraph);
             //var fibonacci = Data.FibonacciRange(0, 10);
             //Graphs.Add(new GraphViewModel(
             //    () => new DataPoint<double>(Data.EnumerateInteger(fibonacci, loop: true)),
             //    "Fibonacci",
             //    maximum: 5000
             //));
-            Graphs.Add(new GraphViewModel(
-                () => new DataPoint<double>(50),
+            Graphs.Add(new Graph(
+                () => 50,
                 "Constant",
                 maximum: 100
             ));
@@ -119,28 +113,16 @@ namespace TelemetryApp.ViewModels
             //    "CSV Data Loop",
             //    minimum: -100, maximum: 100
             //));
-
-            // Timer for updating once a second
-            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(UpdatePeriod) };
-            timer.Tick += Tick;
         }
 
         public void Start()
         {
-            timer.Start();
-            foreach (GraphViewModel graph in Graphs)
-            {
-                graph.Start();
-            }
+            _timer.Start();
         }
 
         public void Stop()
         {
-            timer.Stop();
-            foreach (GraphViewModel graph in Graphs)
-            {
-                graph.Stop();
-            }
+            _timer.Stop();
         }
 
         protected void Tick(object sender, object e)
@@ -168,6 +150,8 @@ namespace TelemetryApp.ViewModels
             // GPS
             LatitudeModel.Update();
             LongitudeModel.Update();
+            // Graphs
+            foreach (var graph in Graphs) graph.Update();
             // Notify all properties have changed as mentioned here:
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
             OnPropertyChanged(null);

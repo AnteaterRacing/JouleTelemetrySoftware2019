@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using System;
 using TelemetryApp.ViewModels;
 using TelemetryApp.Models;
+using Windows.UI.Xaml.Navigation;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -14,54 +15,29 @@ namespace TelemetryApp.Views
     /// </summary>
     public sealed partial class GeneralPage : Page
     {
-        private ViewModel vm;
+        public ViewModel VM { get; set; }
 
         public GeneralPage()
         {
             InitializeComponent();
-
-            // ViewModel for page
-            vm = new ViewModel();
-
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            vm.Start();
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            vm.Stop();
+            base.OnNavigatedTo(e);
+            VM = (ViewModel)e.Parameter;
         }
 
         private void GraphComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            vm.CurrentGraph = (GraphViewModel)e.AddedItems[0];
+            VM.CurrentGraph = (Graph)e.AddedItems[0];
         }
 
         private void Resolution_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            // TODO: impelement changing graph
+            // TODO: implement changing graph
             //ValueViewModel.Resolution = Convert.ToInt32(rb.Tag);
-        }
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HorizontalGForce_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TextBlock_SelectionChanged_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
