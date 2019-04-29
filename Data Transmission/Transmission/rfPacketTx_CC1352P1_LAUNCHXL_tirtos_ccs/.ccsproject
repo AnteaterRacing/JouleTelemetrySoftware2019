@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?ccsproject version="1.0"?>
+<projectOptions>
+	<ccsVersion value="8.3.0"/>
+	<deviceVariant value="Cortex M.CC1352P1F3"/>
+	<deviceFamily value="TMS470"/>
+	<deviceEndianness value="little"/>
+	<codegenToolVersion value="18.12.1.LTS"/>
+	<isElfFormat value="true"/>
+	<connection value="common/targetdb/connections/TIXDS110_Connection.xml"/>
+	<rts value=""/>
+	<createSlaveProjects value=""/>
+	<ignoreDefaultDeviceSettings value="true"/>
+	<ignoreDefaultCCSSettings value="true"/>
+	<templateProperties value="id=rfPacketTx_CC1352P1_LAUNCHXL_tirtos_ccs.projectspec.rfPacketTx_CC1352P1_LAUNCHXL_tirtos_ccs,buildProfile=release,isHybrid=true"/>
+	<origin value="D:\ti\simplelink_cc13x2_sdk_2_30_00_45\examples\rtos\CC1352P1_LAUNCHXL\drivers\rfPacketTx\tirtos\ccs\rfPacketTx_CC1352P1_LAUNCHXL_tirtos_ccs.projectspec"/>
+	<filesToOpen value=""/>
+</projectOptions>

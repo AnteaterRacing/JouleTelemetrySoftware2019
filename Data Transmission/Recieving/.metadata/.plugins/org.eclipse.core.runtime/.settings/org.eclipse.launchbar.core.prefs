@@ -1,0 +1,7 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:rfPacketRx_CC1352P1_LAUNCHXL_tirtos_ccs
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:rfPacketRx_CC1352P1_LAUNCHXL_tirtos_ccs/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:rfPacketRx_CC1352P1_LAUNCHXL_tirtos_ccs/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
