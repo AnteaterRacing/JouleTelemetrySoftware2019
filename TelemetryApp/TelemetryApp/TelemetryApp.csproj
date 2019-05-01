@@ -102,10 +102,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\SelectedDataSourceComboBoxConvert.cs" />
     <Compile Include="Models\DataPoint\DataPointDelegate.cs" />
     <Compile Include="Models\DataSource.cs" />
     <Compile Include="Converters\DoubleFormatConverter.cs" />
-    <Compile Include="Models\GForce.cs" />
+    <Compile Include="Models\GForce\GForce.cs" />
+    <Compile Include="Models\GForce\GForceAxis.cs" />
     <Compile Include="Models\GPS\DecimalDegree.cs" />
     <Compile Include="Models\GPS\Latitude.cs" />
     <Compile Include="Models\GPS\Longitude.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\SteeringWheel.cs" />
     <Compile Include="Models\Temperature.cs" />
+    <Compile Include="Models\Tire\Tire.cs" />
     <Compile Include="Views\BatteryPage.xaml.cs">
       <DependentUpon>BatteryPage.xaml</DependentUpon>
     </Compile>
@@ -124,7 +127,6 @@
     <Compile Include="Views\GeneralPage.xaml.cs">
       <DependentUpon>GeneralPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\GraphViewModel.cs" />
     <Compile Include="Views\HumanInterfacePage.xaml.cs">
       <DependentUpon>HumanInterfacePage.xaml</DependentUpon>
     </Compile>

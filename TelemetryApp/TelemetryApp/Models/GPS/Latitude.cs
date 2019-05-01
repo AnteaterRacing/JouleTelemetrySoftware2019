@@ -2,13 +2,14 @@
 {
     public class Latitude : DecimalDegree
     {
-        public Latitude() : base(() => Data.RandomDouble(-90, 90))
+        public static new double Default()
         {
+            return Data.RandomDouble(-90, 90);
         }
 
-        public Latitude(DataDelegate dataGenerator) : base(dataGenerator)
-        {
-        }
+        public Latitude() : base(Default) { }
+
+        public Latitude(DataDelegate dataGenerator) : base(dataGenerator) { }
 
         public override string ToString()
         {

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO.Ports;
 
 namespace TelemetryApp.Models
 {
     // TODO
     public class Serial
     {
-        public Serial() { }
+        public Serial(string portName, int baudRate)
+        {
+            SerialPort port = new SerialPort(portName, baudRate, Parity.None);
+        }
 
-        double GetData()
+        public double GetData()
         {
             return 3.14159265359;
         }

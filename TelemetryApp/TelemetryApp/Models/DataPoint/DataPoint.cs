@@ -30,6 +30,11 @@ namespace TelemetryApp.Models.DataPoint
             }
         }
 
+        // TODO:
+        public T Minimum { get; set; }
+        // TODO:
+        public T Maximum { get; set; }
+
         public DataPoint()
         {
             Update();
@@ -54,7 +59,7 @@ namespace TelemetryApp.Models.DataPoint
         // Update DataPoint with date and default value
         public void Update(DateTime date)
         {
-            Update(date, default(T));
+            Update(date, default);
         }
 
         // Update DataPoint with current time and value

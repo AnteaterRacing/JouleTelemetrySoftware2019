@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TelemetryApp.Models;
+using TelemetryApp.Models.GForce;
 using TelemetryApp.Models.GPS;
 using Windows.UI.Xaml;
 
@@ -13,6 +14,8 @@ namespace TelemetryApp.ViewModels
 
         public Settings SettingsModel { get; private set; }
 
+        public Serial SerialModel { get; private set; }
+
         // Update Period in milliseconds
         public int UpdatePeriod { get; private set; }
 
@@ -20,8 +23,7 @@ namespace TelemetryApp.ViewModels
         public SteeringWheel SteeringWheelModel { get; private set; }
 
         // G-Force
-        public GForce GForceXModel { get; private set; }
-        public GForce GForceYModel { get; private set; }
+        public GForce GForceModel { get; private set; }
 
         // Tire PSI
         public Pressure PressureFrontLeftTireModel { get; private set; }
@@ -63,17 +65,19 @@ namespace TelemetryApp.ViewModels
 
         private void Init()
         {
+            // Update Period
+            UpdatePeriod = 500;
+            
             // Settings
             SettingsModel = new Settings();
 
-            // Update Period
-            UpdatePeriod = 1000;
+            // Provide access to serial data
+            SerialModel = new Serial(SettingsModel.SerialPortName, SettingsModel.SerialBaudRate);
 
             // SteeringWheel
             SteeringWheelModel = new SteeringWheel();
             // GForce
-            GForceXModel = new GForce();
-            GForceYModel = new GForce();
+            GForceModel = new GForce();
             // Pressure
             PressureFrontLeftTireModel = new Pressure();
             PressureFrontRightTireModel = new Pressure();
@@ -135,8 +139,7 @@ namespace TelemetryApp.ViewModels
             // Steering
             SteeringWheelModel.Update();
             // GForce
-            GForceXModel.Update();
-            GForceYModel.Update();
+            GForceModel.Update();
             // Pressure
             PressureFrontLeftTireModel.Update();
             PressureFrontRightTireModel.Update();
@@ -155,6 +158,91 @@ namespace TelemetryApp.ViewModels
             // Notify all properties have changed as mentioned here:
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
             OnPropertyChanged(null);
+        }
+
+        public void UpdateDataSource()
+        {
+            switch (SettingsModel.SelectedDataSource)
+            {
+                case DataSource.Serial:
+                    SetSerialDataSource();
+                    break;
+                case DataSource.Csv:
+                    SetRandomDataSource();
+                    break;
+                default:
+                    SetRandomDataSource();
+                    break;
+            }
+        }
+
+        public void SetRandomDataSource()
+        {
+            SettingsModel.SelectedDataSource = DataSource.Random;
+            // SteeringWheel
+            SteeringWheelModel.DataGenerator = SteeringWheel.Default;
+            // GForce
+            GForceModel.X.DataGenerator = GForceAxis.Default;
+            GForceModel.Y.DataGenerator = GForceAxis.Default;
+            // Pressure
+            PressureFrontLeftTireModel.DataGenerator = Pressure.Default;
+            PressureFrontRightTireModel.DataGenerator = Pressure.Default;
+            PressureBackLeftTireModel.DataGenerator = Pressure.Default;
+            PressureBackRightTireModel.DataGenerator = Pressure.Default;
+            // Temperature
+            TemperatureFrontLeftTireModel.DataGenerator = Temperature.Default;
+            TemperatureFrontRightTireModel.DataGenerator = Temperature.Default;
+            TemperatureBackLeftTireModel.DataGenerator = Temperature.Default;
+            TemperatureBackRightTireModel.DataGenerator = Temperature.Default;
+            // GPS
+            LatitudeModel.DataGenerator = Latitude.Default;
+            LongitudeModel.DataGenerator = Longitude.Default;
+        }
+
+        public void SetSerialDataSource()
+        {
+            SettingsModel.SelectedDataSource = DataSource.Serial;
+            // SteeringWheel
+            SteeringWheelModel.DataGenerator = SerialModel.GetData;
+            // GForce
+            GForceModel.X.DataGenerator = SerialModel.GetData;
+            GForceModel.Y.DataGenerator = SerialModel.GetData;
+            // Pressure
+            PressureFrontLeftTireModel.DataGenerator = SerialModel.GetData;
+            PressureFrontRightTireModel.DataGenerator = SerialModel.GetData;
+            PressureBackLeftTireModel.DataGenerator = SerialModel.GetData;
+            PressureBackRightTireModel.DataGenerator = SerialModel.GetData;
+            // Temperature
+            TemperatureFrontLeftTireModel.DataGenerator = SerialModel.GetData;
+            TemperatureFrontRightTireModel.DataGenerator = SerialModel.GetData;
+            TemperatureBackLeftTireModel.DataGenerator = SerialModel.GetData;
+            TemperatureBackRightTireModel.DataGenerator = SerialModel.GetData;
+            // GPS
+            LatitudeModel.DataGenerator = SerialModel.GetData;
+            LongitudeModel.DataGenerator = SerialModel.GetData;
+        }
+
+        public void SetCsvDataSource()
+        {
+            SettingsModel.SelectedDataSource = DataSource.Csv;
+            //// SteeringWheel
+            //SteeringWheelModel.DataGenerator = SteeringWheel.Default;
+            //// GForce
+            //GForceXModel.DataGenerator = GForce.Default;
+            //GForceYModel.DataGenerator = GForce.Default;
+            //// Pressure
+            //PressureFrontLeftTireModel.DataGenerator = Pressure.Default;
+            //PressureFrontRightTireModel.DataGenerator = Pressure.Default;
+            //PressureBackLeftTireModel.DataGenerator = Pressure.Default;
+            //PressureBackRightTireModel.DataGenerator = Pressure.Default;
+            //// Temperature
+            //TemperatureFrontLeftTireModel.DataGenerator = Temperature.Default;
+            //TemperatureFrontRightTireModel.DataGenerator = Temperature.Default;
+            //TemperatureBackLeftTireModel.DataGenerator = Temperature.Default;
+            //TemperatureBackRightTireModel.DataGenerator = Temperature.Default;
+            //// GPS
+            //LatitudeModel.DataGenerator = Latitude.Default;
+            //LongitudeModel.DataGenerator = Longitude.Default;
         }
     }
 }

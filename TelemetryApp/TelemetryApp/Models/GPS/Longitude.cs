@@ -2,13 +2,14 @@
 {
     public class Longitude : DecimalDegree
     {
-        public Longitude() : base(() => Data.RandomDouble(-180, 180))
+        public static new double Default()
         {
+            return Data.RandomDouble(-180, 180);
         }
 
-        public Longitude(DataDelegate dataGenerator) : base(dataGenerator)
-        {
-        }
+        public Longitude() : base(Default) { }
+
+        public Longitude(DataDelegate dataGenerator) : base(dataGenerator) { }
 
         public override string ToString()
         {

@@ -8,6 +8,17 @@ namespace TelemetryApp.Models.DataPoint
 
         public DataDelegate DataGenerator { get; set; }
 
+        public static T Default()
+        {
+            return default;
+        }
+
+        public DataPointDelegate()
+        {
+            DataGenerator = Default;
+            Update();
+        }
+
         public DataPointDelegate(DataDelegate dataGenerator)
         {
             DataGenerator = dataGenerator;

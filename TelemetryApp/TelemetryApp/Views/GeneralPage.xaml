@@ -28,7 +28,6 @@
             <RowDefinition Height="1.6*" />
         </Grid.RowDefinitions>
 
-
         <!-- Main Gauges, Temperature -->
         <Border Grid.Row="0" Grid.Column="0" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
             <!--<Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>-->
@@ -269,8 +268,8 @@
                 
                 <!-- G-Force -->
                 <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="81,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Left" Text="{x:Bind VM.GForceXModel.ToString()}"></TextBlock>
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind VM.GForceYModel.ToString()}"></TextBlock>
+                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="81,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Left" Text="{x:Bind VM.GForceModel.X.ToString()}"></TextBlock>
+                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind VM.GForceModel.Y.ToString()}"></TextBlock>
                 <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
                     <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
                     <Ellipse Height="75" Width="75" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
@@ -284,8 +283,8 @@
                     <Ellipse Height="15" Width="15" StrokeThickness="3" Stroke="#FF6E6E6E" Fill="White" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" RenderTransformOrigin="0.5,0.5">
                         <interactivity:Interaction.Behaviors>
                             <behaviors:Offset 
-                                OffsetX="{x:Bind VM.GForceXModel.OffsetValue}"
-                                OffsetY="{x:Bind VM.GForceYModel.OffsetValue}"
+                                OffsetX="{x:Bind VM.GForceModel.X.OffsetValue}"
+                                OffsetY="{x:Bind VM.GForceModel.Y.OffsetValue}"
                                 Duration="950"
                                 EasingType="Linear"
                                 AutomaticallyStart="True" />
@@ -495,7 +494,7 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock Grid.Column="0" Text="{x:Bind ValueViewModel.Name}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>-->
-                    <ComboBox x:Name="GraphComboBox" ItemsSource="{x:Bind VM.Graphs}"
+                    <ComboBox x:Name="GraphComboBox" ItemsSource="{x:Bind VM.Graphs, Mode=OneWay}"
                             SelectedItem="{x:Bind VM.CurrentGraph, Mode=OneTime}" SelectedValue="{x:Bind VM.CurrentGraph.Name, Mode=OneTime}"
                             SelectionChanged="GraphComboBox_SelectionChanged"></ComboBox>
                     <RelativePanel Grid.Column="1">

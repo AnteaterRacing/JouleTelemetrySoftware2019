@@ -1,45 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Windows.Storage;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace TelemetryApp.Models
 {
     public class Settings : NotifyPropertyChanged
     {
         private static Dictionary<string, object> _defaultSettings = new Dictionary<string, object> {
-            {"SelectedDataSource", DataSource.Serial},
-            {"SerialPortName", "COM1"},
-            {"CSVFileName", "/Assets/Data/sample1.csv"}
+            {nameof(SelectedDataSource), DataSource.Random},
+            {nameof(SerialPortName), "COM1"},
+            {nameof(SerialBaudRate), 9600},
+            {nameof(CsvFileName), "/Assets/Data/sample1.csv"}
         };
-        private ApplicationDataContainer _localSettings;
+
+        private Dictionary<string, object> _currentSettings;
+
+        public object this[string key]
+        {
+            get { return _currentSettings[key]; }
+            set {
+                _currentSettings[key] = value;
+                OnPropertyChanged(key);
+            }
+        }
 
         public DataSource SelectedDataSource
         {
-            get
-            {
-                if (_localSettings.Values[nameof(SelectedDataSource)] == null)
-                {
-                    _localSettings.Values[nameof(SelectedDataSource)] = _defaultSettings[nameof(SelectedDataSource)];
-                }
-                return (DataSource)_localSettings.Values[nameof(SelectedDataSource)];
-            }
+            get => (DataSource)_currentSettings[nameof(SelectedDataSource)];
             set
             {
-                _localSettings.Values[nameof(SelectedDataSource)] = value;
-                OnPropertyChanged(nameof(SelectedDataSource));
+                this[nameof(SelectedDataSource)] = value;
             }
         }
 
-        public ObservableCollection<string> DataSources
+        public string SerialPortName
         {
-            get => new ObservableCollection<string>(Enum.GetNames(typeof(DataSource)));
+            get => (string)_currentSettings[nameof(SerialPortName)];
+            set
+            {
+                this[nameof(SerialPortName)] = value;
+            }
         }
+
+        public int SerialBaudRate
+        {
+            get => (int)_currentSettings[nameof(SerialBaudRate)];
+            set
+            {
+                this[nameof(SerialBaudRate)] = value;
+            }
+        }
+
+        public string CsvFileName
+        {
+            get => (string)_currentSettings[nameof(CsvFileName)];
+            set
+            {
+                this[nameof(CsvFileName)] = value;
+            }
+        }
+
+        //public ObservableCollection<string> DataSources => new ObservableCollection<string>(Enum.GetValues(typeof(DataSource))
+        //                                                                                    .Cast<DataSource>()
+        //                                                                                    .Select(x => x.ToString())
+        //                                                                                    .ToArray());
 
         public Settings()
         {
-            _localSettings = ApplicationData.Current.LocalSettings;
+            _currentSettings = new Dictionary<string, object>(_defaultSettings);
+            OnPropertyChanged(null);
         }
     }
 }

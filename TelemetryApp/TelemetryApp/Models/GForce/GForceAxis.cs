@@ -1,18 +1,19 @@
 ﻿using TelemetryApp.Models.DataPoint;
 
-namespace TelemetryApp.Models
+namespace TelemetryApp.Models.GForce
 {
-    public class GForce : DataPointDelegate<double>
+    public class GForceAxis : DataPointDelegate<double>
     {
-        public double OffsetValue { get; set; }
-
-        public GForce() : base(() => Data.RandomDouble(-1, 1))
+        public static new double Default()
         {
+            return Data.RandomDouble(-1, 1);
         }
 
-        public GForce(DataDelegate dataGenerator) : base(dataGenerator)
-        {
-        }
+        public double OffsetValue { get; private set; }
+
+        public GForceAxis() : base(Default) { }
+
+        public GForceAxis(DataDelegate dataGenerator) : base(dataGenerator) { }
 
         new public void Update()
         {

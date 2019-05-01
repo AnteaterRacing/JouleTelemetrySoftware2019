@@ -8,7 +8,6 @@ namespace TelemetryApp.Models
 {
     public class Graph : NotifyPropertyChanged
     {
-        // protected DispatcherTimer timer;
         private DataPointDelegate<double> _current;
         private ObservableCollection<DataPoint<double>> _history;
 

@@ -2,14 +2,11 @@
 
 namespace TelemetryApp.Models.GPS
 {
-    public class DecimalDegree : DataPointDelegate<double>
+    public partial class DecimalDegree : DataPointDelegate<double>
     {
-        public DecimalDegree() : base(() => Data.RandomDouble(-90, 90))
+        public DecimalDegree(DataDelegate dataGenerator)
         {
-        }
-
-        public DecimalDegree(DataDelegate dataGenerator) : base(dataGenerator)
-        {
+            DataGenerator = dataGenerator;
         }
 
         public override string ToString()
@@ -22,12 +19,11 @@ namespace TelemetryApp.Models.GPS
 
         private (int, int, int) DMS()
         {
-            double remainder = 0;
             double posValue = (Value < 0 ? -Value : Value);
 
             int degrees = (int)posValue;
 
-            remainder = posValue - degrees;
+            double remainder = posValue - degrees;
             double minutesDouble = 60 * remainder;
             int minutes = (int)minutesDouble;
 
