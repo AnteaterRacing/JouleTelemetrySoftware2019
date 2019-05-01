@@ -32,8 +32,7 @@ namespace TelemetryApp.ViewModels
         public Tire BackRightTireModel { get; private set; }
 
         // GPS
-        public Latitude LatitudeModel { get; private set; }
-        public Longitude LongitudeModel { get; private set; }
+        public GPS GPSModel { get; private set; }
 
         // Graphs
         public ObservableCollection<Graph> Graphs { get; private set; }
@@ -81,8 +80,7 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel = new Tire();
 
             // GPS
-            LatitudeModel = new Latitude();
-            LongitudeModel = new Longitude();
+            GPSModel = new GPS();
 
             // Graphs
             Graphs = new ObservableCollection<Graph>();
@@ -138,8 +136,7 @@ namespace TelemetryApp.ViewModels
             BackLeftTireModel.Update();
             BackRightTireModel.Update();
             // GPS
-            LatitudeModel.Update();
-            LongitudeModel.Update();
+            GPSModel.Update();
             // Graphs
             foreach (var graph in Graphs) graph.Update();
             // Notify all properties have changed as mentioned here:
@@ -181,8 +178,8 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel.Pressure.DataGenerator = Pressure.Default;
             BackRightTireModel.Temperature.DataGenerator = Temperature.Default;
             // GPS
-            LatitudeModel.DataGenerator = Latitude.Default;
-            LongitudeModel.DataGenerator = Longitude.Default;
+            GPSModel.Latitude.DataGenerator = Latitude.Default;
+            GPSModel.Longitude.DataGenerator = Longitude.Default;
         }
 
         public void SetSerialDataSource()
@@ -203,8 +200,8 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel.Pressure.DataGenerator = SerialModel.GetData;
             BackRightTireModel.Temperature.DataGenerator = SerialModel.GetData;
             // GPS
-            LatitudeModel.DataGenerator = SerialModel.GetData;
-            LongitudeModel.DataGenerator = SerialModel.GetData;
+            GPSModel.Latitude.DataGenerator = SerialModel.GetData;
+            GPSModel.Longitude.DataGenerator = SerialModel.GetData;
         }
 
         public void SetCsvDataSource()
