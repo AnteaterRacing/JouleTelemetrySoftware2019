@@ -324,12 +324,12 @@
                         <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
                     </Border>
                     <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.PressureFrontLeftTireModel.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.TemperatureFrontLeftTireModel.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontLeftTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontLeftTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.PressureBackLeftTireModel.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.TemperatureBackLeftTireModel.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackLeftTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackLeftTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <Rectangle Height="2" Grid.Column="1"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
@@ -361,13 +361,13 @@
                     </Border>
 
                     <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.PressureFrontRightTireModel.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.TemperatureFrontRightTireModel.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontRightTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontRightTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.PressureBackRightTireModel.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.TemperatureBackRightTireModel.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackRightTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackRightTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <Rectangle Height="2" Grid.Column="0"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
