@@ -13,14 +13,45 @@
     </Page.Resources>
 
     <StackPanel>
-        <ComboBox x:Name="SelectedDataSourceComboBox"
+        <!--<ComboBox x:Name="SelectedDataSourceComboBox"
                   Header="Data Source"
                   SelectedItem="{x:Bind VM.SettingsModel.SelectedDataSource, Mode=OneWay, Converter={StaticResource SelectedDataSourceComboBoxConvert}}"
                   SelectionChanged="SelectedDataSourceComboBox_SelectionChanged">
             <x:String>Random</x:String>
             <x:String>Serial</x:String>
             <x:String>Csv</x:String>
-        </ComboBox>
+        </ComboBox>-->
+        <!--Data Source-->
+        <StackPanel x:Name="DataSourceRadioButton">
+            <TextBlock Text="Data Source" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <RadioButton Content="Random" Tag="Random" GroupName="DataSource"
+                         Checked="DataSourceRadioButton_Checked"
+                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceRandom}"/>
+            <RadioButton Content="Serial" Tag="Serial" GroupName="DataSource"
+                         Checked="DataSourceRadioButton_Checked"
+                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceSerial}"/>
+            <RadioButton Content="CSV" Tag="Csv" GroupName="DataSource"
+                         Checked="DataSourceRadioButton_Checked"
+                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceCsv}"/>
+        </StackPanel>
+        <!--Serial Port-->
+        <StackPanel x:Name="SerialPortTextBox">
+            <TextBlock Text="Serial Port" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBlock Text="Specify port name found in Device Manager for serial communication"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{x:Bind VM.SettingsModel.SerialPortName}"
+                         TextChanged="SerialPortTextBox_TextChanged">
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
+        <!--Update Period-->
+        <StackPanel x:Name="UpdatePeriodTextBox">
+            <TextBlock Text="Update Period" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBox Header="Value between 250 and 5000 ms"
+                     Text="{x:Bind VM.SettingsModel.UpdatePeriod}"
+                     TextChanged="UpdatePeriodTextBox_TextChanged">
+            </TextBox>
+        </StackPanel>
     </StackPanel>
 
 </Page>

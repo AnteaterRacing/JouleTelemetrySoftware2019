@@ -1,5 +1,6 @@
 ﻿using TelemetryApp.Models;
 using TelemetryApp.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -23,24 +24,53 @@ namespace TelemetryApp
             VM = (ViewModel)e.Parameter;
         }
 
-        private void SelectedDataSourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //private void SelectedDataSourceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    string selectedDataSourceName = e.AddedItems[0].ToString();
+        //    switch(selectedDataSourceName)
+        //    {
+        //        case "Csv":
+        //            VM.SetCsvDataSource();
+        //            break;
+        //        case "Serial":
+        //            VM.SetSerialDataSource();
+        //            break;
+        //        default:
+        //            VM.SetRandomDataSource();
+        //            break;
+        //    }
+        //}
+
+        private void DataSourceRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            string selectedDataSourceName = e.AddedItems[0].ToString();
-            switch(selectedDataSourceName)
+            RadioButton rb = sender as RadioButton;
+
+            if (rb != null && VM != null)
             {
-                case "Random":
-                    VM.SetRandomDataSource();
-                    break;
-                case "Csv":
-                    VM.SetCsvDataSource();
-                    break;
-                case "Serial":
-                    VM.SetSerialDataSource();
-                    break;
-                default:
-                    VM.SetRandomDataSource();
-                    break;
+                string colorName = rb.Tag.ToString();
+                switch (colorName)
+                {
+                    case "Csv":
+                        VM.SetCsvDataSource();
+                        break;
+                    case "Serial":
+                        VM.SetSerialDataSource();
+                        break;
+                    default:
+                        VM.SetRandomDataSource();
+                        break;
+                }
             }
+        }
+
+        private void SerialPortTextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdatePeriodTextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
