@@ -16,9 +16,6 @@ namespace TelemetryApp.ViewModels
 
         public Serial SerialModel { get; private set; }
 
-        // Update Period in milliseconds
-        public int UpdatePeriod { get; private set; }
-
         // Steering
         public SteeringWheel SteeringWheelModel { get; private set; }
 
@@ -52,15 +49,12 @@ namespace TelemetryApp.ViewModels
         {
             Init();
             // Timer for updating once a second
-            _timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(UpdatePeriod) };
+            _timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(SettingsModel.UpdatePeriod) };
             _timer.Tick += Tick;
         }
 
         private void Init()
         {
-            // Update Period
-            UpdatePeriod = 500;
-            
             // Settings
             SettingsModel = new Settings();
 
@@ -91,8 +85,8 @@ namespace TelemetryApp.ViewModels
             );
             Graphs.Add(_currentGraph);
             //var fibonacci = Data.FibonacciRange(0, 10);
-            //Graphs.Add(new GraphViewModel(
-            //    () => new DataPoint<double>(Data.EnumerateInteger(fibonacci, loop: true)),
+            //Graphs.Add(new Graph(
+            //    () => Data.EnumerateInteger(fibonacci, loop: true),
             //    "Fibonacci",
             //    maximum: 5000
             //));
@@ -146,7 +140,7 @@ namespace TelemetryApp.ViewModels
 
         public void UpdateDataSource()
         {
-            switch (SettingsModel.SelectedDataSource)
+            switch (SettingsModel.DataSource)
             {
                 case DataSource.Serial:
                     SetSerialDataSource();
@@ -162,7 +156,7 @@ namespace TelemetryApp.ViewModels
 
         public void SetRandomDataSource()
         {
-            SettingsModel.SelectedDataSource = DataSource.Random;
+            SettingsModel.DataSource = DataSource.Random;
             // SteeringWheel
             SteeringWheelModel.DataGenerator = SteeringWheel.Default;
             // GForce
@@ -184,7 +178,7 @@ namespace TelemetryApp.ViewModels
 
         public void SetSerialDataSource()
         {
-            SettingsModel.SelectedDataSource = DataSource.Serial;
+            SettingsModel.DataSource = DataSource.Serial;
             // SteeringWheel
             SteeringWheelModel.DataGenerator = SerialModel.GetData;
             // GForce
@@ -206,7 +200,7 @@ namespace TelemetryApp.ViewModels
 
         public void SetCsvDataSource()
         {
-            SettingsModel.SelectedDataSource = DataSource.Csv;
+            SettingsModel.DataSource = DataSource.Csv;
             //// SteeringWheel
             //SteeringWheelModel.DataGenerator = SteeringWheel.Default;
             //// GForce
