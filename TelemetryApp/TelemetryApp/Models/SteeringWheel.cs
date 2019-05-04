@@ -20,7 +20,6 @@ namespace TelemetryApp.Models
             double previous = Value;
             base.Update();
             RotateValue = (float) (Value - previous);
-            OnPropertyChanged(null);
         }
 
         public override string ToString()

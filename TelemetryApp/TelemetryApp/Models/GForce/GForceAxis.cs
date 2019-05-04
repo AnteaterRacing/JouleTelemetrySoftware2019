@@ -21,7 +21,6 @@ namespace TelemetryApp.Models.GForce
             base.Update();
             // TODO: Fix hardcoded 50, need way to determine scaling
             OffsetValue = 50*(Value - previous);
-            OnPropertyChanged(null);
         }
 
         public override string ToString()

@@ -2,13 +2,16 @@
 
 namespace TelemetryApp.Models
 {
-    public class Settings : NotifyPropertyChanged
+    public class Settings
     {
+        #region Settings Dictionary
+
         private static Dictionary<string, object> _defaultSettings = new Dictionary<string, object> {
-            {nameof(SelectedDataSource), DataSource.Random},
-            {nameof(SerialPortName), "COM1"},
+            {nameof(DataSource), DataSource.Random},
+            {nameof(SerialPortName), "COM3"},
             {nameof(SerialBaudRate), 9600},
-            {nameof(CsvFileName), "/Assets/Data/sample1.csv"}
+            {nameof(CsvFileName), "/Assets/Data/sample1.csv"},
+            {nameof(UpdatePeriod), 1000}
         };
 
         private Dictionary<string, object> _currentSettings;
@@ -16,20 +19,32 @@ namespace TelemetryApp.Models
         public object this[string key]
         {
             get { return _currentSettings[key]; }
-            set {
+            set
+            {
                 _currentSettings[key] = value;
-                OnPropertyChanged(key);
             }
         }
 
-        public DataSource SelectedDataSource
+        #endregion Settings Dictionary
+
+        #region Data Source
+
+        public DataSource DataSource
         {
-            get => (DataSource)_currentSettings[nameof(SelectedDataSource)];
+            get => (DataSource)_currentSettings[nameof(DataSource)];
             set
             {
-                this[nameof(SelectedDataSource)] = value;
+                this[nameof(DataSource)] = value;
             }
         }
+
+        public bool IsDataSourceRandom { get => (DataSource)this[nameof(DataSource)] == DataSource.Random; }
+        public bool IsDataSourceSerial { get => (DataSource)this[nameof(DataSource)] == DataSource.Serial; }
+        public bool IsDataSourceCsv { get => (DataSource)this[nameof(DataSource)] == DataSource.Csv; }
+
+        #endregion Data Source
+
+        #region Serial
 
         public string SerialPortName
         {
@@ -49,6 +64,10 @@ namespace TelemetryApp.Models
             }
         }
 
+        #endregion Serial
+
+        #region Csv
+
         public string CsvFileName
         {
             get => (string)_currentSettings[nameof(CsvFileName)];
@@ -58,15 +77,27 @@ namespace TelemetryApp.Models
             }
         }
 
-        //public ObservableCollection<string> DataSources => new ObservableCollection<string>(Enum.GetValues(typeof(DataSource))
-        //                                                                                    .Cast<DataSource>()
-        //                                                                                    .Select(x => x.ToString())
-        //                                                                                    .ToArray());
+        #endregion Csv
+
+        #region Update Period
+
+        public int UpdatePeriod {
+            get => (int)_currentSettings[nameof(UpdatePeriod)];
+            set
+            {
+                this[nameof(UpdatePeriod)] = value;
+            }
+        }
+
+        #endregion Update Period
+
+        #region Constructors
 
         public Settings()
         {
             _currentSettings = new Dictionary<string, object>(_defaultSettings);
-            OnPropertyChanged(null);
         }
+
+        #endregion Constructors
     }
 }

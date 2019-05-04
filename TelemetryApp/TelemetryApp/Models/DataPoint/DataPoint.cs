@@ -2,38 +2,15 @@
 
 namespace TelemetryApp.Models.DataPoint
 {
-    public class DataPoint<T> : NotifyPropertyChanged
+    public class DataPoint<T>
     {
-        private DateTime _date;
-        public DateTime Date {
-            get
-            {
-                return _date;
-            }
-            set
-            {
-                _date = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private T _value;
-        public T Value {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
+        public DateTime Date { get; set; }
+        public T Value { get; set; }
 
         // TODO:
-        public T Minimum { get; set; }
+        // public T Minimum { get; set; }
         // TODO:
-        public T Maximum { get; set; }
+        // public T Maximum { get; set; }
 
         public DataPoint()
         {
