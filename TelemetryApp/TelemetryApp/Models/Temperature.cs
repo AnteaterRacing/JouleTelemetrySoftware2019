@@ -6,7 +6,7 @@ namespace TelemetryApp.Models
     {
         public static new double Default()
         {
-            return Data.RandomDouble(-100, 100);
+            return Data.RandomDouble(0, 500);
         }
 
         public Temperature() : base(Default) { }
@@ -15,7 +15,7 @@ namespace TelemetryApp.Models
 
         public override string ToString()
         {
-            return $"{Value:N2} °C";
+            return $"{Value:N2} °F";
         }
     }
 }
