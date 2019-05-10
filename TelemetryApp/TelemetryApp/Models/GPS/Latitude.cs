@@ -1,4 +1,4 @@
-﻿namespace TelemetryApp.Models.GPS
+﻿namespace TelemetryApp.Models.Gps
 {
     public class Latitude : DecimalDegree
     {

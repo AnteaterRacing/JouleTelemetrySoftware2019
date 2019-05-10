@@ -1,6 +1,7 @@
-﻿using TelemetryApp.Models.DataPoint;
+﻿using System;
+using TelemetryApp.Models.DataPoint;
 
-namespace TelemetryApp.Models.GPS
+namespace TelemetryApp.Models.Gps
 {
     public partial class DecimalDegree : DataPointDelegate<double>
     {
@@ -11,24 +12,24 @@ namespace TelemetryApp.Models.GPS
 
         public override string ToString()
         {
-            (int d, int m, int s) dms = DMS();
-            if (Value == 0) return "0 °";
-            else if (Value < 0) return $"{dms.d}° {dms.m:D2}\' {dms.s:D2}\"";
-            else return $"{dms.d}° {dms.m:D2}\' {dms.s:D2}\"";
+            var (d, m, s) = DMS();
+            return Math.Abs(Value) < 0.001 
+                ? "0 °" 
+                : $"{d}° {m:D2}\' {s:D2}\"";
         }
 
         private (int, int, int) DMS()
         {
-            double posValue = (Value < 0 ? -Value : Value);
+            var posValue = (Value < 0 ? -Value : Value);
 
-            int degrees = (int)posValue;
+            var degrees = (int)posValue;
 
-            double remainder = posValue - degrees;
-            double minutesDouble = 60 * remainder;
-            int minutes = (int)minutesDouble;
+            var remainder = posValue - degrees;
+            var minutesDouble = 60 * remainder;
+            var minutes = (int)minutesDouble;
 
             remainder = minutesDouble - minutes;
-            int seconds = (int)(60 * remainder);
+            var seconds = (int)(60 * remainder);
 
             return (degrees, minutes, seconds);
         }

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using TelemetryApp.Models;
 using TelemetryApp.Models.GForce;
-using TelemetryApp.Models.GPS;
+using TelemetryApp.Models.Gps;
 using Windows.UI.Xaml;
 
 namespace TelemetryApp.ViewModels
@@ -14,7 +14,7 @@ namespace TelemetryApp.ViewModels
 
         public Settings SettingsModel { get; private set; }
 
-        public Serial SerialModel { get; private set; }
+        public SerialData SerialModel { get; private set; }
 
         // Steering
         public SteeringWheel SteeringWheelModel { get; private set; }
@@ -29,7 +29,7 @@ namespace TelemetryApp.ViewModels
         public Tire BackRightTireModel { get; private set; }
 
         // GPS
-        public GPS GPSModel { get; private set; }
+        public Gps GpsModel { get; private set; }
 
         // Graphs
         public ObservableCollection<Graph> Graphs { get; private set; }
@@ -59,7 +59,7 @@ namespace TelemetryApp.ViewModels
             SettingsModel = new Settings();
 
             // Provide access to serial data
-            SerialModel = new Serial(SettingsModel.SerialPortName, SettingsModel.SerialBaudRate);
+            SerialModel = new SerialData(SettingsModel.SerialPortName, SettingsModel.SerialBaudRate);
 
             // SteeringWheel
             SteeringWheelModel = new SteeringWheel();
@@ -74,7 +74,7 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel = new Tire();
 
             // GPS
-            GPSModel = new GPS();
+            GpsModel = new Gps();
 
             // Graphs
             Graphs = new ObservableCollection<Graph>();
@@ -122,20 +122,25 @@ namespace TelemetryApp.ViewModels
         {
             // Steering
             SteeringWheelModel.Update();
+            OnPropertyChanged(nameof(SteeringWheelModel));
             // GForce
             GForceModel.Update();
+            OnPropertyChanged(nameof(GForceModel));
             // Tires
             FrontLeftTireModel.Update();
+            OnPropertyChanged(nameof(FrontLeftTireModel));
             FrontRightTireModel.Update();
+            OnPropertyChanged(nameof(FrontRightTireModel));
             BackLeftTireModel.Update();
+            OnPropertyChanged(nameof(BackLeftTireModel));
             BackRightTireModel.Update();
+            OnPropertyChanged(nameof(BackRightTireModel));
             // GPS
-            GPSModel.Update();
+            GpsModel.Update();
+            OnPropertyChanged(nameof(GpsModel));
             // Graphs
             foreach (var graph in Graphs) graph.Update();
-            // Notify all properties have changed as mentioned here:
-            // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged.propertychanged?redirectedfrom=MSDN&view=netframework-4.7.2#remarks
-            OnPropertyChanged(null);
+            OnPropertyChanged(nameof(Graphs));
         }
 
         public void UpdateDataSource()
@@ -172,8 +177,8 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel.Pressure.DataGenerator = Pressure.Default;
             BackRightTireModel.Temperature.DataGenerator = Temperature.Default;
             // GPS
-            GPSModel.Latitude.DataGenerator = Latitude.Default;
-            GPSModel.Longitude.DataGenerator = Longitude.Default;
+            GpsModel.Latitude.DataGenerator = Latitude.Default;
+            GpsModel.Longitude.DataGenerator = Longitude.Default;
         }
 
         public void SetSerialDataSource()
@@ -194,8 +199,8 @@ namespace TelemetryApp.ViewModels
             BackRightTireModel.Pressure.DataGenerator = SerialModel.GetData;
             BackRightTireModel.Temperature.DataGenerator = SerialModel.GetData;
             // GPS
-            GPSModel.Latitude.DataGenerator = SerialModel.GetData;
-            GPSModel.Longitude.DataGenerator = SerialModel.GetData;
+            GpsModel.Latitude.DataGenerator = SerialModel.GetData;
+            GpsModel.Longitude.DataGenerator = SerialModel.GetData;
         }
 
         public void SetCsvDataSource()

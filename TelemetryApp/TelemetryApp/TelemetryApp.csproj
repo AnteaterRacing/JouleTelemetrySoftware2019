@@ -108,10 +108,10 @@
     <Compile Include="Converters\DoubleFormatConverter.cs" />
     <Compile Include="Models\GForce\GForce.cs" />
     <Compile Include="Models\GForce\GForceAxis.cs" />
-    <Compile Include="Models\GPS\DecimalDegree.cs" />
-    <Compile Include="Models\GPS\GPS.cs" />
-    <Compile Include="Models\GPS\Latitude.cs" />
-    <Compile Include="Models\GPS\Longitude.cs" />
+    <Compile Include="Models\Gps\DecimalDegree.cs" />
+    <Compile Include="Models\Gps\Gps.cs" />
+    <Compile Include="Models\Gps\Latitude.cs" />
+    <Compile Include="Models\Gps\Longitude.cs" />
     <Compile Include="Models\Graph.cs" />
     <Compile Include="Models\NotifyPropertyChanged.cs" />
     <Compile Include="Models\Pressure.cs" />
