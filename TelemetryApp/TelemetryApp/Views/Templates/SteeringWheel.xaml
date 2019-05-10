@@ -8,7 +8,6 @@
       xmlns:telerik="using:Telerik.UI.Xaml.Controls.DataVisualization"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      x:DefaultBindMode="OneWay"
       d:DesignWidth="300" d:DesignHeight="300">
     
     <Grid.RowDefinitions>
@@ -26,7 +25,7 @@
     <Image Grid.Row="1" Grid.Column="0" Source="/Assets/Images/steering-wheel.png" RenderTransformOrigin="0.5,0.5">
         <interactivity:Interaction.Behaviors>
             <behaviors:Rotate
-                Value="{x:Bind VM.SteeringWheelModel.RotateValue}"
+                Value="{x:Bind Vm.SteeringWheelModel.RotateValue, Mode=OneWay}"
                 Duration="950"
                 EasingType="Linear"
                 AutomaticallyStart="True" />
@@ -34,6 +33,6 @@
     </Image>
     <!--Meter-->
     <telerik:RadLinearGauge Grid.Row="2" telerik:RadLinearGauge.Orientation="Horizontal" MinValue="-180" MaxValue="180" TickStep="20" LabelStep="60">
-        <telerik:LinearBarGaugeIndicator Value="{x:Bind VM.SteeringWheelModel.Value}" IsAnimated="True" telerik:RadLinearGauge.Orientation="Horizontal"/>
+        <telerik:LinearBarGaugeIndicator Value="{x:Bind Vm.SteeringWheelModel.Value}" IsAnimated="True" telerik:RadLinearGauge.Orientation="Horizontal"/>
     </telerik:RadLinearGauge>
 </Grid>

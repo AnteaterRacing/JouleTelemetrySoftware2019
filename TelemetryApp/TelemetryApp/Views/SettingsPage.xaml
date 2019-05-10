@@ -48,8 +48,8 @@
         <StackPanel x:Name="UpdatePeriodTextBox">
             <TextBlock Text="Update Period" Style="{ThemeResource BaseTextBlockStyle}"/>
             <TextBox Header="Value between 250 and 5000 ms"
-                     Text="{x:Bind VM.SettingsModel.UpdatePeriod}"
-                     TextChanged="UpdatePeriodTextBox_TextChanged">
+                     Text="{x:Bind VM.SettingsModel.UpdatePeriod, Mode=OneWay}"
+                     LostFocus="UpdatePeriodTextBox_LostFocus">
             </TextBox>
         </StackPanel>
     </StackPanel>

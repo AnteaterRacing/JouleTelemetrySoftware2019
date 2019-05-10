@@ -9,7 +9,7 @@ namespace TelemetryApp.Views.Templates
     /// </summary>
     public sealed partial class SteeringWheel : Grid
     {
-        public ViewModel VM { get; set; }
+        public ViewModel Vm { get; set; }
 
         public SteeringWheel()
         {

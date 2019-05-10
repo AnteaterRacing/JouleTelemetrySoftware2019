@@ -1,4 +1,5 @@
-﻿using TelemetryApp.Models;
+﻿using System;
+using TelemetryApp.Models;
 using TelemetryApp.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -11,6 +12,9 @@ namespace TelemetryApp
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        public static int UPDATE_PERIOD_LOW = 250;   // ms
+        public static int UPDATE_PERIOD_HIGH = 5000; // ms
+
         public ViewModel VM { get; private set; }
 
         public SettingsPage()
@@ -68,9 +72,14 @@ namespace TelemetryApp
 
         }
 
-        private void UpdatePeriodTextBox_TextChanged(object sender, RoutedEventArgs e)
+        private void UpdatePeriodTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            TextBox tb = sender as TextBox;
+            int updatePeriod;
+            if (int.TryParse(tb.Text, out updatePeriod))
+            {
+                VM.SettingsModel.UpdatePeriod = (int)Data.Constrain(updatePeriod, UPDATE_PERIOD_LOW, UPDATE_PERIOD_HIGH);
+            }
         }
     }
 }
