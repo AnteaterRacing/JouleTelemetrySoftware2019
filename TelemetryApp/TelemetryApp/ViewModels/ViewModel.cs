@@ -152,6 +152,9 @@ namespace TelemetryApp.ViewModels
                     SetSerialDataSource();
                     break;
                 case DataSource.Csv:
+                    SetCsvDataSource();
+                    break;
+                case DataSource.Random:
                     SetRandomDataSource();
                     break;
                 default:
