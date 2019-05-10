@@ -24,7 +24,7 @@ namespace TelemetryApp.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             var s = (string)value;
-            switch(s)
+            switch (s)
             {
                 case "Random":
                     return DataSource.Random;
@@ -32,8 +32,9 @@ namespace TelemetryApp.Converters
                     return DataSource.Serial;
                 case "Csv":
                     return DataSource.Csv;
+                default:
+                    throw new Exception($"Cannot convert, unknown value {value}");
             }
-            throw new Exception(string.Format("Cannot convert, unknown value {0}", value));
         }
     }
 }
