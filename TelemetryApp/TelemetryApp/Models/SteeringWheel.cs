@@ -4,7 +4,7 @@ namespace TelemetryApp.Models
 {
     public class SteeringWheel : DataPointDelegate<double>
     {
-        public static new double Default()
+        public new static double Default()
         {
             return Data.RandomDouble(-180, 180);
         }
@@ -17,7 +17,7 @@ namespace TelemetryApp.Models
 
         public new void Update()
         {
-            double previous = Value;
+            var previous = Value;
             base.Update();
             RotateValue = (float) (Value - previous);
         }

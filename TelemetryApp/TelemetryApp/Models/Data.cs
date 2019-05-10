@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace TelemetryApp.Models
 {
     public static class Data
     {
-        public static readonly Random RANDOM = new Random();
+        public static readonly Random Random = new Random();
+
+        public static double Constrain(double value, double low, double high)
+        {
+            if (value < low) return low;
+            else if (value > high) return high;
+            return value;
+        }
 
         public static double Map(double value, double fromLow, double fromHigh, double toLow, double toHigh)
         {
-            if (fromLow == fromHigh) return fromLow;
+            if (Math.Abs(fromLow - fromHigh) < 0.001) return fromLow;
             return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
         }
 
@@ -20,22 +26,22 @@ namespace TelemetryApp.Models
             if (n < 0) return 0;
             if (n < 2) return n;
 
-            int Fib_i2 = 0;
-            int Fib_i1 = 1;
-            for (int i = 2; i <= n; i++)
+            var fibI2 = 0;
+            var fibI1 = 1;
+            for (var i = 2; i <= n; i++)
             {
-                int Fib = Fib_i1 + Fib_i2;
-                Fib_i2 = Fib_i1;
-                Fib_i1 = Fib;
+                var fib = fibI1 + fibI2;
+                fibI2 = fibI1;
+                fibI1 = fib;
             }
 
-            return Fib_i1;
+            return fibI1;
         }
 
         public static double RandomDouble(double low, double high)
         {
             if (high < low) throw new ArgumentException($"high({high}) must be greater than or equal to low({low})");
-            return low + RANDOM.NextDouble() * (high-low);
+            return low + Random.NextDouble() * (high-low);
         }
 
         public static int RandomInteger(int low, int high)
@@ -45,7 +51,7 @@ namespace TelemetryApp.Models
 
         public static IEnumerator<int> FibonacciRange(int start, int count)
         {
-            for (int n = 0; n < count; n++)
+            for (var n = 0; n < count; n++)
             {
                 yield return Fibonacci(start + n);
             }
@@ -56,31 +62,27 @@ namespace TelemetryApp.Models
             var csv = File.ReadAllText(filename);
             foreach (var line in Csv.CsvReader.ReadFromText(csv))
             {
-                double value = double.Parse(line[columnName]);
+                var value = double.Parse(line[columnName]);
                 yield return value;  
             }
         }
 
         public static double EnumerateDouble(IEnumerator<double> e, bool loop = false)
         {
-            double curr = e.Current;
-            if (!e.MoveNext())
-            {
-                if (loop) e.Reset();
-                else return default(double);
-            }
-            return curr;
+            var current = e.Current;
+            if (e.MoveNext()) return current;
+            if (loop) e.Reset();
+            else return default;
+            return current;
         }
 
         public static int EnumerateInteger(IEnumerator<int> e, bool loop = false)
         {
-            int curr = e.Current;
-            if (!e.MoveNext())
-            {
-                if (loop) e.Reset();
-                else return default(int);
-            }
-            return curr;
+            var current = e.Current;
+            if (e.MoveNext()) return current;
+            if (loop) e.Reset();
+            else return default;
+            return current;
         }
     }
 }

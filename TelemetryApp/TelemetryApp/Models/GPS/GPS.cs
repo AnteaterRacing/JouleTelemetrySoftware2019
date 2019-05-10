@@ -4,8 +4,8 @@ namespace TelemetryApp.Models.Gps
 {
     public class Gps
     {
-        public Latitude Latitude { get; private set; }
-        public Longitude Longitude { get; private set; }
+        public Latitude Latitude { get; }
+        public Longitude Longitude { get; }
 
         public Gps()
         {

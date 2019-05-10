@@ -4,7 +4,7 @@ namespace TelemetryApp.Models
 {
     public class Temperature : DataPointDelegate<double>
     {
-        public static new double Default()
+        public new static double Default()
         {
             return Data.RandomDouble(0, 500);
         }

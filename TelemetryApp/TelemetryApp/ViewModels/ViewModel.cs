@@ -4,6 +4,7 @@ using TelemetryApp.Models;
 using TelemetryApp.Models.GForce;
 using TelemetryApp.Models.Gps;
 using Windows.UI.Xaml;
+using TelemetryApp.Models.Tire;
 
 namespace TelemetryApp.ViewModels
 {

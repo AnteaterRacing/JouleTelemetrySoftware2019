@@ -3,7 +3,7 @@ using TelemetryApp.Models.DataPoint;
 
 namespace TelemetryApp.Models.Gps
 {
-    public partial class DecimalDegree : DataPointDelegate<double>
+    public class DecimalDegree : DataPointDelegate<double>
     {
         public DecimalDegree(DataDelegate dataGenerator)
         {
@@ -12,13 +12,13 @@ namespace TelemetryApp.Models.Gps
 
         public override string ToString()
         {
-            var (d, m, s) = DMS();
+            var (d, m, s) = Dms();
             return Math.Abs(Value) < 0.001 
                 ? "0 °" 
                 : $"{d}° {m:D2}\' {s:D2}\"";
         }
 
-        private (int, int, int) DMS()
+        private (int, int, int) Dms()
         {
             var posValue = (Value < 0 ? -Value : Value);
 

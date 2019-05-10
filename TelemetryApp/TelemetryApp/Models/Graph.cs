@@ -17,8 +17,8 @@ namespace TelemetryApp.Models
 
         public int Resolution { get; } // seconds of resolution to view history
 
-        public int Minimum { get; }
-        public int Maximum { get; }
+        public int Minimum { get; } // minimum expected value
+        public int Maximum { get; } // maximum expected value
         public int Step => (Maximum - Minimum) / 5;
 
         public double Average => _history.Average(data => data.Value);

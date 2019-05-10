@@ -4,7 +4,7 @@ namespace TelemetryApp.Models.GForce
 {
     public class GForceAxis : DataPointDelegate<double>
     {
-        public static new double Default()
+        public new static double Default()
         {
             return Data.RandomDouble(-1, 1);
         }
@@ -15,9 +15,9 @@ namespace TelemetryApp.Models.GForce
 
         public GForceAxis(DataDelegate dataGenerator) : base(dataGenerator) { }
 
-        new public void Update()
+        public new void Update()
         {
-            double previous = Value;
+            var previous = Value;
             base.Update();
             // TODO: Fix hardcoded 50, need way to determine scaling
             OffsetValue = 50*(Value - previous);

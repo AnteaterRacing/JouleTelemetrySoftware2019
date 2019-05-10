@@ -4,8 +4,8 @@ namespace TelemetryApp.Models.GForce
 {
     public class GForce
     {
-        public GForceAxis X { get; private set; }
-        public GForceAxis Y { get; private set; }
+        public GForceAxis X { get; }
+        public GForceAxis Y { get; }
 
         public GForce() : base()
         {

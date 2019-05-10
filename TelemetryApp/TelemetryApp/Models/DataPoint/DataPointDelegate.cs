@@ -32,12 +32,12 @@ namespace TelemetryApp.Models.DataPoint
         }
 
         // Update DelegateDataPoint with current date and data from data generator
-        new public void Update()
+        public new void Update()
         {
             Update(DataGenerator());
         }
 
-        new public void Update(DateTime date)
+        public new void Update(DateTime date)
         {
             Update(date, DataGenerator());
         }

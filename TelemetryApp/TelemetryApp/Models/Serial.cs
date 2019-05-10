@@ -2,17 +2,36 @@
 
 namespace TelemetryApp.Models
 {
-    // TODO
-    public class Serial
+    public class SerialData
     {
-        public Serial(string portName, int baudRate)
+        private readonly SerialPort _port;
+
+        private const string Init = "R";
+
+        public SerialData(string portName, int baudRate)
         {
-            SerialPort port = new SerialPort(portName, baudRate, Parity.None);
+            _port = new SerialPort
+            {
+                // Serial port properties
+                PortName = "COM4",
+                BaudRate = 9600,
+                DataBits = 8,
+                StopBits = StopBits.One,
+                Parity = Parity.None,
+                // Read/Write timeout
+                ReadTimeout = 500,
+                WriteTimeout = 500
+            };
+
+            _port.Open();
         }
 
         public double GetData()
         {
-            return 3.14159265359;
+            // Write byte to initiate handshake
+            _port.Write(Init);
+            //return 3.1415;
+            return _port.ReadByte();
         }
     }
 }

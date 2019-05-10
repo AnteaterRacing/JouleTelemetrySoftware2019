@@ -6,7 +6,7 @@ namespace TelemetryApp.Models
     {
         #region Settings Dictionary
 
-        private static Dictionary<string, object> _defaultSettings = new Dictionary<string, object> {
+        private static readonly Dictionary<string, object> DefaultSettings = new Dictionary<string, object> {
             {nameof(DataSource), DataSource.Random},
             {nameof(SerialPortName), "COM3"},
             {nameof(SerialBaudRate), 9600},
@@ -18,11 +18,8 @@ namespace TelemetryApp.Models
 
         public object this[string key]
         {
-            get { return _currentSettings[key]; }
-            set
-            {
-                _currentSettings[key] = value;
-            }
+            get => _currentSettings[key];
+            set => _currentSettings[key] = value;
         }
 
         #endregion Settings Dictionary
@@ -32,15 +29,12 @@ namespace TelemetryApp.Models
         public DataSource DataSource
         {
             get => (DataSource)_currentSettings[nameof(DataSource)];
-            set
-            {
-                this[nameof(DataSource)] = value;
-            }
+            set => this[nameof(DataSource)] = value;
         }
 
-        public bool IsDataSourceRandom { get => (DataSource)this[nameof(DataSource)] == DataSource.Random; }
-        public bool IsDataSourceSerial { get => (DataSource)this[nameof(DataSource)] == DataSource.Serial; }
-        public bool IsDataSourceCsv { get => (DataSource)this[nameof(DataSource)] == DataSource.Csv; }
+        public bool IsDataSourceRandom => (DataSource)this[nameof(DataSource)] == DataSource.Random;
+        public bool IsDataSourceSerial => (DataSource)this[nameof(DataSource)] == DataSource.Serial;
+        public bool IsDataSourceCsv => (DataSource)this[nameof(DataSource)] == DataSource.Csv;
 
         #endregion Data Source
 
@@ -49,19 +43,13 @@ namespace TelemetryApp.Models
         public string SerialPortName
         {
             get => (string)_currentSettings[nameof(SerialPortName)];
-            set
-            {
-                this[nameof(SerialPortName)] = value;
-            }
+            set => this[nameof(SerialPortName)] = value;
         }
 
         public int SerialBaudRate
         {
             get => (int)_currentSettings[nameof(SerialBaudRate)];
-            set
-            {
-                this[nameof(SerialBaudRate)] = value;
-            }
+            set => this[nameof(SerialBaudRate)] = value;
         }
 
         #endregion Serial
@@ -71,10 +59,7 @@ namespace TelemetryApp.Models
         public string CsvFileName
         {
             get => (string)_currentSettings[nameof(CsvFileName)];
-            set
-            {
-                this[nameof(CsvFileName)] = value;
-            }
+            set => this[nameof(CsvFileName)] = value;
         }
 
         #endregion Csv
@@ -83,10 +68,7 @@ namespace TelemetryApp.Models
 
         public int UpdatePeriod {
             get => (int)_currentSettings[nameof(UpdatePeriod)];
-            set
-            {
-                this[nameof(UpdatePeriod)] = value;
-            }
+            set => this[nameof(UpdatePeriod)] = value;
         }
 
         #endregion Update Period
@@ -95,7 +77,7 @@ namespace TelemetryApp.Models
 
         public Settings()
         {
-            _currentSettings = new Dictionary<string, object>(_defaultSettings);
+            _currentSettings = new Dictionary<string, object>(DefaultSettings);
         }
 
         #endregion Constructors
