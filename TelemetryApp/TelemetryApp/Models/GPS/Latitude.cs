@@ -4,14 +4,18 @@ namespace TelemetryApp.Models.Gps
 {
     public class Latitude : DecimalDegree
     {
-        public new static double Default()
+        public Latitude() : base(Default)
         {
-            return Data.RandomDouble(-90, 90);
         }
 
-        public Latitude() : base(Default) { }
+        public Latitude(DataDelegate dataGenerator) : base(dataGenerator)
+        {
+        }
 
-        public Latitude(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(-90, 90);
+        }
 
         public override string ToString()
         {

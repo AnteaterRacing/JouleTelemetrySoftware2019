@@ -4,9 +4,6 @@ namespace TelemetryApp.Models.Gps
 {
     public class Gps
     {
-        public Latitude Latitude { get; }
-        public Longitude Longitude { get; }
-
         public Gps()
         {
             Latitude = new Latitude();
@@ -18,6 +15,9 @@ namespace TelemetryApp.Models.Gps
             Latitude = new Latitude(dataDelegateLatitude);
             Longitude = new Longitude(dataDelegateLongitude);
         }
+
+        public Latitude Latitude { get; }
+        public Longitude Longitude { get; }
 
         public void Update()
         {

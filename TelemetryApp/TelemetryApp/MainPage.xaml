@@ -9,36 +9,36 @@
 
     <Grid>
         <NavigationView x:Name="NavView"
-                         Loaded="NavView_Loaded"
-                         ItemInvoked="NavView_ItemInvoked"
-                         BackRequested="NavView_BackRequested">
+                        Loaded="NavView_Loaded"
+                        ItemInvoked="NavView_ItemInvoked"
+                        BackRequested="NavView_BackRequested">
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="home" Icon="Home" Content="Home"/>
-                <NavigationViewItemSeparator/>
+                <NavigationViewItem Tag="home" Icon="Home" Content="Home" />
+                <NavigationViewItemSeparator />
                 <!--<NavigationViewItemHeader x:Name="ViewsHeader" Content="Views"/>-->
                 <NavigationViewItem Tag="general" Content="General">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE804;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE804;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Tag="suspension" Content="Suspension">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CB;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CB;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Tag="powertrain" Content="Powertrain">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE945;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE945;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Tag="battery" Content="Battery">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF5FA;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF5FA;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Tag="humanInterface" Content="Human Interface">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
@@ -46,12 +46,12 @@
             <NavigationView.AutoSuggestBox>
                 <!-- See AutoSuggestBox documentation for
                  more info about how to implement search. -->
-                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
+                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find" />
             </NavigationView.AutoSuggestBox>
 
             <ScrollViewer>
                 <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"
-                   NavigationFailed="ContentFrame_NavigationFailed"/>
+                       NavigationFailed="ContentFrame_NavigationFailed" />
             </ScrollViewer>
         </NavigationView>
 
@@ -60,15 +60,15 @@
                 <VisualState>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger
-                        MinWindowWidth="{x:Bind NavView.CompactModeThresholdWidth}"/>
+                            MinWindowWidth="{x:Bind NavView.CompactModeThresholdWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!-- Remove the next 3 lines for left-only navigation. -->
-                        <Setter Target="NavView.PaneDisplayMode" Value="Top"/>
-                        <Setter Target="NavViewSearchBox.Width" Value="200"/>
-                        <Setter Target="MainPagesHeader.Visibility" Value="Collapsed"/>
+                        <Setter Target="NavView.PaneDisplayMode" Value="Top" />
+                        <Setter Target="NavViewSearchBox.Width" Value="200" />
+                        <Setter Target="MainPagesHeader.Visibility" Value="Collapsed" />
                         <!-- Leave the next line for left-only navigation. -->
-                        <Setter Target="ContentFrame.Padding" Value="24,0,24,24"/>
+                        <Setter Target="ContentFrame.Padding" Value="24,0,24,24" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

@@ -26,5 +26,5 @@
         </StackPanel>
     </Grid>-->
 
-    <templates:SteeringWheel Vm="{x:Bind Vm, Mode=OneWay}" MaxHeight="500"/>
+    <templates:SteeringWheel Vm="{x:Bind Vm, Mode=OneWay}" MaxHeight="500" />
 </Page>

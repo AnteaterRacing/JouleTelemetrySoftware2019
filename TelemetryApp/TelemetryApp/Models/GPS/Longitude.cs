@@ -4,14 +4,18 @@ namespace TelemetryApp.Models.Gps
 {
     public class Longitude : DecimalDegree
     {
-        public new static double Default()
+        public Longitude() : base(Default)
         {
-            return Data.RandomDouble(-180, 180);
         }
 
-        public Longitude() : base(Default) { }
+        public Longitude(DataDelegate dataGenerator) : base(dataGenerator)
+        {
+        }
 
-        public Longitude(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(-180, 180);
+        }
 
         public override string ToString()
         {

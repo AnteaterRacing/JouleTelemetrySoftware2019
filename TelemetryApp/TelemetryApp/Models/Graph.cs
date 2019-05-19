@@ -11,6 +11,21 @@ namespace TelemetryApp.Models
         private DataPointDelegate<double> _current;
         private ObservableCollection<DataPoint<double>> _history;
 
+        public Graph(DataDelegate dataGenerator, string name = "GraphViewModel",
+            int minimum = 0, int maximum = 1,
+            int updatePeriod = 1000, int resolution = 60)
+        {
+            Name = name;
+            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
+            Minimum = minimum;
+            Maximum = maximum;
+            UpdatePeriod = updatePeriod;
+            Resolution = resolution;
+            Current = new DataPointDelegate<double>(dataGenerator);
+
+            Init();
+        }
+
         public string Name { get; } // name of graph
 
         public int UpdatePeriod { get; } // milliseconds per update
@@ -44,21 +59,6 @@ namespace TelemetryApp.Models
             }
         } // historical data points
 
-        public Graph(DataDelegate dataGenerator, string name = "GraphViewModel",
-                     int minimum = 0, int maximum = 1,
-                     int updatePeriod = 1000, int resolution = 60)
-        {
-            Name = name;
-            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
-            Minimum = minimum;
-            Maximum = maximum;
-            UpdatePeriod = updatePeriod;
-            Resolution = resolution;
-            Current = new DataPointDelegate<double>(dataGenerator);
-
-            Init();
-        }
-
         public override string ToString()
         {
             return Name;
@@ -86,10 +86,9 @@ namespace TelemetryApp.Models
         {
             var now = DateTime.Now;
             var data = from i in Enumerable.Range(0, Resolution)
-                                                  select new DataPoint<double> { Date = now.AddMilliseconds(-UpdatePeriod * i), Value = 0 };
+                select new DataPoint<double> {Date = now.AddMilliseconds(-UpdatePeriod * i), Value = 0};
 
             _history = new ObservableCollection<DataPoint<double>>(data.OrderBy(d => d.Date));
         }
-
     }
 }

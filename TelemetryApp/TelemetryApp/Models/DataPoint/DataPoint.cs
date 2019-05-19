@@ -2,15 +2,29 @@
 
 namespace TelemetryApp.Models.DataPoint
 {
-    public class DataPoint<T>
+    public class DataPoint<T> where T : IComparable
     {
+        // Update DataPoint with time and value
+        public T Default()
+        {
+            return default;
+        }
+
+        public override string ToString()
+        {
+            return $"{Date} {Value}";
+        }
+
+        #region Properties
+
         public DateTime Date { get; set; }
         public T Value { get; set; }
+        public T Minimum { get; set; }
+        public T Maximum { get; set; }
 
-        // TODO:
-        // public T Minimum { get; set; }
-        // TODO:
-        // public T Maximum { get; set; }
+        #endregion Properties
+
+        #region Constructors
 
         public DataPoint()
         {
@@ -26,6 +40,10 @@ namespace TelemetryApp.Models.DataPoint
         {
             Update(date, value);
         }
+
+        #endregion
+
+        #region Update
 
         // Update DataPoint with current date and default value
         public void Update()
@@ -45,16 +63,12 @@ namespace TelemetryApp.Models.DataPoint
             Update(DateTime.Now, value);
         }
 
-        // Update DataPoint with time and value
         public void Update(DateTime date, T value)
         {
             Date = date;
             Value = value;
         }
 
-        public override string ToString()
-        {
-            return $"{Date} {Value}";
-        }
+        #endregion Update
     }
 }

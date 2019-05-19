@@ -2,16 +2,9 @@
 
 namespace TelemetryApp.Models.DataPoint
 {
-    public class DataPointDelegate<T> : DataPoint<T>
+    public class DataPointDelegate<T> : DataPoint<T> where T : IComparable
     {
         public delegate T DataDelegate();
-
-        public DataDelegate DataGenerator { get; set; }
-
-        public static T Default()
-        {
-            return default;
-        }
 
         public DataPointDelegate()
         {
@@ -30,6 +23,8 @@ namespace TelemetryApp.Models.DataPoint
             DataGenerator = dataGenerator;
             Update(date, DataGenerator());
         }
+
+        public DataDelegate DataGenerator { get; set; }
 
         // Update DelegateDataPoint with current date and data from data generator
         public new void Update()

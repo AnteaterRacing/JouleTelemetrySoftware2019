@@ -7,21 +7,21 @@ using TelemetryApp.ViewModels;
 namespace TelemetryApp.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HumanInterfacePage : Page
     {
-        public ViewModel Vm { get; set; }
-
         public HumanInterfacePage()
         {
             InitializeComponent();
         }
 
+        public ViewModel Vm { get; set; }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Vm = (ViewModel)e.Parameter;
+            Vm = (ViewModel) e.Parameter;
         }
     }
 }

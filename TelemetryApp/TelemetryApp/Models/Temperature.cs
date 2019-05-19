@@ -4,14 +4,18 @@ namespace TelemetryApp.Models
 {
     public class Temperature : DataPointDelegate<double>
     {
-        public new static double Default()
+        public Temperature() : base(Default)
         {
-            return Data.RandomDouble(0, 500);
         }
 
-        public Temperature() : base(Default) { }
+        public Temperature(DataDelegate dataGenerator) : base(dataGenerator)
+        {
+        }
 
-        public Temperature(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(0, 500);
+        }
 
         public override string ToString()
         {

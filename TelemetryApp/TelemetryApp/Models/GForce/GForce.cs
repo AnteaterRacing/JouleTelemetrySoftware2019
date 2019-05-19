@@ -2,12 +2,10 @@
 
 namespace TelemetryApp.Models.GForce
 {
-    public class GForce
-    {
-        public GForceAxis X { get; }
-        public GForceAxis Y { get; }
+    public class GForce : NotifyPropertyChanged
 
-        public GForce() : base()
+    {
+        public GForce()
         {
             X = new GForceAxis();
             Y = new GForceAxis();
@@ -18,6 +16,9 @@ namespace TelemetryApp.Models.GForce
             X = new GForceAxis(dataDelegateX);
             Y = new GForceAxis(dataDelegateY);
         }
+
+        public GForceAxis X { get; }
+        public GForceAxis Y { get; }
 
         public void Update()
         {

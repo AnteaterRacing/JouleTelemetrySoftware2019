@@ -2,18 +2,22 @@
 
 namespace TelemetryApp.Models
 {
-    public class SteeringWheel : DataPointDelegate<double>
+    public class Steering : DataPointDelegate<double>
     {
-        public new static double Default()
+        public Steering() : base(Default)
         {
-            return Data.RandomDouble(-180, 180);
+        }
+
+        public Steering(DataDelegate dataGenerator) : base(dataGenerator)
+        {
         }
 
         public float RotateValue { get; private set; }
 
-        public SteeringWheel() : base(Default) { }
-
-        public SteeringWheel(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(-180, 180);
+        }
 
         public new void Update()
         {
