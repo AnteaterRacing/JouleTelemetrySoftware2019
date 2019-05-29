@@ -1,4 +1,6 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.Diagnostics;
+using System.IO.Ports;
 using System.Threading;
 
 namespace TelemetryApp.Models.Data
@@ -12,8 +14,8 @@ namespace TelemetryApp.Models.Data
         // private const int PacketSize = DataSize + ValidateSize; // bytes
 
         // Synchronization characters for receiving serial data
-        private const char Syn0 = '_';
-        private const char Syn1 = 'c';
+        private const byte Syn0 = 95;
+        private const byte Syn1 = 99;
 
         // Allocate buffer for storing most recently received serial data
         private static readonly byte[] DataBuffer = new byte[DataSize];
@@ -23,6 +25,8 @@ namespace TelemetryApp.Models.Data
         private readonly Thread _updateDataBufferThread;
 
         private bool _updateDataBuffer;
+
+        #region Constructors
 
         public SerialData(string portName)
         {
@@ -58,6 +62,10 @@ namespace TelemetryApp.Models.Data
                 () => DataBuffer[BackRightTirePressureIndex]);
         }
 
+        #endregion Constructors
+
+        #region Methods
+
         public override void Unload()
         {
             _updateDataBuffer = false;
@@ -69,27 +77,53 @@ namespace TelemetryApp.Models.Data
 
         public override void Update()
         {
-            Steering.Update();
-            GForce.Update();
-            Gps.Update();
-            FrontLeftTire.Update();
-            FrontRightTire.Update();
-            BackLeftTire.Update();
-            BackRightTire.Update();
+            lock (DataBuffer.SyncRoot)
+            {
+                Steering.Update();
+                GForce.Update();
+                Gps.Update();
+                FrontLeftTire.Update();
+                FrontRightTire.Update();
+                BackLeftTire.Update();
+                BackRightTire.Update();
+            }
         }
 
         public void UpdateDataBuffer()
         {
             if (!_port.IsOpen) _port.Open();
+            // Error rate detection
+            int errorCount = 0;
+            int total = 0;
+            int okCount = 0;
             while (_updateDataBuffer)
             {
-                while (_port.ReadByte() != Syn0 && _port.ReadByte() != Syn1)
+                try
                 {
-                }
 
-                _port.Read(DataBuffer, 0, DataSize);
+                    if (_port.ReadByte() != Syn0) continue;
+                    if (_port.ReadByte() != Syn1) continue;
+                    lock (DataBuffer.SyncRoot)
+                    {
+                        _port.Read(DataBuffer, 0, DataSize);
+                        if (DataBuffer[0] != 0 || DataBuffer[44] != 44 || DataBuffer[87] != 87)
+                        {
+                            errorCount++;
+                        } else {
+                            okCount++;
+                        }
+                        total++;
+                    }
+
+                }
+                catch (TimeoutException e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
+
+        #endregion Methods
 
         #region Property Array Indexes
 

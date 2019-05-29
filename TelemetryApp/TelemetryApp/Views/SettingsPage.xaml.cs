@@ -57,7 +57,9 @@ namespace TelemetryApp
         private void SerialPort_TextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key != VirtualKey.Enter) return;
-            if (sender is TextBox tb) UpdateSerialPort(tb.Text);
+            if (!(sender is TextBox tb)) return;
+            UpdateSerialPort(tb.Text);
+            Settings_ScrollViewer.Focus(FocusState.Programmatic);
         }
 
         private void SerialPort_TextBox_OnLostFocus(object sender, RoutedEventArgs e)
@@ -68,10 +70,12 @@ namespace TelemetryApp
         private void UpdatePeriod_TextBox_OnKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key != VirtualKey.Enter) return;
-            if (sender is TextBox tb && int.TryParse(tb.Text, out var updatePeriod)) UpdateUpdatePeriod(updatePeriod);
+            if (!(sender is TextBox tb) || !int.TryParse(tb.Text, out var updatePeriod)) return;
+            UpdateUpdatePeriod(updatePeriod);
+            Settings_ScrollViewer.Focus(FocusState.Programmatic);
         }
 
-        private void UpdatePeriod_TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void UpdatePeriod_TextBox_OnLostFocus(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox tb && int.TryParse(tb.Text, out var updatePeriod)) UpdateUpdatePeriod(updatePeriod);
         }

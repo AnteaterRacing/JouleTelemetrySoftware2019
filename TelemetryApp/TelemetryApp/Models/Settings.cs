@@ -38,7 +38,7 @@ namespace TelemetryApp.Models
         private static readonly Dictionary<string, object> DefaultSettings = new Dictionary<string, object>
         {
             {nameof(DataSource), DataSource.Random},
-            {nameof(SerialPortName), "COM3"},
+            {nameof(SerialPortName), "COM5"},
             {nameof(SerialBaudRate), 9600},
             {nameof(CsvFileName), "/Assets/Data/sample1.csv"},
             {nameof(UpdatePeriod), 1000}
@@ -62,9 +62,9 @@ namespace TelemetryApp.Models
             set => this[nameof(DataSource)] = value;
         }
 
-        public bool IsDataSourceRandom => (DataSource) this[nameof(DataSource)] == DataSource.Random;
-        public bool IsDataSourceSerial => (DataSource) this[nameof(DataSource)] == DataSource.Serial;
-        public bool IsDataSourceCsv => (DataSource) this[nameof(DataSource)] == DataSource.Csv;
+        public bool IsDataSourceRandom => DataSource == DataSource.Random;
+        public bool IsDataSourceSerial => DataSource == DataSource.Serial;
+        public bool IsDataSourceCsv => DataSource == DataSource.Csv;
 
         #endregion Data Source
 
