@@ -566,13 +566,57 @@
                 </Grid>
             </Grid>
         </Grid>
-
+       
 
         <!--Video Feed-->
-        <Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
+        <!--<Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
         <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Foreground="White" FontSize="45" Text="Video Feed"/>
-        </StackPanel>
+        </StackPanel>-->
+        
+        <!--Map Implementation-->
+        <!--Graph-->
+        <Border Grid.Row="1" Grid.Column="2">
+            <telerikChart:RadCartesianChart x:Name="scatterLineSeries">
+                
+                <telerikChart:RadCartesianChart.Grid>
+                    <telerikChart:CartesianChartGrid MajorLinesVisibility="XY">
+                        <telerikChart:CartesianChartGrid.MajorXLineStyle>
+                            <Style TargetType="Line">
+                                <Setter Property="Stroke"
+                                                Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                <Setter Property="StrokeDashArray" Value="4, 2" />
+                            </Style>
+                        </telerikChart:CartesianChartGrid.MajorXLineStyle>
+                        <telerikChart:CartesianChartGrid.MajorYLineStyle>
+                            <Style TargetType="Line">
+                                <Setter Property="Stroke"
+                                                Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                <Setter Property="StrokeDashArray" Value="4, 2" />
+                            </Style>
+                        </telerikChart:CartesianChartGrid.MajorYLineStyle>
+                    </telerikChart:CartesianChartGrid>
+                </telerikChart:RadCartesianChart.Grid>
+                
+                
+                <telerikChart:RadCartesianChart.VerticalAxis>
+                    <telerikChart:LinearAxis/>
+                </telerikChart:RadCartesianChart.VerticalAxis>
+                <telerikChart:RadCartesianChart.HorizontalAxis>
+                    <telerikChart:LinearAxis/>
+                </telerikChart:RadCartesianChart.HorizontalAxis>
 
+                <telerikChart:ScatterPointSeries ItemsSource="{x:Bind VM.GPSModel.sampleData}">
+                    <telerikChart:ScatterPointSeries.XValueBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="XValue"/>
+                    </telerikChart:ScatterPointSeries.XValueBinding>
+                    <telerikChart:ScatterPointSeries.YValueBinding>
+                        <telerikChart:PropertyNameDataPointBinding PropertyName="YValue"/>
+                    </telerikChart:ScatterPointSeries.YValueBinding>
+                </telerikChart:ScatterPointSeries>
+
+                
+            </telerikChart:RadCartesianChart>
+        </Border>
     </Grid>
 </Page>

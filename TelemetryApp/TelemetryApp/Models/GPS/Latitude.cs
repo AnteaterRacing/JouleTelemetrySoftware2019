@@ -17,5 +17,7 @@
             else if (Value < 0) return $"{base.ToString()} S";
             else return $"{base.ToString()} N";
         }
+
+
     }
 }

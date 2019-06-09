@@ -17,5 +17,6 @@
             else if (Value < 0) return $"{base.ToString()} W";
             else return $"{base.ToString()} E";
         }
+
     }
 }
