@@ -13,6 +13,38 @@
 
     <Page.Resources>
         <convertors:DoubleFormatConverter x:Name="DoubleFormatConverter"></convertors:DoubleFormatConverter>
+        <Style x:Key="PanelTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+        
+        <Style x:Key="MainData" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+        </Style>
+        
+        <Style x:Key="TireData" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+        
+
+
     </Page.Resources>
 
     <Grid Background="Black">
@@ -32,10 +64,9 @@
         <Border Grid.Row="0" Grid.Column="0" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
             <!--<Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>-->
             <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <TextBlock Foreground="White" FontSize="20" Text="Main Guages" Name="titleText" FontStyle="Italic" Opacity="0.5" />
+                <TextBlock Style="{StaticResource PanelTitle}" Text="Main Guages" Name="titleText"/>
 
-                <TextBlock Foreground="White" FontSize="25" Name="TachometerText" Text="0" Opacity=".8" Margin="20,15,0,0"
-                        FontWeight="Bold" />
+                <TextBlock Style="{StaticResource MainData}"  Name="TachometerText" Text="0" Margin="20,15,0,0" FontWeight="Bold" />
                 <ProgressBar IsIndeterminate="False" Name="Tachometer" Maximum="100" Value="20" Height="60" Width="350"
                         Margin="20,0,0,15" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
                         RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
@@ -52,8 +83,7 @@
                     </ProgressBar.Background>
                 </ProgressBar>
 
-                <TextBlock Foreground="White" FontSize="25" Name="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0"
-                        FontWeight="Bold" HorizontalAlignment="Left" />
+                <TextBlock Style="{StaticResource MainData}" Name="SpeedText" Text="0"  Margin="20 0 0 0" FontWeight="Bold"/>
                 <ProgressBar IsIndeterminate="False" Name="Speed" Maximum="100" Value="50" Height="60" Width="350"
                         Margin="20,0,0,20" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
                         RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
@@ -72,8 +102,7 @@
                 </ProgressBar>
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,0,15,0"
                         Opacity="0.5" FocusVisualPrimaryBrush="White" />
-                <TextBlock Foreground="White" FontSize="20" Text="Motor Temp" Name="motortempText" FontStyle="Italic"
-                        Opacity="0.5" Margin="8,8,0,0" />
+                <TextBlock Style="{StaticResource PanelTitle}" Text="Motor Temp" Name="motortempText" Margin="8,8,0,0" />
 
                 <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch"
                         Margin="0,0,0,0" VerticalAlignment="Stretch">
@@ -89,29 +118,21 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
                             Margin="14,8,0,0">
-                        <TextBlock Foreground="White" FontSize="26" Text="Left" FontStyle="Normal" Opacity="0.8"
-                                Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MainData}"  Text="Left" Margin="0,0,0,8" />
 
-                        <TextBlock Foreground="White" FontSize="28" Text="99° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="90° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="102° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="99° F"/>
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="90° F" />
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="102° F" />
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
                             Margin="14,8,0,0">
-                        <TextBlock Foreground="White" FontSize="28" Text="Right" FontStyle="Normal" Opacity="0.8"
-                                Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MainData}" Text="Right" Margin="0,0,0,8" />
 
-                        <TextBlock Foreground="White" FontSize="28" Text="91° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="101° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
-                        <TextBlock Foreground="White" FontSize="28" Text="97° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="91° F"/>
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="101° F"/>
+                        <TextBlock Style="{StaticResource MainData}" Margin="0" FontWeight="Bold" Text="97° F"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -136,10 +157,10 @@
                     </Border>
                     <!--BMS 1-->
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp">30 °</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource PanelTitle}" Text="BMS 1"/>
+                        <TextBlock Style="{StaticResource MainData}"> Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource MainData}"> Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">Temp <Bold x:Name="temp">30 °</Bold></TextBlock>
 
                         <ProgressBar IsIndeterminate="False" Name="BMStemp" Maximum="100" Value="50" Height="60" 
                         Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
@@ -161,10 +182,10 @@
 
                     <!--BMS 2-->
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp1">35 °C</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource PanelTitle}">BMS 2</TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">Temp <Bold x:Name="temp1">35 °C</Bold></TextBlock>
                         <ProgressBar IsIndeterminate="False" Name="BMStemp1" Maximum="100" Value="50" Height="60" 
                         Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
                         RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
@@ -202,8 +223,8 @@
 
                     <!--Motor 1-->
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">34 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource PanelTitle}">Motor 1</TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">V Supply <Bold x:Name="motorVoltage">34 V</Bold></TextBlock>
 
                         <controls:RadialGauge x:Name="Motor1CurrentGauge" Margin="10" Value="70" Minimum="0" 
 	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
@@ -214,11 +235,10 @@
 
                     <!--Motor 2-->
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">30 V</Bold></TextBlock>
+                        <TextBlock Style="{StaticResource PanelTitle}">Motor 2</TextBlock>
+                        <TextBlock Style="{StaticResource MainData}">V Supply <Bold x:Name="motorVoltage1">30 V</Bold></TextBlock>
                         <controls:RadialGauge x:Name="Motor2CurrentGauge" Margin="10" Value="66" Minimum="0" 
-	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
-	                    ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
+	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro" ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
                         NeedleWidth="5" TickLength="18" NeedleBrush="orange">
                         </controls:RadialGauge>
                     </StackPanel>
@@ -257,9 +277,9 @@
 
                 <!--Steering-->
                 <StackPanel Grid.Row="0">
-                    <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+                    <TextBlock Style="{StaticResource PanelTitle}" Text="Steering" Margin="5,0,0,0"/>
 
-                    <TextBlock Foreground="White" FontSize="25" Text="{x:Bind VM.SteeringWheelModel.ToString()}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource MainData}" Text="{x:Bind VM.SteeringWheelModel.ToString()}" Margin="0" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <Image Source="/Assets/Images/steering-wheel.png" MinHeight="50" MaxHeight="150"  RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
                         <interactivity:Interaction.Behaviors>
                             <behaviors:Rotate
@@ -274,8 +294,8 @@
                 </StackPanel>
                 <!-- G-Force -->
                 <StackPanel Grid.Row="1">
-                    <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-                    <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="horizontalGForce"  HorizontalAlignment="Center" Text="{x:Bind VM.GForceModel.X.ToString()}"/>
+                    <TextBlock Style="{StaticResource PanelTitle}" Margin="5,0,0,0">G-Force</TextBlock>
+                    <TextBlock Style="{StaticResource MainData}" FontWeight="Bold" Name="horizontalGForce" HorizontalAlignment="Center" Text="{x:Bind VM.GForceModel.X.ToString()}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".2*"/>
@@ -283,7 +303,7 @@
                             <ColumnDefinition Width=".2*"/>
 
                         </Grid.ColumnDefinitions>
-                        <TextBlock Foreground="White" Grid.Column="0" FontSize="18" FontStyle="Normal" Opacity="0.7" RelativePanel.AlignLeftWithPanel="True" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind VM.GForceModel.Y.ToString()}"/>
+                        <TextBlock Style="{StaticResource MainData}" FontSize="26" FontStyle="Normal" RelativePanel.AlignLeftWithPanel="True" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind VM.GForceModel.Y.ToString()}"/>
 
                         <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
 
@@ -342,12 +362,12 @@
                         <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
                     </Border>
                     <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontLeftTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontLeftTireModel.Temperature.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.FrontLeftTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.FrontLeftTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackLeftTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackLeftTireModel.Temperature.ToString()}"></TextBlock>
+                        <TextBlock Style ="{StaticResource TireData}" Text="{x:Bind VM.BackLeftTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Style ="{StaticResource TireData}" Text="{x:Bind VM.BackLeftTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <Rectangle Height="2" Grid.Column="1"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
@@ -379,13 +399,13 @@
                     </Border>
 
                     <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontRightTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontRightTireModel.Temperature.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.FrontRightTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.FrontRightTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackRightTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackRightTireModel.Temperature.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.BackRightTireModel.Pressure.ToString()}"></TextBlock>
+                        <TextBlock Style="{StaticResource TireData}" Text="{x:Bind VM.BackRightTireModel.Temperature.ToString()}"></TextBlock>
                     </StackPanel>
 
                     <Rectangle Height="2" Grid.Column="0"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
