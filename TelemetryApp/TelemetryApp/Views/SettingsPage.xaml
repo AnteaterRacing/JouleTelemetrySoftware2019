@@ -9,11 +9,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <local:SelectedDataSourceComboBoxConvert x:Key="SelectedDataSourceComboBoxConvert"></local:SelectedDataSourceComboBoxConvert>
     </Page.Resources>
 
     <StackPanel>
-        <!--<ComboBox x:Name="SelectedDataSourceComboBox"
+        <ScrollViewer>
+            <StackPanel>
+                <!--<ComboBox x:Name="SelectedDataSourceComboBox"
                   Header="Data Source"
                   SelectedItem="{x:Bind VM.SettingsModel.SelectedDataSource, Mode=OneWay, Converter={StaticResource SelectedDataSourceComboBoxConvert}}"
                   SelectionChanged="SelectedDataSourceComboBox_SelectionChanged">
@@ -21,37 +22,50 @@
             <x:String>Serial</x:String>
             <x:String>Csv</x:String>
         </ComboBox>-->
-        <!--Data Source-->
-        <StackPanel x:Name="DataSourceRadioButton">
-            <TextBlock Text="Data Source" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <RadioButton Content="Random" Tag="Random" GroupName="DataSource"
-                         Checked="DataSourceRadioButton_Checked"
-                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceRandom}"/>
-            <RadioButton Content="Serial" Tag="Serial" GroupName="DataSource"
-                         Checked="DataSourceRadioButton_Checked"
-                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceSerial}"/>
-            <RadioButton Content="CSV" Tag="Csv" GroupName="DataSource"
-                         Checked="DataSourceRadioButton_Checked"
-                         IsChecked="{x:Bind VM.SettingsModel.IsDataSourceCsv}"/>
-        </StackPanel>
-        <!--Serial Port-->
-        <StackPanel x:Name="SerialPortTextBox">
-            <TextBlock Text="Serial Port" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBlock Text="Specify port name found in Device Manager for serial communication"></TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="{x:Bind VM.SettingsModel.SerialPortName}"
-                         TextChanged="SerialPortTextBox_TextChanged">
-                </TextBox>
+                <!--Data Source-->
+                <StackPanel>
+                    <TextBlock Text="Data Source" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <RadioButton x:Name="DataSourceRandom_RadioButton"
+                                 Content="Random" Tag="Random"
+                                 Checked="DataSource_RadioButton_Checked"
+                                 IsChecked="{x:Bind Vm.SettingsModel.IsDataSourceRandom, Mode=OneWay}" />
+                    <RadioButton x:Name="DataSourceSerial_RadioButton"
+                                 Content="Serial" Tag="Serial"
+                                 Checked="DataSource_RadioButton_Checked"
+                                 IsChecked="{x:Bind Vm.SettingsModel.IsDataSourceSerial, Mode=OneWay}" />
+                    <RadioButton x:Name="DataSourceCsv_RadioButton"
+                                 Content="CSV" Tag="Csv"
+                                 Checked="DataSource_RadioButton_Checked"
+                                 IsChecked="{x:Bind Vm.SettingsModel.IsDataSourceCsv, Mode=OneWay}" />
+                </StackPanel>
+                <!--Serial Port-->
+                <StackPanel>
+                    <TextBlock Text="Serial Port" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBox x:Name="SerialPort_TextBox"
+                             Header="Specify port name found in Device Manager for serial communication"
+                             KeyDown="SerialPort_TextBox_OnKeyDown"
+                             LostFocus="SerialPort_TextBox_OnLostFocus"
+                             Text="{x:Bind Vm.SettingsModel.SerialPortName, Mode=OneWay}" />
+                    <!--<ComboBox 
+                    Header="Serial Port"
+                    ItemsSource="{x:Bind VM.SerialData.SerialPortCollection, Mode=OneWay}"
+                    SelectionChanged="SerialPortComboBox_SelectionChanged">
+                    </ComboBox>-->
+                </StackPanel>
+                <!--Update Period-->
+                <StackPanel>
+                    <TextBlock Text="Update Period" Style="{ThemeResource BaseTextBlockStyle}" />
+                    <TextBox x:Name="UpdatePeriod_TextBox"
+                             Header="Value between 250 and 5000 ms"
+                             KeyDown="UpdatePeriod_TextBox_OnKeyDown"
+                             Text="{x:Bind Vm.SettingsModel.UpdatePeriod, Mode=OneWay}" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <!--Update Period-->
-        <StackPanel x:Name="UpdatePeriodTextBox">
-            <TextBlock Text="Update Period" Style="{ThemeResource BaseTextBlockStyle}"/>
-            <TextBox Header="Value between 250 and 5000 ms"
-                     Text="{x:Bind VM.SettingsModel.UpdatePeriod}"
-                     TextChanged="UpdatePeriodTextBox_TextChanged">
-            </TextBox>
-        </StackPanel>
-    </StackPanel>
+        </ScrollViewer>
 
+        <!--Save Settings-->
+        <!--<Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Margin="10" Width="100"
+                Click="SaveButton_OnClick">Save</Button>-->
+    </StackPanel>
 </Page>

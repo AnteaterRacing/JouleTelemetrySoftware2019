@@ -8,16 +8,15 @@
       xmlns:telerik="using:Telerik.UI.Xaml.Controls.DataVisualization"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      x:DefaultBindMode="OneWay"
       d:DesignWidth="300" d:DesignHeight="300">
-    
+
     <Grid.RowDefinitions>
-        <RowDefinition Height="1*"></RowDefinition>
-        <RowDefinition Height="8*"></RowDefinition>
-        <RowDefinition Height="1*"></RowDefinition>
+        <RowDefinition Height="1*" />
+        <RowDefinition Height="8*" />
+        <RowDefinition Height="1*" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*"></ColumnDefinition>
+        <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
 
     <!--Text-->
@@ -26,14 +25,16 @@
     <Image Grid.Row="1" Grid.Column="0" Source="/Assets/Images/steering-wheel.png" RenderTransformOrigin="0.5,0.5">
         <interactivity:Interaction.Behaviors>
             <behaviors:Rotate
-                Value="{x:Bind VM.SteeringWheelModel.RotateValue}"
+                Value="{x:Bind Vm.Data.Steering.RotateValue, Mode=OneWay}"
                 Duration="950"
                 EasingType="Linear"
                 AutomaticallyStart="True" />
         </interactivity:Interaction.Behaviors>
     </Image>
     <!--Meter-->
-    <telerik:RadLinearGauge Grid.Row="2" telerik:RadLinearGauge.Orientation="Horizontal" MinValue="-180" MaxValue="180" TickStep="20" LabelStep="60">
-        <telerik:LinearBarGaugeIndicator Value="{x:Bind VM.SteeringWheelModel.Value}" IsAnimated="True" telerik:RadLinearGauge.Orientation="Horizontal"/>
+    <telerik:RadLinearGauge Grid.Row="2" telerik:RadLinearGauge.Orientation="Horizontal" MinValue="-180" MaxValue="180"
+                            TickStep="20" LabelStep="60">
+        <telerik:LinearBarGaugeIndicator Value="{x:Bind Vm.Data.Steering.Value}" IsAnimated="True"
+                                         telerik:RadLinearGauge.Orientation="Horizontal" />
     </telerik:RadLinearGauge>
 </Grid>

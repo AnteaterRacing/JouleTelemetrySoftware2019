@@ -8,7 +8,8 @@ namespace TelemetryApp.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null) return null;
-            if (value.GetType() != typeof(double)) throw new ArgumentException($"Expected double, received {value.GetType()}");
+            if (value.GetType() != typeof(double))
+                throw new ArgumentException($"Expected double, received {value.GetType()}");
             return $"{value:F2}";
         }
 

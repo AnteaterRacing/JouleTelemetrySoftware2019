@@ -104,28 +104,31 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\SelectedDataSourceComboBoxConvert.cs" />
     <Compile Include="Models\DataPoint\DataPointDelegate.cs" />
     <Compile Include="Models\DataSource.cs" />
     <Compile Include="Converters\DoubleFormatConverter.cs" />
+    <Compile Include="Models\Data\CsvData.cs" />
+    <Compile Include="Models\Data\RandomData.cs" />
     <Compile Include="Models\GForce\GForce.cs" />
     <Compile Include="Models\GForce\GForceAxis.cs" />
-    <Compile Include="Models\GPS\DecimalDegree.cs" />
-    <Compile Include="Models\GPS\GPS.cs" />
-    <Compile Include="Models\GPS\Latitude.cs" />
-    <Compile Include="Models\GPS\Longitude.cs" />
+    <Compile Include="Models\Gps\DecimalDegree.cs" />
+    <Compile Include="Models\Gps\Gps.cs" />
+    <Compile Include="Models\Gps\Latitude.cs" />
+    <Compile Include="Models\Gps\Longitude.cs" />
     <Compile Include="Models\Graph.cs" />
+    <Compile Include="Models\Data\Data.cs" />
     <Compile Include="Models\NotifyPropertyChanged.cs" />
     <Compile Include="Models\Pressure.cs" />
-    <Compile Include="Models\Serial.cs" />
+    <Compile Include="Models\Data\SerialData.cs" />
     <Compile Include="Models\Settings.cs" />
-    <Compile Include="Models\SteeringWheel.cs" />
+    <Compile Include="Models\Steering.cs" />
     <Compile Include="Models\Temperature.cs" />
     <Compile Include="Models\Tire\Tire.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Views\BatteryPage.xaml.cs">
       <DependentUpon>BatteryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\DataHelper.cs" />
     <Compile Include="Models\DataPoint\DataPoint.cs" />
     <Compile Include="Views\GeneralPage.xaml.cs">
       <DependentUpon>GeneralPage.xaml</DependentUpon>

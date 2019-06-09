@@ -5,5 +5,5 @@
         Random,
         Serial,
         Csv
-    };
+    }
 }

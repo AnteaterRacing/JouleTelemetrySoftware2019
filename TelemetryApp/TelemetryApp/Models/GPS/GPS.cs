@@ -1,23 +1,23 @@
 ﻿using static TelemetryApp.Models.DataPoint.DataPointDelegate<double>;
 
-namespace TelemetryApp.Models.GPS
+namespace TelemetryApp.Models.Gps
 {
-    public class GPS
+    public class Gps
     {
-        public Latitude Latitude { get; private set; }
-        public Longitude Longitude { get; private set; }
-
-        public GPS()
+        public Gps()
         {
             Latitude = new Latitude();
             Longitude = new Longitude();
         }
 
-        public GPS(DataDelegate dataDelegateLatitude, DataDelegate dataDelegateLongitude)
+        public Gps(DataDelegate dataDelegateLatitude, DataDelegate dataDelegateLongitude)
         {
             Latitude = new Latitude(dataDelegateLatitude);
             Longitude = new Longitude(dataDelegateLongitude);
         }
+
+        public Latitude Latitude { get; }
+        public Longitude Longitude { get; }
 
         public void Update()
         {
