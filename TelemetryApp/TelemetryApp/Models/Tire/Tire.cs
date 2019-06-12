@@ -1,23 +1,24 @@
-﻿using static TelemetryApp.Models.DataPoint.DataPointDelegate<double>;
+﻿using TelemetryApp.Models.DataPoint;
 
-namespace TelemetryApp.Models
+namespace TelemetryApp.Models.Tire
 {
     public class Tire
     {
-        public Temperature Temperature { get; private set; }
-        public Pressure Pressure { get; private set; }
-
-        public Tire() : base()
+        public Tire()
         {
             Temperature = new Temperature();
             Pressure = new Pressure();
         }
 
-        public Tire(DataDelegate dataDelegateTemperature, DataDelegate dataDelegatePressure)
+        public Tire(DataPointDelegate<double>.DataDelegate dataDelegateTemperature,
+            DataPointDelegate<double>.DataDelegate dataDelegatePressure)
         {
             Temperature = new Temperature(dataDelegateTemperature);
             Pressure = new Pressure(dataDelegatePressure);
         }
+
+        public Temperature Temperature { get; }
+        public Pressure Pressure { get; }
 
         public void Update()
         {

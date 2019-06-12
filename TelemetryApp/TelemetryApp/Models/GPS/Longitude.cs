@@ -1,21 +1,28 @@
-﻿namespace TelemetryApp.Models.GPS
+﻿using System;
+
+namespace TelemetryApp.Models.Gps
 {
     public class Longitude : DecimalDegree
     {
-        public static new double Default()
+        public Longitude() : base(Default)
         {
-            return Data.RandomDouble(-180, 180);
         }
 
-        public Longitude() : base(Default) { }
+        public Longitude(DataDelegate dataGenerator) : base(dataGenerator)
+        {
+        }
 
-        public Longitude(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(-180, 180);
+        }
 
         public override string ToString()
         {
-            if (Value == 0) return "0 °";
-            else if (Value < 0) return $"{base.ToString()} W";
-            else return $"{base.ToString()} E";
+            if (Math.Abs(Value) < 0.001) return "0 °";
+            return Value < 0
+                ? $"{base.ToString()} W"
+                : $"{base.ToString()} E";
         }
 
     }

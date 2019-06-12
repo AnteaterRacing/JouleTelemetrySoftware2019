@@ -2,38 +2,29 @@
 
 namespace TelemetryApp.Models.DataPoint
 {
-    public class DataPoint<T> : NotifyPropertyChanged
+    public class DataPoint<T> where T : IComparable
     {
-        private DateTime _date;
-        public DateTime Date {
-            get
-            {
-                return _date;
-            }
-            set
-            {
-                _date = value;
-                OnPropertyChanged();
-            }
+        // Update DataPoint with time and value
+        public T Default()
+        {
+            return default;
         }
 
-        private T _value;
-        public T Value {
-            get
-            {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
+        public override string ToString()
+        {
+            return $"{Date} {Value}";
         }
 
-        // TODO:
+        #region Properties
+
+        public DateTime Date { get; set; }
+        public T Value { get; set; }
         public T Minimum { get; set; }
-        // TODO:
         public T Maximum { get; set; }
+
+        #endregion Properties
+
+        #region Constructors
 
         public DataPoint()
         {
@@ -49,6 +40,10 @@ namespace TelemetryApp.Models.DataPoint
         {
             Update(date, value);
         }
+
+        #endregion
+
+        #region Update
 
         // Update DataPoint with current date and default value
         public void Update()
@@ -68,16 +63,12 @@ namespace TelemetryApp.Models.DataPoint
             Update(DateTime.Now, value);
         }
 
-        // Update DataPoint with time and value
         public void Update(DateTime date, T value)
         {
             Date = date;
             Value = value;
         }
 
-        public override string ToString()
-        {
-            return $"{Date} {Value}";
-        }
+        #endregion Update
     }
 }

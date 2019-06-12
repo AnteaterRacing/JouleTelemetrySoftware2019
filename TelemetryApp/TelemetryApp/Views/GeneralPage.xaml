@@ -12,7 +12,7 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <convertors:DoubleFormatConverter x:Name="DoubleFormatConverter"></convertors:DoubleFormatConverter>
+        <convertors:DoubleFormatConverter x:Name="DoubleFormatConverter" />
     </Page.Resources>
 
     <Grid Background="Black">
@@ -32,13 +32,15 @@
         <Border Grid.Row="0" Grid.Column="0" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
             <!--<Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>-->
             <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <TextBlock Foreground="White" FontSize="20" Text="Main Guages" Name="titleText" FontStyle="Italic" Opacity="0.5" />
+                <TextBlock Foreground="White" FontSize="20" Text="Main Guages" Name="titleText" FontStyle="Italic"
+                           Opacity="0.5" />
 
-                <TextBlock Foreground="White" FontSize="25" Name="TachometerText" Text="0" Opacity=".8" Margin="20,15,0,0"
-                        FontWeight="Bold" />
+                <TextBlock Foreground="White" FontSize="25" Name="TachometerText" Text="0" Opacity=".8"
+                           Margin="20,15,0,0"
+                           FontWeight="Bold" />
                 <ProgressBar IsIndeterminate="False" Name="Tachometer" Maximum="100" Value="20" Height="60" Width="350"
-                        Margin="20,0,0,15" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
-                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
+                             Margin="20,0,0,15" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
+                             RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
                     <ProgressBar.Background>
                         <LinearGradientBrush>
                             <LinearGradientBrush.RelativeTransform>
@@ -53,10 +55,10 @@
                 </ProgressBar>
 
                 <TextBlock Foreground="White" FontSize="25" Name="SpeedText" Text="0" Opacity=".8" Margin="20 0 0 0"
-                        FontWeight="Bold" HorizontalAlignment="Left" />
+                           FontWeight="Bold" HorizontalAlignment="Left" />
                 <ProgressBar IsIndeterminate="False" Name="Speed" Maximum="100" Value="50" Height="60" Width="350"
-                        Margin="20,0,0,20" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
-                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
+                             Margin="20,0,0,20" Foreground="#FF00464D" BorderThickness="0,13" BorderBrush="#FF171717"
+                             RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" FlowDirection="RightToLeft">
 
                     <ProgressBar.Background>
                         <LinearGradientBrush>
@@ -71,12 +73,13 @@
                     </ProgressBar.Background>
                 </ProgressBar>
                 <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,0,15,0"
-                        Opacity="0.5" FocusVisualPrimaryBrush="White" />
+                           Opacity="0.5" FocusVisualPrimaryBrush="White" />
                 <TextBlock Foreground="White" FontSize="20" Text="Motor Temp" Name="motortempText" FontStyle="Italic"
-                        Opacity="0.5" Margin="8,8,0,0" />
+                           Opacity="0.5" Margin="8,8,0,0" />
 
-                <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch"
-                        Margin="0,0,0,0" VerticalAlignment="Stretch">
+                <Grid Grid.Row="0" Grid.Column="0" BorderThickness="0" BorderBrush="Black"
+                      HorizontalAlignment="Stretch"
+                      Margin="0,0,0,0" VerticalAlignment="Stretch">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -88,30 +91,30 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="14,8,0,0">
+                                Margin="14,8,0,0">
                         <TextBlock Foreground="White" FontSize="26" Text="Left" FontStyle="Normal" Opacity="0.8"
-                                Margin="0,0,0,8" />
+                                   Margin="0,0,0,8" />
 
                         <TextBlock Foreground="White" FontSize="28" Text="99° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
                         <TextBlock Foreground="White" FontSize="28" Text="90° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
                         <TextBlock Foreground="White" FontSize="28" Text="102° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
 
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
-                            Margin="14,8,0,0">
+                                Margin="14,8,0,0">
                         <TextBlock Foreground="White" FontSize="28" Text="Right" FontStyle="Normal" Opacity="0.8"
-                                Margin="0,0,0,8" />
+                                   Margin="0,0,0,8" />
 
                         <TextBlock Foreground="White" FontSize="28" Text="91° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
                         <TextBlock Foreground="White" FontSize="28" Text="101° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
                         <TextBlock Foreground="White" FontSize="28" Text="97° F" FontStyle="Normal" Opacity="0.8"
-                                FontWeight="Bold" />
+                                   FontWeight="Bold" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -121,29 +124,43 @@
         <Border Grid.Row="0" Grid.Column="1" Margin="8" Padding="4" BorderThickness="2" BorderBrush="#C4C4C4">
             <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
-                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="0" Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4"
+                            BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
                     <!--BMS 1-->
-                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage">76 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="voltText1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp">30 °</Bold></TextBlock>
+                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Margin="8,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" Text="BMS 1" FontStyle="Italic" Opacity="0.5" />
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            Voltage <Bold x:Name="voltage">76 V</Bold>
+                        </TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            Balancing <Bold x:Name="voltText1">3.5 V</Bold>
+                        </TextBlock>
+                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            <Bold x:Name="temp">30 °</Bold>
+                        </TextBlock>
 
-                        <ProgressBar IsIndeterminate="False" Name="BMStemp" Maximum="100" Value="50" Height="60" 
-                        Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
-                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
+                        <ProgressBar IsIndeterminate="False" Name="BMStemp" Maximum="100" Value="50" Height="60"
+                                     Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15"
+                                     BorderBrush="#FF171717"
+                                     RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch"
+                                     FlowDirection="RightToLeft">
 
                             <ProgressBar.Background>
                                 <LinearGradientBrush>
@@ -160,14 +177,26 @@
                     </StackPanel>
 
                     <!--BMS 2-->
-                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Voltage <Bold x:Name="voltage1">70 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight">Balancing <Bold x:Name="balance1">3.5 V</Bold></TextBlock>
-                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight"><Bold x:Name="temp1">35 °C</Bold></TextBlock>
-                        <ProgressBar IsIndeterminate="False" Name="BMStemp1" Maximum="100" Value="50" Height="60" 
-                        Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15" BorderBrush="#FF171717"
-                        RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" FlowDirection="RightToLeft">
+                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Margin="8,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" Text="BMS 2" FontStyle="Italic" Opacity="0.5" />
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            Voltage <Bold x:Name="voltage1">70 V</Bold>
+                        </TextBlock>
+                        <TextBlock Foreground="White" FontSize="26" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            Balancing <Bold x:Name="balance1">3.5 V</Bold>
+                        </TextBlock>
+                        <TextBlock Foreground="White" FontSize="23" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0"
+                                   FontWeight="ExtraLight">
+                            <Bold x:Name="temp1">35 °C</Bold>
+                        </TextBlock>
+                        <ProgressBar IsIndeterminate="False" Name="BMStemp1" Maximum="100" Value="50" Height="60"
+                                     Margin="5,0,5,10" Foreground="#FF00464D" BorderThickness="0,15"
+                                     BorderBrush="#FF171717"
+                                     RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch"
+                                     FlowDirection="RightToLeft">
 
                             <ProgressBar.Background>
                                 <LinearGradientBrush>
@@ -185,327 +214,414 @@
                 </Grid>
 
 
-                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White"/>
-                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,5,15,0"
+                           Opacity="0.5" FocusVisualPrimaryBrush="White" />
+                <Grid Grid.Row="0" Grid.Column="1" BorderThickness="0" BorderBrush="Black"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0"  Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4" BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="0" Margin="0,10,0,5" Grid.Column="0" Background="Black" BorderBrush="#C4C4C4"
+                            BorderThickness="0,2,2,0" HorizontalAlignment="Right" Opacity="0.5">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
 
                     <!--Motor 1-->
-                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage">34 V</Bold></TextBlock>
+                    <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Margin="8,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" Text="Motor 1" FontStyle="Italic" Opacity="0.5" />
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
+                                   FontWeight="ExtraLight">
+                            V Supply <Bold x:Name="motorVoltage">34 V</Bold>
+                        </TextBlock>
 
-                        <controls:RadialGauge x:Name="Motor1CurrentGauge" Margin="10" Value="70" Minimum="0" 
-	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
-	                    ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
-                        NeedleWidth="5" TickLength="18" NeedleBrush="orange">
-                        </controls:RadialGauge>
+                        <controls:RadialGauge x:Name="Motor1CurrentGauge" Margin="10" Value="70" Minimum="0"
+                                              Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps"
+                                              TickBrush="Gainsboro"
+                                              ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                              TrailBrush="#FF00F3FF"
+                                              NeedleWidth="5" TickLength="18" NeedleBrush="orange" />
                     </StackPanel>
 
                     <!--Motor 2-->
-                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5"/>
-                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0" FontWeight="ExtraLight">V Supply <Bold x:Name="motorVoltage1">30 V</Bold></TextBlock>
-                        <controls:RadialGauge x:Name="Motor2CurrentGauge" Margin="10" Value="66" Minimum="0" 
-	                    Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps" TickBrush="Gainsboro"
-	                    ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" TrailBrush="#FF00F3FF"
-                        NeedleWidth="5" TickLength="18" NeedleBrush="orange">
-                        </controls:RadialGauge>
+                    <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                Margin="8,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" Text="Motor 2" FontStyle="Italic" Opacity="0.5" />
+                        <TextBlock Foreground="White" FontSize="30" FontStyle="Normal" Opacity="0.7" Margin="8,8,0,0"
+                                   FontWeight="ExtraLight">
+                            V Supply <Bold x:Name="motorVoltage1">30 V</Bold>
+                        </TextBlock>
+                        <controls:RadialGauge x:Name="Motor2CurrentGauge" Margin="10" Value="66" Minimum="0"
+                                              Maximum="180" TickSpacing="20" ScaleWidth="26" Unit="Amps"
+                                              TickBrush="Gainsboro"
+                                              ScaleTickBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                              TrailBrush="#FF00F3FF"
+                                              NeedleWidth="5" TickLength="18" NeedleBrush="orange" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </Border>
 
         <!-- Top Right Panel -->
-        <Grid Grid.Row="0" Grid.Column="3" BorderThickness="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Grid.Row="0" Grid.Column="2" BorderThickness="0" HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".6*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width=".5*"/>
+
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width=".6*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0"  Margin="8" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
-                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <Border Grid.Row="0" Margin="8" Grid.Column="0" BorderThickness="2" BorderBrush="#C4C4C4">
+                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
             </Border>
 
-            <Border Grid.Row="0"  Margin="8" Grid.Column="2"  BorderThickness="2" BorderBrush="#C4C4C4">
-                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <Border Grid.Row="0" Margin="8" Grid.Column="1" BorderThickness="2" BorderBrush="#C4C4C4">
+                <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
             </Border>
 
 
             <!-- Steering/G-Force -->
-            <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0"  Grid.RowSpan="2" >
+            <Grid BorderThickness="0" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".2*" />
+                    <RowDefinition Height=".6*" />
+                </Grid.RowDefinitions>
+
                 <!--Steering-->
-                <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Foreground="White" FontSize="20" Text="Steering" FontStyle="Italic" Opacity="0.5"
+                               Margin="5,0,0,0" />
 
-                <TextBlock Foreground="White" FontSize="25" Text="{x:Bind VM.SteeringWheelModel.ToString()}" Opacity=".8" Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Image Source="/Assets/Images/steering-wheel.png" RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
-                    <interactivity:Interaction.Behaviors>
-                        <behaviors:Rotate
-                            Value="{x:Bind VM.SteeringWheelModel.RotateValue}"
-                            Duration="950"
-                            EasingType="Linear"
-                            AutomaticallyStart="True" />
-                    </interactivity:Interaction.Behaviors>
-                </Image>
-
-                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
-                
-                <!-- G-Force -->
-                <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="81,0,0,0" FontWeight="Bold" Name = "horizontalGForce"  HorizontalAlignment="Left" Text="{x:Bind VM.GForceModel.X.ToString()}"></TextBlock>
-                <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0" FontWeight="Bold" Name="verticalGForce" RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{x:Bind VM.GForceModel.Y.ToString()}"></TextBlock>
-                <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,10,0,0">
-                    <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                    <Ellipse Height="75" Width="75" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                    <Ellipse Height="130" Width="130" StrokeThickness="3" Stroke="#FF00F3FF" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
-                    <Rectangle Width="180" Height="3" Stroke="#FF00F3FF" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF"/>
-                    <Rectangle Width="180" Height="3" Stroke="#FF00F3FF" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF" RenderTransformOrigin="0.5,0.5">
-                        <Rectangle.RenderTransform>
-                            <CompositeTransform Rotation="90"/>
-                        </Rectangle.RenderTransform>
-                    </Rectangle>
-                    <Ellipse Height="15" Width="15" StrokeThickness="3" Stroke="#FF6E6E6E" Fill="White" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock Foreground="White" FontSize="25" Text="{x:Bind VM.Data.Steering}" Opacity=".8"
+                               Margin="0 0 0 0" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <Image Source="/Assets/Images/steering-wheel.png" MinHeight="50" MaxHeight="150"
+                           RenderTransformOrigin="0.5,0.5" Margin="30,10,30,0">
                         <interactivity:Interaction.Behaviors>
-                            <behaviors:Offset 
-                                OffsetX="{x:Bind VM.GForceModel.X.OffsetValue}"
-                                OffsetY="{x:Bind VM.GForceModel.Y.OffsetValue}"
+                            <behaviors:Rotate
+                                Value="{x:Bind VM.Data.Steering.RotateValue}"
                                 Duration="950"
                                 EasingType="Linear"
                                 AutomaticallyStart="True" />
                         </interactivity:Interaction.Behaviors>
-                    </Ellipse>
-                </RelativePanel>
-            </StackPanel>
+                    </Image>
 
-            <!--Car Tire Info -->
-            <Grid Grid.Column="1">
+                    <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0"
+                               Opacity="0.5" FocusVisualPrimaryBrush="White" />
+                </StackPanel>
+                <!-- G-Force -->
+                <StackPanel Grid.Row="1">
+                    <TextBlock Foreground="White" FontSize="20" Text="G-force" FontStyle="Italic" Opacity="0.5"
+                               Margin="5,0,0,0" />
+                    <TextBlock Foreground="White" FontSize="22" FontStyle="Normal" Opacity="0.7" Margin="0,0,0,0"
+                               FontWeight="Bold" Name="horizontalGForce" HorizontalAlignment="Center"
+                               Text="{x:Bind VM.Data.GForce.X}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".2*" />
+                            <ColumnDefinition Width=".8*" />
+                            <ColumnDefinition Width=".2*" />
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="White" Grid.Column="0" FontSize="18" FontStyle="Normal" Opacity="0.7"
+                                   RelativePanel.AlignLeftWithPanel="True" FontWeight="Bold" Name="verticalGForce"
+                                   RelativePanel.AlignVerticalCenterWithPanel="True" HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" Text="{x:Bind VM.Data.GForce.Y}" />
+
+                        <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                       Margin="0,10,0,0">
+
+                            <Ellipse Height="180" Width="180" StrokeThickness="3" Stroke="#FF00F3FF"
+                                     RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                     RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <Ellipse Height="75" Width="75" StrokeThickness="3" Stroke="#FF00F3FF"
+                                     RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                     RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <Ellipse Height="130" Width="130" StrokeThickness="3" Stroke="#FF00F3FF"
+                                     RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                     RelativePanel.AlignVerticalCenterWithPanel="True" />
+                            <Rectangle Width="180" Height="3" Stroke="#FF00F3FF"
+                                       RelativePanel.AlignVerticalCenterWithPanel="True"
+                                       RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF" />
+                            <Rectangle Width="180" Height="3" Stroke="#FF00F3FF"
+                                       RelativePanel.AlignVerticalCenterWithPanel="True"
+                                       RelativePanel.AlignHorizontalCenterWithPanel="True" Fill="#FF00F3FF"
+                                       RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <CompositeTransform Rotation="90" />
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Ellipse Height="15" Width="15" StrokeThickness="3" Stroke="#FF6E6E6E" Fill="White"
+                                     RelativePanel.AlignVerticalCenterWithPanel="True"
+                                     RelativePanel.AlignHorizontalCenterWithPanel="True"
+                                     RenderTransformOrigin="0.5,0.5">
+                                <interactivity:Interaction.Behaviors>
+                                    <behaviors:Offset
+                                        OffsetX="{x:Bind VM.Data.GForce.X.OffsetValue}"
+                                        OffsetY="{x:Bind VM.Data.GForce.Y.OffsetValue}"
+                                        Duration="950"
+                                        EasingType="Linear"
+                                        AutomaticallyStart="True" />
+                                </interactivity:Interaction.Behaviors>
+                            </Ellipse>
+                        </RelativePanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <!--Car Model-->
+            <Grid Grid.Column="0" Margin="20">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".5*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width=".5*" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Left Tire Info -->
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width=".3*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width=".3*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3.1*"/>
-                        <RowDefinition Height="2.1*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2.1*"/>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="3.1*" />
+                        <RowDefinition Height="2.1*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2.1*" />
+                        <RowDefinition Height="3*" />
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Row="1"  Margin="0" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="1" Margin="0" Grid.Column="0" BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
 
-                    <Border Grid.Row="3"  Margin="0" Grid.Column="0"  BorderThickness="2" BorderBrush="#C4C4C4">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="3" Margin="0" Grid.Column="0" BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
-                    <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontLeftTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontLeftTireModel.Temperature.ToString()}"></TextBlock>
+                    <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Margin="0,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,0,0,5" Text="{x:Bind VM.Data.FrontLeftTire.Pressure}" />
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,5,0,0" Text="{x:Bind VM.Data.FrontLeftTire.Temperature}" />
                     </StackPanel>
-                    <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackLeftTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackLeftTireModel.Temperature.ToString()}"></TextBlock>
+                    <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Margin="0,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,0,0,5" Text="{x:Bind VM.Data.BackLeftTire.Pressure}" />
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,5,0,0" Text="{x:Bind VM.Data.BackLeftTire.Temperature}" />
                     </StackPanel>
 
-                    <Rectangle Height="2" Grid.Column="1"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
-                    <Rectangle Height="2" Grid.Column="1"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White"/>
+                    <Rectangle Height="2" Grid.Column="1" Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4"
+                               Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
+                    <Rectangle Height="2" Grid.Column="1" Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4"
+                               Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
                 </Grid>
 
                 <!-- Right Tire Info -->
                 <Grid Grid.Column="2">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width=".3*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width=".3*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3.1*"/>
-                        <RowDefinition Height="2.1*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2.1*"/>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="3.1*" />
+                        <RowDefinition Height="2.1*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2.1*" />
+                        <RowDefinition Height="3*" />
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Row="1"  Margin="0" Grid.Column="1"  BorderThickness="2" BorderBrush="#C4C4C4">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="1" Margin="0" Grid.Column="1" BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
 
-                    <Border Grid.Row="3"  Margin="0" Grid.Column="1"  BorderThickness="2" BorderBrush="#C4C4C4">
-                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Border Grid.Row="3" Margin="0" Grid.Column="1" BorderThickness="2" BorderBrush="#C4C4C4">
+                        <Rectangle HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
                     </Border>
 
-                    <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.FrontRightTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.FrontRightTireModel.Temperature.ToString()}"></TextBlock>
+                    <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Margin="0,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,0,0,5" Text="{x:Bind VM.Data.FrontRightTire.Pressure}" />
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,5,0,0" Text="{x:Bind VM.Data.FrontRightTire.Temperature}" />
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,5" Text="{x:Bind VM.BackRightTireModel.Pressure.ToString()}"></TextBlock>
-                        <TextBlock Foreground="White" FontSize="25" FontStyle="Normal" Opacity="0.7" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,5,0,0" Text="{x:Bind VM.BackRightTireModel.Temperature.ToString()}"></TextBlock>
+                    <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Margin="0,0,0,0">
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,0,0,5" Text="{x:Bind VM.Data.BackRightTire.Pressure}" />
+                        <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7"
+                                   FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="0,5,0,0" Text="{x:Bind VM.Data.BackRightTire.Temperature}" />
                     </StackPanel>
 
-                    <Rectangle Height="2" Grid.Column="0"  Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
-                    <Rectangle Height="2" Grid.Column="0"  Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4" Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
+                    <Rectangle Height="2" Grid.Column="0" Grid.Row="1" FocusVisualSecondaryBrush="#C4C4C4"
+                               Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
+                    <Rectangle Height="2" Grid.Column="0" Grid.Row="3" FocusVisualSecondaryBrush="#C4C4C4"
+                               Fill="#C4C4C4" FocusVisualPrimaryBrush="White" />
                 </Grid>
 
                 <!--Grid to properly size the image, align it with the tire temp overlay grid-->
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="55*"/>
-                        <RowDefinition Height="179*"/>
-                        <RowDefinition Height="66*"/>
+                        <RowDefinition Height="55*" />
+                        <RowDefinition Height="179*" />
+                        <RowDefinition Height="66*" />
                     </Grid.RowDefinitions>
 
                     <!--Grid for all the tire temp indicators-->
-                    <Image Source="/Assets/Images/racecar.png"  Name="car"  Height ="auto" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    <Image Source="/Assets/Images/racecar.png" Name="Car" Height="auto" Grid.Row="1"
+                           HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" />
 
                     <Grid Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <!--Width="{Binding ElementName=car}"-->
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".67*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width=".67*"/>
+                            <ColumnDefinition Width=".67*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width=".67*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="53*"/>
-                            <RowDefinition Height="78*"/>
-                            <RowDefinition Height="105*"/>
-                            <RowDefinition Height="88*"/>
-                            <RowDefinition Height="34*"/>
+                            <RowDefinition Height="53*" />
+                            <RowDefinition Height="78*" />
+                            <RowDefinition Height="105*" />
+                            <RowDefinition Height="88*" />
+                            <RowDefinition Height="34*" />
 
                         </Grid.RowDefinitions>
 
                         <!--Left Front Tire-->
                         <Grid Grid.Row="1" Grid.Column="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width=".7*"/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width=".7*" />
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="7*"/>
-                                    <ColumnDefinition Width="13*"/>
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="13*" />
                                 </Grid.ColumnDefinitions>
-                                <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="13 0 0 13" Background="GreenYellow" />
+                                <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red" CornerRadius="13 0 0 13"
+                                        Background="GreenYellow" />
                             </Grid>
 
-                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0" Background="GreenYellow" />
-                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Yellow" />
-                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0" Background="GreenYellow" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0"
+                                    Background="GreenYellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 13 13 0"
+                                    Background="GreenYellow" />
 
                         </Grid>
 
                         <!--Right Front Tire-->
                         <Grid Grid.Row="1" Grid.Column="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".7*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width=".7*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="13*"/>
-                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="13*" />
+                                    <ColumnDefinition Width="7*" />
                                 </Grid.ColumnDefinitions>
-                                <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="0 13 13 0" Background="Yellow" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="16" />
+                                <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="0 13 13 0"
+                                        Background="Yellow" HorizontalAlignment="Right" Margin="0,0,0,0"
+                                        VerticalAlignment="Stretch" Width="16" />
                             </Grid>
 
-                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Yellow" />
-                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="13 0 0 13" Background="GreenYellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="13 0 0 13"
+                                    Background="GreenYellow" />
                         </Grid>
 
                         <!--Left Rear Tire-->
                         <Grid Grid.Row="3" Grid.Column="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9" Background="Yellow" />
-                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Orange" />
-                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9"
+                                    Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red" Background="Orange" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0"
+                                    Background="Yellow" />
                         </Grid>
 
                         <!--Right Rear Tire-->
                         <Grid Grid.Row="3" Grid.Column="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9" Background="Yellow" />
-                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red"  Background="Orange" />
-                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0" Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="0" BorderBrush="Red" CornerRadius="9 0 0 9"
+                                    Background="Yellow" />
+                            <Border BorderThickness="0" Grid.Column="1" BorderBrush="Red" Background="Orange" />
+                            <Border BorderThickness="0" Grid.Column="2" BorderBrush="Red" CornerRadius="0 9 9 0"
+                                    Background="Yellow" />
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
 
-            <StackPanel Grid.Column="2" Margin="10,10,10,0">
-                <TextBlock Foreground="White" FontSize="20" Text="GPS" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-                <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight" Text="{x:Bind VM.GPSModel.Latitude.ToString()}"></TextBlock>
-                <TextBlock Foreground="White" FontSize="20" FontStyle="Normal" Opacity="0.7" Margin="8,0,0,0" FontWeight="ExtraLight" Text="{x:Bind VM.GPSModel.Longitude.ToString()}"></TextBlock>
 
-                <Rectangle Height="2" FocusVisualSecondaryBrush="#FFD44D4D" Fill="#FFFFFF" Margin="15,10,15,0" Opacity="0.5" FocusVisualPrimaryBrush="White" />
-                <TextBlock Foreground="White" FontSize="20" Text="Gyro" FontStyle="Italic" Opacity="0.5" Margin="5,0,0,0"/>
-
-            </StackPanel>
         </Grid>
 
         <!--Graph-->
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Padding="8">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock Grid.Column="0" Text="{x:Bind ValueViewModel.Name}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>-->
                     <ComboBox x:Name="GraphComboBox" ItemsSource="{x:Bind VM.Graphs, Mode=OneWay}"
-                            SelectedItem="{x:Bind VM.CurrentGraph, Mode=OneTime}" SelectedValue="{x:Bind VM.CurrentGraph.Name, Mode=OneTime}"
-                            SelectionChanged="GraphComboBox_SelectionChanged"></ComboBox>
+                              SelectedItem="{x:Bind VM.CurrentGraph, Mode=OneTime}"
+                              SelectedValue="{x:Bind VM.CurrentGraph.Name, Mode=OneTime}"
+                              SelectionChanged="GraphComboBox_SelectionChanged" />
                     <RelativePanel Grid.Column="1">
                         <StackPanel RelativePanel.AlignRightWithPanel="True" Orientation="Horizontal">
-                            <TextBlock Text="Resolution:" VerticalAlignment="Center" Padding="0,0,10,0"></TextBlock>
+                            <TextBlock Text="Resolution:" VerticalAlignment="Center" Padding="0,0,10,0" />
                             <RadioButton Content="30 seconds" Tag="30" GroupName="Resolution"
-                                    Checked="Resolution_Checked" />
-                            <RadioButton Content="1 minute" Tag="60" GroupName="Resolution" Checked="Resolution_Checked"
-                                    IsChecked="True" />
+                                         Checked="Resolution_Checked" />
+                            <RadioButton Content="1 minute" Tag="60" GroupName="Resolution"
+                                         Checked="Resolution_Checked"
+                                         IsChecked="True" />
                             <RadioButton Content="5 minutes" Tag="3000" GroupName="Resolution"
-                                    Checked="Resolution_Checked" />
+                                         Checked="Resolution_Checked" />
                         </StackPanel>
                     </RelativePanel>
                 </Grid>
@@ -531,12 +647,13 @@
                         </telerikChart:RadCartesianChart.Grid>
                         <telerikChart:RadCartesianChart.VerticalAxis>
                             <telerikChart:LinearAxis MajorStep="{x:Bind VM.CurrentGraph.Step}"
-                                    Minimum="{x:Bind VM.CurrentGraph.Minimum}"
-                                    Maximum="{x:Bind VM.CurrentGraph.Maximum}" ShowLabels="True" />
+                                                     Minimum="{x:Bind VM.CurrentGraph.Minimum}"
+                                                     Maximum="{x:Bind VM.CurrentGraph.Maximum}" ShowLabels="True" />
                         </telerikChart:RadCartesianChart.VerticalAxis>
                         <telerikChart:RadCartesianChart.HorizontalAxis>
                             <telerikChart:DateTimeContinuousAxis MajorStepUnit="Second" MajorStep="15"
-                                    LabelFormat="{}{0,0:HH:MM:ss}" LabelFitMode="MultiLine" />
+                                                                 LabelFormat="{}{0,0:HH:MM:ss}"
+                                                                 LabelFitMode="MultiLine" />
                         </telerikChart:RadCartesianChart.HorizontalAxis>
                         <telerikChart:SplineAreaSeries ItemsSource="{x:Bind VM.CurrentGraph.History}">
                             <telerikChart:AreaSeries.ValueBinding>
@@ -550,16 +667,19 @@
                     <RelativePanel Width="200" HorizontalAlignment="Right">
                         <StackPanel Padding="8" RelativePanel.AlignLeftWithPanel="True">
                             <TextBlock Padding="4" Style="{ThemeResource BodyTextBlockStyle}">
-                                <Run Text="Average: "></Run>
-                                <Run Text="{x:Bind VM.CurrentGraph.Average, Converter={StaticResource DoubleFormatConverter}}"></Run>
+                                <Run Text="Average: " />
+                                <Run
+                                    Text="{x:Bind VM.CurrentGraph.Average, Converter={StaticResource DoubleFormatConverter}}" />
                             </TextBlock>
                             <TextBlock Padding="4" Style="{ThemeResource BodyTextBlockStyle}">
-                                <Run Text="Current: "></Run>
-                                <Run Text="{x:Bind VM.CurrentGraph.Current.Value, Converter={StaticResource DoubleFormatConverter}}"></Run>
+                                <Run Text="Current: " />
+                                <Run
+                                    Text="{x:Bind VM.CurrentGraph.Current.Value, Converter={StaticResource DoubleFormatConverter}}" />
                             </TextBlock>
                             <TextBlock Padding="4" Style="{ThemeResource BodyTextBlockStyle}">
-                                <Run Text="Area: "></Run>
-                                <Run Text="{x:Bind VM.CurrentGraph.Area, Converter={StaticResource DoubleFormatConverter}}"></Run>
+                                <Run Text="Area: " />
+                                <Run
+                                    Text="{x:Bind VM.CurrentGraph.Area, Converter={StaticResource DoubleFormatConverter}}" />
                             </TextBlock>
                         </StackPanel>
                     </RelativePanel>
@@ -567,6 +687,7 @@
             </Grid>
         </Grid>
        
+
 
         <!--Video Feed-->
         <!--<Border Grid.Row="1" Grid.Column="2" Background="#152951"/>
@@ -615,7 +736,7 @@
                     </telerikChart:ScatterPointSeries.YValueBinding>
                 </telerikChart:ScatterPointSeries>
 
-                
+
             </telerikChart:RadCartesianChart>
         </Border>
     </Grid>

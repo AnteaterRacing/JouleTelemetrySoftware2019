@@ -2,71 +2,86 @@
 
 namespace TelemetryApp.Models
 {
-    public class Settings : NotifyPropertyChanged
+    public class Settings
     {
-        private static Dictionary<string, object> _defaultSettings = new Dictionary<string, object> {
-            {nameof(SelectedDataSource), DataSource.Random},
-            {nameof(SerialPortName), "COM1"},
+        #region Constructors
+
+        public Settings()
+        {
+            _currentSettings = new Dictionary<string, object>(DefaultSettings);
+        }
+
+        #endregion Constructors
+
+        #region Csv
+
+        public string CsvFileName
+        {
+            get => (string) _currentSettings[nameof(CsvFileName)];
+            set => this[nameof(CsvFileName)] = value;
+        }
+
+        #endregion Csv
+
+        #region Update Period
+
+        public int UpdatePeriod
+        {
+            get => (int) _currentSettings[nameof(UpdatePeriod)];
+            set => this[nameof(UpdatePeriod)] = value;
+        }
+
+        #endregion Update Period
+
+        #region Settings Dictionary
+
+        private static readonly Dictionary<string, object> DefaultSettings = new Dictionary<string, object>
+        {
+            {nameof(DataSource), DataSource.Random},
+            {nameof(SerialPortName), "COM5"},
             {nameof(SerialBaudRate), 9600},
-            {nameof(CsvFileName), "/Assets/Data/sample1.csv"}
+            {nameof(CsvFileName), "/Assets/Data/sample1.csv"},
+            {nameof(UpdatePeriod), 1000}
         };
 
-        private Dictionary<string, object> _currentSettings;
+        private readonly Dictionary<string, object> _currentSettings;
 
         public object this[string key]
         {
-            get { return _currentSettings[key]; }
-            set {
-                _currentSettings[key] = value;
-                OnPropertyChanged(key);
-            }
+            get => _currentSettings[key];
+            set => _currentSettings[key] = value;
         }
 
-        public DataSource SelectedDataSource
+        #endregion Settings Dictionary
+
+        #region Data Source
+
+        public DataSource DataSource
         {
-            get => (DataSource)_currentSettings[nameof(SelectedDataSource)];
-            set
-            {
-                this[nameof(SelectedDataSource)] = value;
-            }
+            get => (DataSource) _currentSettings[nameof(DataSource)];
+            set => this[nameof(DataSource)] = value;
         }
+
+        public bool IsDataSourceRandom => DataSource == DataSource.Random;
+        public bool IsDataSourceSerial => DataSource == DataSource.Serial;
+        public bool IsDataSourceCsv => DataSource == DataSource.Csv;
+
+        #endregion Data Source
+
+        #region Serial
 
         public string SerialPortName
         {
-            get => (string)_currentSettings[nameof(SerialPortName)];
-            set
-            {
-                this[nameof(SerialPortName)] = value;
-            }
+            get => (string) _currentSettings[nameof(SerialPortName)];
+            set => this[nameof(SerialPortName)] = value;
         }
 
         public int SerialBaudRate
         {
-            get => (int)_currentSettings[nameof(SerialBaudRate)];
-            set
-            {
-                this[nameof(SerialBaudRate)] = value;
-            }
+            get => (int) _currentSettings[nameof(SerialBaudRate)];
+            set => this[nameof(SerialBaudRate)] = value;
         }
 
-        public string CsvFileName
-        {
-            get => (string)_currentSettings[nameof(CsvFileName)];
-            set
-            {
-                this[nameof(CsvFileName)] = value;
-            }
-        }
-
-        //public ObservableCollection<string> DataSources => new ObservableCollection<string>(Enum.GetValues(typeof(DataSource))
-        //                                                                                    .Cast<DataSource>()
-        //                                                                                    .Select(x => x.ToString())
-        //                                                                                    .ToArray());
-
-        public Settings()
-        {
-            _currentSettings = new Dictionary<string, object>(_defaultSettings);
-            OnPropertyChanged(null);
-        }
+        #endregion Serial
     }
 }

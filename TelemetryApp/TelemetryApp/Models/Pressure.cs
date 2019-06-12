@@ -4,14 +4,18 @@ namespace TelemetryApp.Models
 {
     public class Pressure : DataPointDelegate<double>
     {
-        public static new double Default()
+        public Pressure() : base(Default)
         {
-            return Data.RandomDouble(0, 100);
         }
 
-        public Pressure() : base(Default) { }
+        public Pressure(DataDelegate dataGenerator) : base(dataGenerator)
+        {
+        }
 
-        public Pressure(DataDelegate dataGenerator) : base(dataGenerator) { }
+        public new static double Default()
+        {
+            return DataHelper.RandomDouble(0, 100);
+        }
 
         public override string ToString()
         {

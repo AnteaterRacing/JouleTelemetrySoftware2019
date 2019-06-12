@@ -11,14 +11,29 @@ namespace TelemetryApp.Models
         private DataPointDelegate<double> _current;
         private ObservableCollection<DataPoint<double>> _history;
 
+        public Graph(DataDelegate dataGenerator, string name = "GraphViewModel",
+            int minimum = 0, int maximum = 1,
+            int updatePeriod = 1000, int resolution = 60)
+        {
+            Name = name;
+            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
+            Minimum = minimum;
+            Maximum = maximum;
+            UpdatePeriod = updatePeriod;
+            Resolution = resolution;
+            Current = new DataPointDelegate<double>(dataGenerator);
+
+            Init();
+        }
+
         public string Name { get; } // name of graph
 
         public int UpdatePeriod { get; } // milliseconds per update
 
         public int Resolution { get; } // seconds of resolution to view history
 
-        public int Minimum { get; }
-        public int Maximum { get; }
+        public int Minimum { get; } // minimum expected value
+        public int Maximum { get; } // maximum expected value
         public int Step => (Maximum - Minimum) / 5;
 
         public double Average => _history.Average(data => data.Value);
@@ -43,21 +58,6 @@ namespace TelemetryApp.Models
                 OnPropertyChanged(nameof(History));
             }
         } // historical data points
-
-        public Graph(DataDelegate dataGenerator, string name = "GraphViewModel",
-                     int minimum = 0, int maximum = 1,
-                     int updatePeriod = 1000, int resolution = 60)
-        {
-            Name = name;
-            if (minimum > maximum) throw new ArgumentException($"Expected minimum({minimum}) < maximum({maximum})");
-            Minimum = minimum;
-            Maximum = maximum;
-            UpdatePeriod = updatePeriod;
-            Resolution = resolution;
-            Current = new DataPointDelegate<double>(dataGenerator);
-
-            Init();
-        }
 
         public override string ToString()
         {
@@ -86,10 +86,9 @@ namespace TelemetryApp.Models
         {
             var now = DateTime.Now;
             var data = from i in Enumerable.Range(0, Resolution)
-                                                  select new DataPoint<double> { Date = now.AddMilliseconds(-UpdatePeriod * i), Value = 0 };
+                select new DataPoint<double> {Date = now.AddMilliseconds(-UpdatePeriod * i), Value = 0};
 
             _history = new ObservableCollection<DataPoint<double>>(data.OrderBy(d => d.Date));
         }
-
     }
 }
